@@ -160,6 +160,7 @@ $u_id = $_SESSION['user_id'];
     $id = $row['idship'];
     $ship_name = $row['ship_name'];
     $call_sign = $row['call_sign'];
+    $ship_desc = $row['ship_desc'];
     $IMO_number = $row['IMO_number'];
     $MMSI_number = $row['MMSI_number'];
     $flag = $row['flag'];
@@ -196,20 +197,20 @@ $u_id = $_SESSION['user_id'];
     <div class="col-sm-3">
         <div class="form-group">
             <label>IMO Number</label>
-            <input type="text" class="form-control" value="<?php echo $IMO_number;?>">
+            <input type="text" class="form-control" name="imo_num" value="<?php echo $IMO_number;?>">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label>MMSI Number</label>
-            <input type="text" class="form-control" value="<?php echo $MMSI_number;?>">
+            <input type="text" class="form-control" name="mmsi_num" value="<?php echo $MMSI_number;?>">
         </div>
     </div>
 
     <div class="col-sm-12">
         <div class="form-group">
             <label >Any other information related to ship identity</label>
-            <input type="text" class="form-control" name="ship_desc">
+            <input type="text" class="form-control" value="<?php echo $ship_desc;?>" name="ship_desc">
         </div>
     </div>
 
@@ -218,25 +219,25 @@ $u_id = $_SESSION['user_id'];
     <div class="col-sm-6">
         <div class="form-group">
             <label >Flag State</label>
-            <input type="text" class="form-control" value="<?php echo $flag;?>">
+            <input type="text" class="form-control" name="flag_state" value="<?php echo $flag;?>">
         </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group">
             <label >Ship Type</label>
-            <input type="text" class="form-control" value="<?php echo $ship_type;?>">
+            <input type="text" class="form-control" name="ship_type" value="<?php echo $ship_type;?>">
         </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group">
             <label>Gross Tonnage</label>
-            <input type="text" class="form-control" value="<?php echo $g_tonnage;?>">
+            <input type="text" class="form-control" name="gross_ton" value="<?php echo $g_tonnage;?>">
         </div>
     </div>
     <div class="col-sm-6">
         <div class="form-group">
             <label>Net Tonnage</label>
-            <input type="text" class="form-control" value="<?php echo $n_tonnage;?>">
+            <input type="text" class="form-control" name="net_ton" value="<?php echo $n_tonnage;?>">
         </div>
     </div>
 
@@ -245,19 +246,19 @@ $u_id = $_SESSION['user_id'];
     <div class="col-sm-4">
         <div class="form-group">
             <label >Port</label>
-            <input type="text" class="form-control" value="<?php echo $port;?>">
+            <input type="text" class="form-control" name="port" value="<?php echo $port;?>">
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             <label>Date</label>
-            <input type="text" class="form-control" value="<?php echo $date;?>">
+            <input type="date" class="form-control" name="date" value="<?php echo $date;?>">
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             <label>Number</label>
-            <input type="text" class="form-control" value="<?php echo $number;?>">
+            <input type="text" class="form-control" name="number" value="<?php echo $number;?>">
         </div>
     </div>
 
@@ -266,19 +267,19 @@ $u_id = $_SESSION['user_id'];
     <div class="col-sm-4">
         <div class="form-group">
             <label>Company Name</label>
-            <input type="text" class="form-control" value="<?php echo $company;?>">
+            <input type="text" class="form-control" name="c_name" value="<?php echo $company;?>">
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             <label>Email</label>
-            <input type="text" class="form-control" value="<?php echo $c_email;?>">
+            <input type="text" class="form-control" name="c_email" value="<?php echo $c_email;?>">
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             <label>Phone</label>
-            <input type="text" class="form-control" value="<?php echo $c_phone;?>">
+            <input type="text" class="form-control" name="c_phone" value="<?php echo $c_phone;?>">
         </div>
     </div>
 
@@ -287,19 +288,19 @@ $u_id = $_SESSION['user_id'];
     <div class="col-sm-4">
         <div class="form-group">
             <label>Year of built</label>
-            <input type="text" class="form-control" value="<?php echo $y_built;?>">
+            <input type="text" class="form-control" name="year_built" value="<?php echo $y_built;?>">
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             <label>Length overall</label>
-            <input type="text" class="form-control" value="<?php echo $length;?>">
+            <input type="text" class="form-control" name="length" value="<?php echo $length;?>">
         </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group">
             <label>Dead weight</label>
-            <input type="text" class="form-control" value="<?php echo $weight;?>">
+            <input type="text" class="form-control" name="weight" value="<?php echo $weight;?>">
         </div>
     </div>
 
@@ -384,16 +385,31 @@ if (isset($_POST['ship_info_upload'])) {
     $ship_name = $_POST['ship_name'];
     $call_sign = $_POST['call_sign'];
     $ship_desc = $_POST['ship_desc'];
+    $imo_num= $_POST['imo_num'];
+    $mmsi_num= $_POST['mmsi_num'];
+    $flag= $_POST['flag_state'];
+    $ship_type= $_POST['ship_type'];
+    $gross_ton= $_POST['gross_ton'];
+    $net_ton= $_POST['net_ton'];
+    $port= $_POST['port'];
+    $date= $_POST['date'];
+    $number= $_POST['number'];
+    $c_name= $_POST['c_name'];
+    $c_email= $_POST['c_email'];
+    $c_phone= $_POST['c_phone'];
+    $year_built= $_POST['year_built'];
+    $length= $_POST['length'];
+    $weight= $_POST['weight'];
     
     $sid = $_SESSION['ship_id'];
 
-    $ship_info = "UPDATE ship set ship_name='$ship_name', call_sign='$call_sign', ship_desc='$ship_desc' where idship='$sid'";
+    $ship_info = "UPDATE ship set ship_name='$ship_name', call_sign='$call_sign',IMO_number='$imo_num', MMSI_number='$mmsi_num', flag='$flag', gross_tonnage='$gross_ton', net_tonnage='$net_ton', ship_type='$ship_type', certify_port='$port', certify_date='$date', certify_number='$number', company='$c_name', c_email='$c_email', c_phone='$c_phone', year_of_built='$year_built', length_overall='$length', dead_weight='$weight', ship_desc='$ship_desc' where idship='$sid'";
     $run_ship_info = mysqli_query($con,$ship_info);
     if ($run_ship_info){
         echo "<script>
     			swal({
                     type: 'success',
-                    title:'Ship Details Upload..',
+                    title:'Ship Details Uploaded..',
                     showConfirmButton: true,
                     confirmButtonText: 'OK'
                 })
