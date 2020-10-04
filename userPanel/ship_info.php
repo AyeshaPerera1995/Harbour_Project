@@ -184,13 +184,13 @@ $u_id = $_SESSION['user_id'];
     <div class="col-sm-3">
         <div class="form-group">
             <label>Ship Name</label>
-            <input type="text" class="form-control" value="<?php echo $ship_name;?>">
+            <input type="text" class="form-control" name="ship_name" value="<?php echo $ship_name;?>">
         </div>
     </div>
     <div class="col-sm-3">
         <div class="form-group">
             <label>Call Sign</label>
-            <input type="text" class="form-control" value="<?php echo $call_sign;?>">
+            <input type="text" class="form-control" name="call_sign" value="<?php echo $call_sign;?>">
         </div>
     </div>
     <div class="col-sm-3">
@@ -381,10 +381,13 @@ $u_id = $_SESSION['user_id'];
 <?php
 
 if (isset($_POST['ship_info_upload'])) {
+    $ship_name = $_POST['ship_name'];
+    $call_sign = $_POST['call_sign'];
     $ship_desc = $_POST['ship_desc'];
+    
     $sid = $_SESSION['ship_id'];
 
-    $ship_info = "UPDATE ship set ship_desc='$ship_desc' where idship='$sid'";
+    $ship_info = "UPDATE ship set ship_name='$ship_name', call_sign='$call_sign', ship_desc='$ship_desc' where idship='$sid'";
     $run_ship_info = mysqli_query($con,$ship_info);
     if ($run_ship_info){
         echo "<script>
