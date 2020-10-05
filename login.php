@@ -6,12 +6,12 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Personal HTML-5 Template </title>
+    <title>Harbour Project </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-    <title>Crew Registraion</title>
+
 
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -52,6 +52,9 @@ session_start();
 
     </style>
 
+    <!--alert-->
+    <script src="sweetalert/sweetalert2.all.min.js"></script>
+
 </head>
 <body style="background-color: rgba(173,173,173,0.3)">
 
@@ -73,24 +76,18 @@ session_start();
             </div>
             <div class="input-group-icon mt-10">
                 <div class="icon"><i class="fa fa-lock" aria-hidden="true"></i></div>
-                <input type="text" name="password" placeholder="Password"
+                <input type="password" name="password" placeholder="Password"
                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
                        class="single-input" >
             </div>
-
-
-
-
 
             <div class="input-group-icon mt-10">
 
                 <input type="submit" name="login" class="genric-btn success radius" value="Login" style="width: 200px;margin-left: 150px;margin-top: 20px;" >
             </div>
 
-
-
         </form>
-    <div style="margin-left:160px;margin-top: 20px; "> <a href="registraioUser.php" style="color: #0b0b0b" >You Dont Have a Account ? Sign in</a></div>
+    <div style="margin-left:160px;margin-top: 20px; "> <a href="registraioUser.php" style="color: #0b0b0b" >You Don't Have an Account ? Sign in</a></div>
 
 </div>
 
@@ -162,23 +159,61 @@ if (isset($_POST['login'])) {
         $id = $row['user_iduser'];
 
     }
-    if(1==$st){
+    echo $st;
+    if($st==1){
 
 
-        if($ut==2){
+        if($ut==2 || $ut==3 || $ut==4 || $ut==5){
 
             if ($email==$em && $pass==$pw  ) {
                 $_SESSION['user_email'] = $em;
                 $_SESSION['user_id'] = $id;
 
-                echo "<script>window.location.replace('index.php')</script>";
+                echo "<script>
+    			swal({
+                    type: 'success',
+                    title:'Login Successfully!',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+  				if (willDelete) {
+                    window.location.replace('index.php','_self')
+  				}
+				});
+                </script>";
+
             } else {
-                echo "<script>alert('Wrong Email or Password!!')</script>";
+                echo "<script>
+    			swal({
+                    type: 'error',
+                    title:'Wrong email or password, Try again..',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+  				if (willDelete) {
+    			window.location.replace('login.php','_self')
+  				}
+				});
+                </script>";
             }
 
         } else {
 
-            echo "<script>alert('Your Not a Ship Pilot')</script>";
+            echo "<script>
+    			swal({
+                    type: 'error',
+                    title:'You are not Allowed..',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+  				if (willDelete) {
+    			window.location.replace('login.php','_self')
+  				}
+				});
+                </script>";
         }
 
 
@@ -187,7 +222,19 @@ if (isset($_POST['login'])) {
 
     } else {
 
-        echo "<script>alert('Your Account is Deactivate')</script>";
+        echo "<script>
+    			swal({
+                    type: 'warning',
+                    title:'Your account is deactivated, Contact your admin.',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+  				if (willDelete) {
+    			window.location.replace('login.php','_self')
+  				}
+				});
+                </script>";
     }
 
 }
