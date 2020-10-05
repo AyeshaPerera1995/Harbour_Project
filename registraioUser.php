@@ -3,12 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Personal HTML-5 Template </title>
+    <title>Harbour Project </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-    <title>Crew Registraion</title>
 
     <!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -56,17 +55,20 @@
 
     </style>
 
+    <!--alert-->
+    <script src="sweetalert/sweetalert2.all.min.js"></script>
+
 </head>
 <body style="background-color: rgba(173,173,173,0.3)">
 
 <div class="row">
 
-
     <div class="col-md-6">
-
+    
         <div class="typography">
-            <h2> Add User </h2>
+            <h2> - Register User - </h2>
         </div>
+
         <form action="#" method="post">
 
             <div class="input-group-icon mt-10">
@@ -101,45 +103,50 @@
                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone'" required
                        class="single-input">
             </div>
-
             <div class="input-group-icon mt-10">
                 <div class="icon"><i class="fa fa-user-secret" aria-hidden="true"></i></div>
-                <div class="form-select" id="default-select"
-                ">
+                <div class="form-select" id="default-select">
                 <select name="grnder" style=" border-radius: 50px; ">
+                    <option  value="">Gender</option>
                     <option  value="Male">Male</option>
                     <option  value="Female">Female</option>
                 </select>
             </div>
-    </div>
+            </div>
+            <div class="input-group-icon mt-10">
+                <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
+                <input type="text" name="nation" placeholder="Nationality"
+                       onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nationality'" required
+                       class="single-input">
+            </div>
+            <div class="input-group-icon mt-10">
+                <div class="icon"><i class="fa fa-user-secret" aria-hidden="true"></i></div>
+                <div class="form-select" id="default-select">
+                <select name="u_type" style=" border-radius: 50px; ">
+                    <option  value="">Select User Type</option>
+                    <option  value="2">Ship Pilet</option>
+                    <option  value="3">Ship Agent</option>
+                    <option  value="4">Harbour Master</option>
+                    <option  value="5">Consignee</option>
+                </select>
+            </div>
+            </div>
+            <div class="input-group-icon mt-10">
+                <input type="submit" name="sign" class="genric-btn success radius" value="Sign in"
+                       style="width: 200px;margin-left: 150px; margin-top:10px;">
+            </div>
 
-    <div class="input-group-icon mt-10">
-        <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div>
-        <input type="text" name="nation" placeholder="Nationality"
-               onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nationality'" required
-               class="single-input">
-    </div>
+        </form>
 
-    <div class="input-group-icon mt-10">
-
-        <input type="submit" name="sign" class="genric-btn success radius" value="Sign in"
-               style="width: 200px;margin-left: 150px">
-    </div>
-
-
-    </form>
-    <div style="margin-left:160px;margin-top: 20px; "><a href="login.php" style="color: #0b0b0b">You already have a
+        <div style="margin-left:160px;margin-top: 20px; "><a href="login.php" style="color: #0b0b0b">You already have an
             account ? login</a></div>
+        
+    </div>
 
-</div>
-
-<div class="col-md-6">
-
-    <img src="assets/img/ships/log9.jpg"
-         style="border-radius:8px;margin: 20px;height: 400px;width: 600px;margin-top: 90px " alt="">
-
-</div>
-
+    <div class="col-md-6">
+        <img src="assets/img/ships/log9.jpg"
+        style="border-radius:8px;margin: 20px;height: 400px;width: 600px;margin-top: 90px " alt="">
+    </div>
 
 </div>
 
@@ -197,6 +204,10 @@ if (isset($_POST['sign'])) {
 
     }
     $natanality = $_POST['nation'];
+    if(!empty($_POST['u_type'])) {
+        $u_type = $_POST['u_type'];
+
+    }
 
 
     $usercreate = "INSERT INTO user (family_name,given_name,email,phone,gender,nationality,status) "
@@ -212,14 +223,25 @@ if (isset($_POST['sign'])) {
     }
 
     $sql2 = "INSERT INTO login (username,password,user_iduser,iduser_type,status) "
-        . "values('$email','$passwod','$user_id','2',1)";
+        . "values('$email','$passwod','$user_id','$u_type',1)";
 
     if (mysqli_query($con, $sql2)) {
-        echo "<script>alert('User Registered Successfully!')</script>";
-
-        echo "<script>window.location.replace('registraioUser.php')</script>";
+        echo "<script>
+    			swal({
+                    type: 'success',
+                    title:'User Registered Successfully!',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+  				if (willDelete) {
+    			window.location.replace('login.php','_self')
+  				}
+				});
+                </script>";
+    
     } else {
-        echo "<script>window.location.replace('registraion.php')</script>";
+        echo "<script>alert('Error!')</script>";
         echo "Error: " . $sql2. "<br>" . mysqli_error($con);
     }
 
