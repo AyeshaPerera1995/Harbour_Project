@@ -32,6 +32,8 @@ $u_id = $_SESSION['user_id'];
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!--alert-->
+    <script src="../sweetalert/sweetalert2.all.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -146,10 +148,6 @@ $u_id = $_SESSION['user_id'];
                                 <input type="text" class="form-control"  name="callsign" placeholder="Call Sign">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Ship Orgin Country</label>
-                                <input type="text" class="form-control" name="shipcountry" placeholder="Ship Orgin Country">
-                            </div>
-                            <div class="form-group">
                                 <label for="exampleInputPassword1">IMO NO</label>
                                 <input type="number" class="form-control" name="imono" placeholder="IMO NO">
                             </div>
@@ -158,28 +156,32 @@ $u_id = $_SESSION['user_id'];
                                 <input type="number" class="form-control" name="mmsino" placeholder="MMSI NO">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Flag</label>
-                                <input type="text" class="form-control" name="flag" placeholder="Flag">
+                                <label for="exampleInputPassword1">Flag State</label>
+                                <input type="text" class="form-control" name="flag" placeholder="Flag State">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Gross Tonnage</label>
-                                <input type="number" class="form-control" name="tonnage" placeholder="Gross Tonnage">
+                                <input type="number" class="form-control" name="gton" placeholder="Gross Tonnage">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Net Tonnage</label>
-                                <input type="number" class="form-control" name="ntonnage" placeholder="Net Tonnage">
+                                <input type="number" class="form-control" name="nton" placeholder="Net Tonnage">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Ship Type</label>
-                                <input type="text" class="form-control" name="type" placeholder="Ship Type">
+                                <input type="text" class="form-control" name="shiptype" placeholder="Ship Type">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Port</label>
-                                <input type="text" class="form-control" name="port" placeholder="Port">
+                                <label for="exampleInputPassword1">Certify Port</label>
+                                <input type="text" class="form-control" name="cport" placeholder="Certify Port">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Date</label>
-                                <input type="date" class="form-control" name="date" placeholder="Date">
+                                <label for="exampleInputPassword1">Certify Date</label>
+                                <input type="date" class="form-control" name="cdate" placeholder="Certify Date">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Certify Number</label>
+                                <input type="text" class="form-control" name="cnumber" placeholder="Certify Number">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Company</label>
@@ -190,23 +192,31 @@ $u_id = $_SESSION['user_id'];
                                 <input type="email" class="form-control" name="email" placeholder="Company Email">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Year of Built</label>
-                                <input type="date" class="form-control" name="ybuilt" value="<?php echo date('Y-m-d'); ?>" placeholder="Year of Built">
+                                <label for="exampleInputPassword1">Company Phone</label>
+                                <input type="number" class="form-control" name="phone" placeholder="Company Email">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Lenth Overall</label>
-                                <input type="number" class="form-control" name="lenth" placeholder="Lenth Overall">
+                                <label for="exampleInputPassword1">Year of Built</label>
+                                <input type="date" class="form-control" name="ybuilt" placeholder="Year of Built">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Length Overall</label>
+                                <input type="number" class="form-control" name="length" placeholder="Lenth Overall">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Dead Weight</label>
-                                <input type="number" class="form-control" name="deight" placeholder="Dead Weight">
+                                <input type="number" class="form-control" name="weight" placeholder="Dead Weight">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Beam</label>
+                                <input type="number" class="form-control" name="beam" placeholder="Beam">
                             </div>
 
                         </div>
                         <!-- /.card-body -->
 
                         <div class="card-footer">
-                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Add My Ship</button>
                         </div>
                     </form>
                 </div>
@@ -282,33 +292,42 @@ if (isset($_POST['submit'])) {
 
     $shipname= $_POST['shipname'];
     $callsign= $_POST['callsign'];
-    $shipcountry= $_POST['shipcountry'];
     $imono= $_POST['imono'];
     $mmsino= $_POST['mmsino'];
     $flag= $_POST['flag'];
-    $tonnage= $_POST['tonnage'];
-    $ntonnage= $_POST['ntonnage'];
-    $type= $_POST['type'];
-    $port= $_POST['port'];
-    $date= $_POST['date'];
+    $tonnage= $_POST['gton'];
+    $ntonnage= $_POST['nton'];
+    $type= $_POST['shiptype'];
+    $port= $_POST['cport'];
+    $date= $_POST['cdate'];
+    $number= $_POST['cnumber'];
     $company= $_POST['company'];
     $email= $_POST['email'];
+    $phone= $_POST['phone'];
     $ybuilt= $_POST['ybuilt'];
-    $lenth= $_POST['lenth'];
-    $deight= $_POST['deight'];
+    $lenth= $_POST['length'];
+    $deight= $_POST['weight'];
+    $beam= $_POST['beam'];
 
-
-
-    $usercreate = "INSERT INTO ship (ship_name,call_sign,IMO_number,MMSI_number,flag,gross_tonnage,net_tonnage,ship_type,certify_port,certify_date,company,c_email,c_phone,year_of_built,length_overall,dead_weight,status,user_iduser) "
-        . "values('$shipname','$callsign','$shipcountry','$imono','$mmsino','$flag','$tonnage','$ntonnage','$type','$port','$date','$company','$email','$ybuilt','$lenth','$deight',1,'$u_id')";
-
-
+    $usercreate = "INSERT INTO ship (ship_name,call_sign,IMO_number,MMSI_number,flag,gross_tonnage,net_tonnage,ship_type,certify_port,certify_date,certify_number,company,c_email,c_phone,year_of_built,length_overall,dead_weight,beam,status,user_iduser) "
+        . "values('$shipname','$callsign','$imono','$mmsino','$flag','$tonnage','$ntonnage','$type','$port','$date','$number','$company','$email','$phone','$ybuilt','$lenth','$deight','$beam',1,'$u_id')";
 
 
     if (mysqli_query($con, $usercreate)) {
-        echo "<script>alert('ship senn to Registraion')</script>";
+        echo "<script>
+    			swal({
+                    type: 'success',
+                    title:'Ship sent to Registration',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+  				if (willDelete) {
+                    window.location.replace('index.php','_self')
+  				}
+				});
+                </script>";
 
-        echo "<script>window.location.replace('index.php')</script>";
     } else {
         echo "<script>window.location.replace('addship.php')</script>";
         echo "Error: " . $usercreate. "<br>" . mysqli_error($con);

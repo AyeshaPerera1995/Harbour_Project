@@ -326,6 +326,15 @@ $u_id = $_SESSION['user_id'];
 </body>
 </html>
 
+<?php
+
+if (isset($_POST['upload_cd'])) {
+
+$notification_id = $_SESSION['n_id'];
+}
+
+?>
+
 
 
 
