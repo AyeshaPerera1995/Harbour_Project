@@ -141,75 +141,75 @@ $u_id = $_SESSION['user_id'];
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Ship Name</label>
-                                <input type="text" class="form-control" name="shipname" placeholder="Ship Name">
+                                <input type="text" required class="form-control" name="shipname" placeholder="Ship Name">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Call Sign</label>
-                                <input type="text" class="form-control"  name="callsign" placeholder="Call Sign">
+                                <input type="text" required class="form-control"  name="callsign" placeholder="Call Sign">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">IMO NO</label>
-                                <input type="number" class="form-control" name="imono" placeholder="IMO NO">
+                                <input type="number" required class="form-control" name="imono" placeholder="IMO NO">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">MMSI NO</label>
-                                <input type="number" class="form-control" name="mmsino" placeholder="MMSI NO">
+                                <input type="number" required class="form-control" name="mmsino" placeholder="MMSI NO">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Flag State</label>
-                                <input type="text" class="form-control" name="flag" placeholder="Flag State">
+                                <input type="text" required class="form-control" name="flag" placeholder="Flag State">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Gross Tonnage</label>
-                                <input type="number" class="form-control" name="gton" placeholder="Gross Tonnage">
+                                <input type="number" required class="form-control" name="gton" placeholder="Gross Tonnage">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Net Tonnage</label>
-                                <input type="number" class="form-control" name="nton" placeholder="Net Tonnage">
+                                <input type="number" required class="form-control" name="nton" placeholder="Net Tonnage">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Ship Type</label>
-                                <input type="text" class="form-control" name="shiptype" placeholder="Ship Type">
+                                <input type="text" required class="form-control" name="shiptype" placeholder="Ship Type">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Certify Port</label>
-                                <input type="text" class="form-control" name="cport" placeholder="Certify Port">
+                                <input type="text" required class="form-control" name="cport" placeholder="Certify Port">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Certify Date</label>
-                                <input type="date" class="form-control" name="cdate" placeholder="Certify Date">
+                                <input type="date" required class="form-control" name="cdate" placeholder="Certify Date">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Certify Number</label>
-                                <input type="text" class="form-control" name="cnumber" placeholder="Certify Number">
+                                <input type="text" required class="form-control" name="cnumber" placeholder="Certify Number">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Company</label>
-                                <input type="text" class="form-control" name="company" placeholder="Company">
+                                <input type="text" required class="form-control" name="company" placeholder="Company">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Company Email</label>
-                                <input type="email" class="form-control" name="email" placeholder="Company Email">
+                                <input type="email" required class="form-control" name="email" placeholder="Company Email">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Company Phone</label>
-                                <input type="number" class="form-control" name="phone" placeholder="Company Email">
+                                <input type="number" required class="form-control" name="phone" placeholder="Company Phone">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Year of Built</label>
-                                <input type="date" class="form-control" name="ybuilt" placeholder="Year of Built">
+                                <input type="date" required class="form-control" name="ybuilt" placeholder="Year of Built">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Length Overall</label>
-                                <input type="number" class="form-control" name="length" placeholder="Lenth Overall">
+                                <input type="number" required class="form-control" name="length" placeholder="Length Overall">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Dead Weight</label>
-                                <input type="number" class="form-control" name="weight" placeholder="Dead Weight">
+                                <input type="number" required class="form-control" name="weight" placeholder="Dead Weight">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Beam</label>
-                                <input type="number" class="form-control" name="beam" placeholder="Beam">
+                                <input type="number" required class="form-control" name="beam" placeholder="Beam">
                             </div>
 
                         </div>

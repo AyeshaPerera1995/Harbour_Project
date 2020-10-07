@@ -227,7 +227,6 @@ $u_id = $_SESSION['user_id'];
                                                 <?php
                                             }
                                             ?>
-
                                         </tr>
                                         <?php
                                     }
