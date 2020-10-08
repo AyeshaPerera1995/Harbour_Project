@@ -7,9 +7,15 @@
 <?php
 session_start();
 include_once 'build/PHP/DB.php';
-
 $u_id = $_SESSION['user_id'];
+
+if (isset($_GET['cd_id'])){
+    $cd_id = $_GET['cd_id'];
+    
+}
+
 ?>
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -40,6 +46,9 @@ $u_id = $_SESSION['user_id'];
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+
+    <!--alert-->
+<script src="../sweetalert/sweetalert2.all.min.js"></script>
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -157,100 +166,116 @@ $u_id = $_SESSION['user_id'];
                         <div class="card card-success">
                             <h5 class="bg-danger" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Cargo Declaration</h5>
                             <div class="card-body">
-                                <form role="form" action="cargo_consign.php" method="post">
+                                <form role="form" action="" method="post">
                                     <div role="form">
                                         <div class="row">
                                             <div class="col-sm-2">
+                                            <?php
+                                                $sel_c_decl = "SELECT * from cargo_declarations where idcargo_declarations='$cd_id'";
+                                                $run_c_decl = mysqli_query($con, $sel_c_decl);
+                                                while($row = mysqli_fetch_array($run_c_decl)){ 
+                                                    $id = $cd_id;
+                                                    $lrn = $row['LRN'];
+                                                    $mrn = $row['MRN'];
+                                                    $re_party = $row['reporting_party'];
+                                                    $port = $row['first_port'];
+                                                    $eta = $row['ETA_of_ENS'];
+                                                
+                                                ?>
                                                 <div class="form-group">
                                                     <label >LRN</label>
-                                                    <label class="form-control" style="background-color: lightgrey;" disabled=""></label>
+                                                    <input type="hidden" name="id" value="<?php echo $id;?>">
+                                                    <input type="text" class="form-control" value="<?php echo $lrn;?>" style="background-color: lightgrey;" disabled="">
                                                 </div>
                                             </div>
                                             <div class="col-sm-2">
                                                 <div class="form-group">
                                                     <label >MRN</label>
-                                                    <label class="form-control" style="background-color: lightgrey;" disabled=""></label>
+                                                    <input type="text" class="form-control" value="<?php echo $mrn;?>" style="background-color: lightgrey;" disabled="">                                           
                                                 </div>
                                             </div>
                                             <div class="col-sm-2">
                                                 <div class="form-group">
                                                     <label >Reporting party (EOR)</label>
-                                                    <label class="form-control" style="background-color: lightgrey;" disabled=""></label>
+                                                    <input type="text" class="form-control" value="<?php echo $re_party;?>" style="background-color: lightgrey;" disabled="">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label >First port of arrival in EU</label>
-                                                    <label class="form-control" style="background-color: lightgrey;" disabled=""></label>
+                                                    <input type="text" class="form-control" value="<?php echo $port;?>" style="background-color: lightgrey;" disabled="">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label >ETA of ENS</label>
-                                                    <label class="form-control" style="background-color: lightgrey;" disabled=""></label>
+                                                    <input type="text" class="form-control" value="<?php echo $eta;?>" style="background-color: lightgrey;" disabled="">
                                                 </div>
                                             </div>
+                                            <?php 
+                                                }
+                                            ?>
 
                                             <h5 class="bg-danger" style="padding:5px; margin-top: 15px; margin-left:5px; border-radius:5px; font-weight: bold; width: 100%;">Add new consignment</h5>
 
                                             <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label >Port of lading</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <label >Port of loading</label>
+                                                    <input type="text" class="form-control" name="port_loading">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Port of discharge</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="port_discharge">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Transport document ID</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="doc_id">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Number of items</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="num_items">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >UCR</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="ucr">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Place whence consigned</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="place_consigned">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Goods receipt place</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="gr_place">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Freight method of payment</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="m_payment">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Number of the authorisation</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="num_auth">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Additional information</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="add_info">
                                                 </div>
                                             </div>
 
@@ -259,31 +284,31 @@ $u_id = $_SESSION['user_id'];
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Name</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="carrier_name">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Street and Number</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="carrier_street">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Postal code</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="carrier_code">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >City</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="carrier_city">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Country</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="carrier_country">
                                                 </div>
                                             </div>
 
@@ -292,31 +317,31 @@ $u_id = $_SESSION['user_id'];
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Name</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="consignor_name">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Street and Number</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="consignor_street">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Postal code</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="consignor_code">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >City</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="consignor_city">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Country</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="consignor_country">
                                                 </div>
                                             </div>
 
@@ -325,31 +350,31 @@ $u_id = $_SESSION['user_id'];
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Name</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="consignee_name">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Street and Number</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="consignee_street">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Postal code</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="consignee_code">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >City</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="consignee_city">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Country</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="consignee_country">
                                                 </div>
                                             </div>
 
@@ -358,31 +383,31 @@ $u_id = $_SESSION['user_id'];
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Name</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="p_name">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Street and Number</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="p_street">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Postal code</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="p_code">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >City</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="p_city">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Country</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="p_country">
                                                 </div>
                                             </div>
 
@@ -390,7 +415,7 @@ $u_id = $_SESSION['user_id'];
                                             <div class="col-sm-2">
                                                 <div class="form-group">
                                                     <label style="color: white;">E</label>
-                                                    <button type="submit" name="upload_cd" class="btn btn-danger form-control"><i class="fas fa-upload"></i>   Upload</button>
+                                                    <button type="submit" name="upload_cc" class="btn btn-danger form-control"><i class="fas fa-upload"></i>   Upload</button>
                                                 </div>
                                             </div>
 
@@ -525,6 +550,131 @@ $u_id = $_SESSION['user_id'];
 
 </body>
 </html>
+
+<?php 
+
+if(isset($_POST['upload_cc'])){
+
+    $id = $_POST['id'];
+    $port_loading= $_POST['port_loading'];
+    $port_discharge= $_POST['port_discharge'];
+    $doc_id= $_POST['doc_id'];
+    $num_items= $_POST['num_items'];
+    $ucr= $_POST['ucr'];
+    $place_consigned= $_POST['place_consigned'];
+    $gr_place= $_POST['gr_place'];
+    $m_payment= $_POST['m_payment'];
+    $num_auth= $_POST['num_auth'];
+    $add_info= $_POST['add_info'];
+
+    $carr_name= $_POST['carrier_name'];
+    $carr_street= $_POST['carrier_street'];
+    $carr_code= $_POST['carrier_code'];
+    $carr_city= $_POST['carrier_city'];
+    $carr_country= $_POST['carrier_country'];
+
+    $consignor_name= $_POST['consignor_name'];
+    $consignor_street= $_POST['consignor_street'];
+    $consignor_code= $_POST['consignor_code'];
+    $consignor_city= $_POST['consignor_city'];
+    $consignor_country= $_POST['consignor_country'];
+
+    $consignee_name= $_POST['consignee_name'];
+    $lrconsignee_street= $_POST['consignee_street'];
+    $consignee_code= $_POST['consignee_code'];
+    $consignee_city= $_POST['consignee_city'];
+    $consignee_country= $_POST['consignee_country'];
+
+    $p_name= $_POST['p_name'];
+    $p_street= $_POST['p_street'];
+    $p_code= $_POST['p_code'];
+    $p_city= $_POST['p_city'];
+    $p_country= $_POST['p_country'];
+
+    // save carrier
+    $carrier_sql = "INSERT INTO carrier (name,postal_code,street_number,city,country) "
+        . "values('$carr_name','$carr_street','$carr_code','$carr_city','$carr_country')";
+    if(mysqli_query($con, $carrier_sql)){
+        echo "<script>alert('carrier ok')</script>";
+        $get_carrier = "select idcarrier from carrier order by idcarrier DESC LIMIT 1";
+        $run_carrier = mysqli_query($con, $get_carrier);
+        $arow = mysqli_fetch_assoc($run_carrier);
+        $carrier_id = $arow['idcarrier'];
+        
+    // save consignor
+    $consignor_sql = "INSERT INTO consignor (name,postal_code,street_number,city,country) "
+        . "values('$consignor_name','$consignor_street','$consignor_code','$consignor_city','$consignor_country')";
+    if(mysqli_query($con, $consignor_sql)){
+        echo "<script>alert('consignor ok')</script>";
+        $get_consignor = "select idconsignor from consignor order by idconsignor DESC LIMIT 1";
+        $run_consignor = mysqli_query($con, $get_consignor);
+        $brow = mysqli_fetch_assoc($run_consignor);
+        $consignor_id = $brow['idconsignor'];
+            
+    // save consignee
+    $consignee_sql = "INSERT INTO consignee (name,postal_code,street_number,city,country) "
+            . "values('$consignee_name','$consignee_street','$consignee_code','$consignee_city','$consignee_country')";
+    if(mysqli_query($con, $consignee_sql)){
+        echo "<script>alert('consignee ok')</script>";
+        $get_consignee = "select idconsignee from consignee order by idconsignee DESC LIMIT 1";
+        $run_consignee = mysqli_query($con, $get_consignee);
+        $crow = mysqli_fetch_assoc($run_consignee);
+        $consignee_id = $crow['idconsignee'];
+                
+    // save party notified            
+    $party_sql = "INSERT INTO party_notified (name,postal_code,street_number,city,country) "
+        . "values('$p_name','$p_street','$p_code','$p_city','$p_country')";
+    if(mysqli_query($con, $party_sql)){
+        echo "<script>alert('Party notified ok')</script>";
+        $get_party = "select id_party_notified from party_notified order by id_party_notified DESC LIMIT 1";
+        $run_party = mysqli_query($con, $get_party);
+        $drow = mysqli_fetch_assoc($run_party);
+        $pn_id = $drow['id_party_notified'];
+
+    // save consignment details
+    $consignments_sql = "INSERT INTO consignments (port_of_loading,port_of_discharge,transport_doc_id,number_of_items,UCR,place_whence_consigned,goods_receipt_place,freight_method_of_payment,number_of_authorisation,additional_info,carrier_idcarrier,consignor_idconsignor,consignee_idconsignee,id_party_notified,cargo_declarations_idcargo_declarations) "
+    . "values('$port_loading','$port_discharge','$doc_id','$num_items','$ucr','$place_consigned','$gr_place','$m_payment','$num_auth','$add_info','$carrier_id','$consignor_id','$consignee_id','$pn_id','$id')";
+
+    if (mysqli_query($con, $consignments_sql)) {
+        echo "<script>
+                swal({
+                    type: 'success',
+                    title:'New Consignment Uploaded',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+                  if (willDelete) {
+                window.open('cargo_consign.php?cd_id=$id','_self')
+                  }
+                });
+                </script>";
+    } else {
+        echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+    }
+    // end save consignment details
+
+    }else{
+        echo "Error in Party Notified : " . $party_sql . "<br>" . mysqli_error($con);
+    }
+
+    }else{
+        echo "Error in Consignee : " . $consignee_sql . "<br>" . mysqli_error($con);
+    }
+
+    }else{
+        echo "Error in Consignor : " . $consignor_sql . "<br>" . mysqli_error($con);
+    }
+
+    }else{
+        echo "Error in Carrier : " . $carrier_sql . "<br>" . mysqli_error($con);
+    }
+
+
+
+}
+
+?>
 
 
 

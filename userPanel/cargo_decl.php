@@ -9,6 +9,7 @@ session_start();
 include_once 'build/PHP/DB.php';
 
 $u_id = $_SESSION['user_id'];
+$notification_id = $_SESSION['n_id'];
 ?>
 <html>
 <head>
@@ -40,6 +41,8 @@ $u_id = $_SESSION['user_id'];
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<!--alert-->
+<script src="../sweetalert/sweetalert2.all.min.js"></script>
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -163,31 +166,31 @@ $u_id = $_SESSION['user_id'];
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >LRN</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="lrn">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >MRN</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="mrn">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Reporting party (EOR)</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="eor">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >First port of arrival in EU</label>
-                                                    <input type="text" class="form-control" name="">
+                                                    <input type="text" class="form-control" name="fport">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >ETA of ENS</label>
-                                                    <input type="datetime-local" class="form-control" name="">
+                                                    <input type="datetime-local" class="form-control" name="eta">
                                                 </div>
                                             </div>
                                             <div class="col-sm-2">
@@ -213,16 +216,30 @@ $u_id = $_SESSION['user_id'];
                                             </tr>
                                             </thead>
                                             <tbody>
+                                                <?php
+                                                $sel_c_decl = "SELECT * from cargo_declarations where notification_idnotification='$notification_id'";
+                                                $run_c_decl = mysqli_query($con, $sel_c_decl);
+                                                while ($row = mysqli_fetch_array($run_c_decl)) {                                             
+                                                    $id = $row['idcargo_declarations'];
+                                                    $lrn = $row['LRN'];
+                                                    $mrn = $row['MRN'];
+                                                    $re_party = $row['reporting_party'];
+                                                    $port = $row['first_port'];
+                                                    $eta = $row['ETA_of_ENS'];
+                                                
+                                                ?>
                                             <tr>
-                                                <td>Port of loading</td>
-                                                <td>Port of loading</td>
-                                                <td>Port of discharge</td>
-                                                <td>transport document ID</td>
-                                                <td>transport document ID</td>
-                                                <td><a href="cargo_consign.php" class="btn btn-dark">View/Add Consignments</a></td>
+                                                <td><?php echo "$lrn";?></td>
+                                                <td><?php echo "$mrn";?></td>
+                                                <td><?php echo "$re_party";?></td>
+                                                <td><?php echo "$port";?></td>
+                                                <td><?php echo "$eta";?></td>
+                                                <td><a href="cargo_consign.php?cd_id=<?php echo $id;?>" class="btn btn-dark">View/Add Consignments</a></td>
                                             </tr>
 
-
+                                        <?php
+                                                }
+                                        ?>
                                             </tbody>
                                             <tfoot>
                                             <tr>
@@ -331,6 +348,35 @@ $u_id = $_SESSION['user_id'];
 if (isset($_POST['upload_cd'])) {
 
 $notification_id = $_SESSION['n_id'];
+
+$lrn= $_POST['lrn'];
+$mrn= $_POST['mrn'];
+$eor= $_POST['eor'];
+$fport= $_POST['fport'];
+$eta= $_POST['eta'];
+
+$sql2 = "INSERT INTO cargo_declarations (LRN,MRN,reporting_party,first_port,ETA_of_ENS,notification_idnotification) "
+        . "values('$lrn','$mrn','$eor','$fport','$eta','$notification_id')";
+
+    if (mysqli_query($con, $sql2)) {
+        echo "<script>
+    			swal({
+                    type: 'success',
+                    title:'New Cargo Declaration Uploaded',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+  				if (willDelete) {
+    			window.open('cargo_decl.php','_self')
+  				}
+				});
+                </script>";
+    } else {
+
+        echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+    }
+
 }
 
 ?>

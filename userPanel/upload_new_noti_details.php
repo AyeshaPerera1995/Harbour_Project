@@ -70,7 +70,7 @@ include_once 'build/PHP/DB.php';
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
                 <div class="info">
-                    <a href="#" class="d-block"><?php echo $_SESSION['n_id'];?></a>
+                    <a href="#" class="d-block"><?php echo "NotiID : ".$_SESSION['n_id']." / UserID : ".$_SESSION['user_id'];?></a>
                 </div>
             </div>
 

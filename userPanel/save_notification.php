@@ -3,8 +3,9 @@
     session_start();
 
     $sid = $_SESSION['ship_id'];
+    $u_id = $_SESSION['user_id'];
 
-    $save_noti = "insert into notification(ship_idship,status) values('$sid',0)";
+    $save_noti = "insert into notification(status,ship_idship) values(0,'$sid')";
     $run_noti = mysqli_query($con, $save_noti);
     if ($run_noti){
 
@@ -15,6 +16,8 @@
 
         echo "<script>window.open('upload_new_noti_details.php')</script>";
 
+    }else{
+        echo "alert('Error');";
     }
 
 ?>
