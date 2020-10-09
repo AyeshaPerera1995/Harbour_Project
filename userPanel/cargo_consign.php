@@ -460,9 +460,9 @@ if (isset($_GET['cd_id'])){
                                         <td><?php echo $doc_id;?></td>
                                         <td><a href="#myConsignment" class="btn btn-danger btn-sm" data-toggle="modal" data-id="<?php echo $con_id;?>">View More</a></td>
                                         <td><a href="#myCarrier" data-toggle="modal" data-id="<?php echo $carrier_id;?>"class="btn btn-sm btn-dark">Carrier</a></td>
-                                        <td><a href="#" class="btn btn-sm btn-dark">Consignor</a></td>
-                                        <td><a href="#" class="btn btn-sm btn-dark">Consignee</a></td>
-                                        <td><a href="#" class="btn btn-sm btn-dark">Party to be notified</a></td>
+                                        <td><a href="#myConsignor" data-toggle="modal" data-id="<?php echo $consignor_id;?>"class="btn btn-sm btn-dark">Consignor</a></td>
+                                        <td><a href="#myConsignee" data-toggle="modal" data-id="<?php echo $consignee_id;?>"class="btn btn-sm btn-dark">Consignee</a></td>
+                                        <td><a href="#myParty" data-toggle="modal" data-id="<?php echo $party_id;?>"class="btn btn-sm btn-dark">Party to be notified</a></td>
                                         <td><a href="#" class="btn btn-sm btn-dark">View/Add Cargos</a></td>
                                     </tr>
                                     <?php
@@ -605,7 +605,58 @@ if (isset($_GET['cd_id'])){
 });
 </script>
 
+<!-- ******************************************************************************** -->
+<script>
+    $(document).ready(function(){
+    $('#myConsignor').on('show.bs.modal', function (e) {
+        var consignor_id = $(e.relatedTarget).data('id');
+        $.ajax({
+            type : 'post',
+            url : 'consignor.php', //Here you will fetch records 
+            data :  'consignor_id='+ consignor_id, //Pass $id
+            success : function(data){
+            $('.fetched-data').html(data);//Show fetched data from database
+            }
+        });
+     });
+});
+</script>
 
+<!-- ******************************************************************************** -->
+<script>
+    $(document).ready(function(){
+    $('#myConsignee').on('show.bs.modal', function (e) {
+        var consignee_id = $(e.relatedTarget).data('id');
+        $.ajax({
+            type : 'post',
+            url : 'consignee.php', //Here you will fetch records 
+            data :  'consignee_id='+ consignee_id, //Pass $id
+            success : function(data){
+            $('.fetched-data').html(data);//Show fetched data from database
+            }
+        });
+     });
+});
+</script>
+
+<!-- ******************************************************************************** -->
+<script>
+    $(document).ready(function(){
+    $('#myParty').on('show.bs.modal', function (e) {
+        var party_id = $(e.relatedTarget).data('id');
+        $.ajax({
+            type : 'post',
+            url : 'party.php', //Here you will fetch records 
+            data :  'party_id='+ party_id, //Pass $id
+            success : function(data){
+            $('.fetched-data').html(data);//Show fetched data from database
+            }
+        });
+     });
+});
+</script>
+
+<!-- ******************************************************************************** -->
 
 
 </body>
@@ -762,6 +813,60 @@ if(isset($_POST['upload_cc'])){
         <div class="modal-content">
             <div class="modal-header">
             <h3 class="modal-title">Carrier Information</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>                
+            </div>
+            <div class="modal-body">
+                <div class="fetched-data"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ******************************************************************************** -->
+
+<div class="modal small fade" id="myConsignor" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h3 class="modal-title">Consignor Information</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>                
+            </div>
+            <div class="modal-body">
+                <div class="fetched-data"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ******************************************************************************** -->
+
+<div class="modal small fade" id="myConsignee" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h3 class="modal-title">Consignee Information</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>                
+            </div>
+            <div class="modal-body">
+                <div class="fetched-data"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ******************************************************************************** -->
+
+<div class="modal small fade" id="myParty" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h3 class="modal-title">Party to be Notified</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>                
             </div>
             <div class="modal-body">
