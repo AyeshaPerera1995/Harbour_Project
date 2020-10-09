@@ -217,7 +217,7 @@ if (isset($_GET['cd_id'])){
                                             ?>
 
                                             <h5 class="bg-danger" style="padding:5px; margin-top: 15px; margin-left:5px; border-radius:5px; font-weight: bold; width: 100%;">Add new consignment</h5>
-
+                                            
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Port of loading</label>
@@ -429,23 +429,45 @@ if (isset($_GET['cd_id'])){
                                         <th>Port of loading</th>
                                         <th>Port of discharge</th>
                                         <th>Transport document ID</th>
+                                        <th>View More</th>
                                         <th>Carrier</th>
                                         <th>Consignor</th>
                                         <th>Consignee</th>
+                                        <th>Party to be notified</th>
                                         <th>View/Add Cargo</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Port of loading</td>
-                                        <td>Port of loading</td>
-                                        <td>Port of discharge</td>
-                                        <td><a href="cargo_cargoitems.php" class="btn btn-dark">Carrier</a></td>
-                                        <td><a href="cargo_cargoitems.php" class="btn btn-dark">Consignor</a></td>
-                                        <td><a href="cargo_cargoitems.php" class="btn btn-dark">Consignee</a></td>
-                                        <td><a href="cargo_cargoitems.php" class="btn btn-dark">View/Add Cargo Items</a></td>
-                                    </tr>
+                                    <?php
+                                $get_consign = "SELECT * from consignments where cargo_declarations_idcargo_declarations='$cd_id'";
+                                $run_consign = mysqli_query($con, $get_consign);
+                                while ($row = mysqli_fetch_array($run_consign)) { 
+                                    $con_id = $row['idconsignments'];                                            
+                                    $port_load = $row['port_of_loading'];
+                                    $port_dis = $row['port_of_discharge'];
+                                    $doc_id = $row['transport_doc_id'];
 
+                                    $carrier_id = $row['carrier_idcarrier'];
+                                    $consignor_id = $row['consignor_idconsignor'];
+                                    $consignee_id = $row['consignee_idconsignee'];
+                                    $party_id = $row['id_party_notified'];
+                                            
+                                    ?>
+
+                                    <tr>
+                                        <td><?php echo $port_load;?></td>
+                                        <td><?php echo $port_dis;?></td>
+                                        <td><?php echo $doc_id;?></td>
+                                        <td><a href="#myConsignment" class="btn btn-danger btn-sm" data-toggle="modal" data-id="<?php echo $con_id;?>">View More</a></td>
+                                        <td><a href="#myCarrier" data-toggle="modal" data-id="<?php echo $carrier_id;?>"class="btn btn-sm btn-dark">Carrier</a></td>
+                                        <td><a href="#" class="btn btn-sm btn-dark">Consignor</a></td>
+                                        <td><a href="#" class="btn btn-sm btn-dark">Consignee</a></td>
+                                        <td><a href="#" class="btn btn-sm btn-dark">Party to be notified</a></td>
+                                        <td><a href="#" class="btn btn-sm btn-dark">View/Add Cargos</a></td>
+                                    </tr>
+                                    <?php
+                                        }
+                                    ?>
 
                                     </tbody>
                                     <tfoot>
@@ -453,9 +475,11 @@ if (isset($_GET['cd_id'])){
                                         <th>Port of loading</th>
                                         <th>Port of discharge</th>
                                         <th>Transport document ID</th>
+                                        <th>View More</th>
                                         <th>Carrier</th>
                                         <th>Consignor</th>
                                         <th>Consignee</th>
+                                        <th>Party to be notified</th>
                                         <th>View/Add Cargo</th>
                                     </tr>
                                     </tfoot>
@@ -548,8 +572,45 @@ if (isset($_GET['cd_id'])){
     });
 </script>
 
+<!-- ********************************************************************************* -->
+<script>
+    $(document).ready(function(){
+    $('#myConsignment').on('show.bs.modal', function (e) {
+        var cid = $(e.relatedTarget).data('id');
+        $.ajax({
+            type : 'post',
+            url : 'model.php', //Here you will fetch records 
+            data :  'cid='+ cid, //Pass $id
+            success : function(data){
+            $('.fetched-data').html(data);//Show fetched data from database
+            }
+        });
+     });
+});
+</script>
+<!-- ******************************************************************************** -->
+<script>
+    $(document).ready(function(){
+    $('#myCarrier').on('show.bs.modal', function (e) {
+        var carr_id = $(e.relatedTarget).data('id');
+        $.ajax({
+            type : 'post',
+            url : 'carrier.php', //Here you will fetch records 
+            data :  'carr_id='+ carr_id, //Pass $id
+            success : function(data){
+            $('.fetched-data').html(data);//Show fetched data from database
+            }
+        });
+     });
+});
+</script>
+
+
+
+
 </body>
 </html>
+
 
 <?php 
 
@@ -677,7 +738,39 @@ if(isset($_POST['upload_cc'])){
 ?>
 
 
+<!-- ************************************************************************ -->
+<div class="modal small fade" id="myConsignment" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h3 class="modal-title">Consignment Information</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>                
+            </div>
+            <div class="modal-body">
+                <div class="fetched-data"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ******************************************************************************** -->
 
-
-
-
+<div class="modal small fade" id="myCarrier" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h3 class="modal-title">Carrier Information</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>                
+            </div>
+            <div class="modal-body">
+                <div class="fetched-data"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ******************************************************************************** -->

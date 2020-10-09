@@ -17,19 +17,19 @@ if($_POST['cid']) {
     $num_auth = $row['number_of_authorisation'];
     $info = $row['additional_info'];
     
-    echo "<label style='font-size:18px;'>Number of items : </label><br>";
+    echo "<label style='font-size:18px; color:gray;'>Number of items : </label><br>";
     echo "<label style='font-size:15px;'>$num_items</label><hr style='margin:0; padding:0;'>";
-    echo "<label style='font-size:18px;'>UCR : </label><br>";
+    echo "<label style='font-size:18px; color:gray;'>UCR : </label><br>";
     echo "<label style='font-size:15px;'>$ucr</label><br><hr style='margin:0; padding:0;'>";
-    echo "<label style='font-size:18px;'>Place whence consigned :</label><br>";
+    echo "<label style='font-size:18px; color:gray;'>Place whence consigned :</label><br>";
     echo "<label style='font-size:15px;'>$place_consigned</label><hr style='margin:0; padding:0;'>";
-    echo "<label style='font-size:18px;'>Goods receipt place :</label><br>";
+    echo "<label style='font-size:18px; color:gray;'>Goods receipt place :</label><br>";
     echo "<label style='font-size:15px;'>$receipt_place</label><hr style='margin:0; padding:0;'>";
-    echo "<label style='font-size:18px;'>Freight method of payment : </label><br>";
+    echo "<label style='font-size:18px; color:gray;'>Freight method of payment : </label><br>";
     echo "<label style='font-size:15px;'>$method_pay</label><hr style='margin:0; padding:0;'>";
-    echo "<label style='font-size:18px;'>Number of authorisation : </label><br>";
+    echo "<label style='font-size:18px; color:gray;'>Number of authorisation : </label><br>";
     echo "<label style='font-size:15px;'>$num_auth</label><hr style='margin:0; padding:0;'>";
-    echo "<label style='font-size:18px;'>Additinal Infomation :</label><br>";
+    echo "<label style='font-size:18px; color:gray;'>Additinal Infomation :</label><br>";
     echo "<label style='font-size:15px;'>$info</label>";
 
  }
