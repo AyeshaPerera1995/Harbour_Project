@@ -463,7 +463,7 @@ if (isset($_GET['cd_id'])){
                                         <td><a href="#myConsignor" data-toggle="modal" data-id="<?php echo $consignor_id;?>"class="btn btn-sm btn-dark">Consignor</a></td>
                                         <td><a href="#myConsignee" data-toggle="modal" data-id="<?php echo $consignee_id;?>"class="btn btn-sm btn-dark">Consignee</a></td>
                                         <td><a href="#myParty" data-toggle="modal" data-id="<?php echo $party_id;?>"class="btn btn-sm btn-dark">Party to be notified</a></td>
-                                        <td><a href="#" class="btn btn-sm btn-dark">View/Add Cargos</a></td>
+                                        <td><a href="cargo_cargoitems.php?con_id=<?php echo $con_id;?>&cd_id=<?php echo $cd_id;?>" class="btn btn-sm btn-dark">View/Add Cargos</a></td>
                                     </tr>
                                     <?php
                                         }
@@ -789,7 +789,7 @@ if(isset($_POST['upload_cc'])){
 ?>
 
 
-<!-- ************************************************************************ -->
+<!-- ********************************** Consignments ************************************** -->
 <div class="modal small fade" id="myConsignment" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -801,12 +801,13 @@ if(isset($_POST['upload_cc'])){
                 <div class="fetched-data"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="submit" name="edit_consignment" onclick="" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
-<!-- ******************************************************************************** -->
+
+<!-- ***************************************** Carrier *************************************** -->
 
 <div class="modal small fade" id="myCarrier" role="dialog">
     <div class="modal-dialog" role="document">
@@ -824,7 +825,7 @@ if(isset($_POST['upload_cc'])){
         </div>
     </div>
 </div>
-<!-- ******************************************************************************** -->
+<!-- ************************************** Consignor ****************************************** -->
 
 <div class="modal small fade" id="myConsignor" role="dialog">
     <div class="modal-dialog" role="document">
@@ -842,7 +843,7 @@ if(isset($_POST['upload_cc'])){
         </div>
     </div>
 </div>
-<!-- ******************************************************************************** -->
+<!-- *************************************** Consignee ***************************************** -->
 
 <div class="modal small fade" id="myConsignee" role="dialog">
     <div class="modal-dialog" role="document">
@@ -860,7 +861,7 @@ if(isset($_POST['upload_cc'])){
         </div>
     </div>
 </div>
-<!-- ******************************************************************************** -->
+<!-- ************************************** Party ****************************************** -->
 
 <div class="modal small fade" id="myParty" role="dialog">
     <div class="modal-dialog" role="document">
