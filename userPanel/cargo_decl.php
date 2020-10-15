@@ -100,6 +100,14 @@ $notification_id = $_SESSION['n_id'];
                         </a>
 
                     </li>
+                    <li class="nav-item ">
+                        <a href="upload_new_noti_details.php" class="nav-link ">
+                            <i class="nav-icon fas fa-home"></i>
+                            <p>
+                                My Home
+                            </p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="addship.php" class="nav-link">
                             <i class="nav-icon fas fa-ship"></i>

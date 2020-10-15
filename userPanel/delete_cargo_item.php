@@ -37,7 +37,7 @@ if(mysqli_query($con, $del_cargo)){
     })
     .then(willDelete => {
       if (willDelete) {
-    window.open('cargo_cargoitems.php?con_id=$con_id&cd_id=$cd_id','_self')
+       window.location.replace('cargo_cargoitems.php?con_id=$con_id&cd_id=$cd_id','_self')
       }
     });
     </script>";
