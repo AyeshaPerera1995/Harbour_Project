@@ -4,7 +4,6 @@ session_start();
 include_once 'build/PHP/DB.php';
 
 ?>
-
 <html>
 <head>
     <meta charset="utf-8">
@@ -32,7 +31,8 @@ include_once 'build/PHP/DB.php';
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+    <!--alert-->
+    <script src="../sweetalert/sweetalert2.all.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -70,7 +70,7 @@ include_once 'build/PHP/DB.php';
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
 
                 <div class="info">
-                    <a href="#" class="d-block"><?php echo "NotiID : ".$_SESSION['n_id']." / UserID : ".$_SESSION['user_id'];?></a>
+                    <a href="#" class="d-block"><?php echo $_SESSION['user_email'];?></a>
                 </div>
             </div>
 
@@ -140,10 +140,7 @@ include_once 'build/PHP/DB.php';
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">Upload New Notification Details</h1>
-                    </div><!-- /.col -->
-                    <div class="col-sm-6">
-
+                        <h1 class="m-0 text-dark"> <i class="fas fa-dumpster-fire"></i>     DPG</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -153,133 +150,77 @@ include_once 'build/PHP/DB.php';
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <br>
+
                 <div class="row">
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-info"><i class="fas fa-ship"></i></span>
+                    <div class="col-md-12">
+                        <!-- general form elements -->
+                        <div class="card card-success">
+                            <h5 class="bg-fuchsia" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Dangerous and polluting goods</h5>
 
-                            <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="ship_info.php">Ship </a></span>
-                            </div>
+                            <form role="form" action="dpg.php" method="post">
+                                <div class="card-body">
+                                    <div role="form">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label >INF ship class</label>
+                                                    <select class="form-control" name="INF">
+                                                        <option value="INF1">INF1</option>
+                                                        <option value="INF2">INF2</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label >DPG list on board</label>
+                                                    <select class="form-control" name="DPG">
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <h5 class="bg-fuchsia" style="padding:5px; margin-top: 15px; margin-left:5px; border-radius:5px; font-weight: bold; width: 100%;">Address from which detailed information on the polluting and dangerous cargo may be obtained</h5>
+
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label >Name</label>
+                                                    <input type="text" class="form-control" name="name">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label >Location</label>
+                                                    <input type="text" class="form-control" name="location">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>Phone</label>
+                                                    <input type="text" class="form-control" name="phone">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label>Email</label>
+                                                    <input type="text" class="form-control" name="email">
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button type="submit" name="dpg_upload" class="btn bg-fuchsia"><i class="fas fa-upload"></i>   Upload</button>
+                                </div>
+                            </form>
                         </div>
-                    </div>
+                        <!-- /.card -->
+                    </div>  <!--    col-d-12-->
 
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-success"><i class="fas fa-anchor"></i></span>
 
-                            <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="port_info.php">Port</a></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-warning"><i class="fas fa-flag-checkered"></i></span>
-
-                            <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="voyage_info.php">Voyage</a></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-danger"><i class="fas fa-clipboard-list"></i></i></span>
-
-                            <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="psc_info.php">PSC</a></span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <br><br>
-                <div class="row">
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-fuchsia"><i class="fas fa-dumpster-fire"></i></span>
-
-                            <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="dpg.php">DPG </a></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-danger"><i class="fas fa-suitcase"></i></i></span>
-
-                            <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="cargo_decl.php">Cargo</a></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-indigo"><i class="fas fa-box-open"></i></span>
-
-                            <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="ship_stores.php">Ship's Stores</a></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-success"><i class="fas fa-trash-alt"></i></i></span>
-
-                            <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="waste.php">Waste</a></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-<br><br>
-                <div class="row">
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-gradient-gray"><i class="fas fa-lock-open"></i></span>
-
-                            <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="security.php">Security </a></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-gradient-lightblue"><i class="fas fa-users"></i></span>
-
-                            <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="crew.php">Crew</a></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-gradient-lime"><i class="fas fa-user-friends"></i></span>
-
-                            <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="passengers.php">Passengers</a></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-gradient-maroon"><i class="fas fa-heartbeat"></i></span>
-
-                            <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="health.php">Health</a></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
 
 
 
@@ -340,4 +281,58 @@ include_once 'build/PHP/DB.php';
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
+
+<?php
+
+if (isset($_POST['dpg_upload'])) {
+
+    $name= $_POST['name'];
+    $location= $_POST['location'];
+    $phone= $_POST['phone'];
+    $email= $_POST['email'];
+    $notification_id = $_SESSION['n_id'];
+
+    if (!empty($_POST['INF'])) {
+        $INF   = $_POST['INF'];
+
+    }
+    if (!empty($_POST['DPG'])) {
+        $DPG = $_POST['DPG'];
+
+    }
+
+    $sql2 = "INSERT INTO dpg_details (INF_ship_class,dpg_list_status,name,location,phone,email,notification_idnotification) "
+        . "values('$INF','$DPG','$name','$location','$phone','$email','$notification_id')";
+
+    if (mysqli_query($con, $sql2)) {
+        echo "<script>
+    			swal({
+                    type: 'success',
+                    title:'DPG Details Uploaded',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+  				if (willDelete) {
+    			window.open('upload_new_noti_details.php','_self')
+  				}
+				});
+                </script>";
+    } else {
+
+        echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+    }
+
+
+
+
+
+
+}
+
+
+?>
+
+
+
 

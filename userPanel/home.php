@@ -180,7 +180,7 @@ if (isset($_GET['ship_id'])){
                             <div class="icon">
                                 <i class="ion ion-pie-bag"></i>
                             </div>
-                            <a href="#" class="small-box-footer">View Notifications <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="consult_noti.php" class="small-box-footer">View Notifications <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <!-- ./col -->
