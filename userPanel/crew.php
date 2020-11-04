@@ -46,6 +46,7 @@ $notification_id = $_SESSION['n_id'];
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -59,9 +60,6 @@ $notification_id = $_SESSION['n_id'];
                 <a href="../index.php" class="nav-link">Home</a>
             </li>
         </ul>
-
-
-
 
     </nav>
     <!-- /.navbar -->
@@ -166,51 +164,51 @@ $notification_id = $_SESSION['n_id'];
                     <div class="col-md-12">
                         <!-- general form elements -->
                         <div class="card card-success">
-                            <h5 class="bg-gradient-lightblue" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Add new cargo declaration</h5>
+                            <h5 class="bg-gradient-lightblue" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Add new crew person</h5>
                                 <div class="card-body">
-                                    <form role="form" action="cargo_decl.php" method="post">
+                                    <form role="form" action="crew.php" method="post">
                                     <div role="form">
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label >Family name</label>
-                                                    <input type="text" class="form-control" name="lrn">
+                                                    <input type="text" class="form-control" name="fn">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label >Given name</label>
-                                                    <input type="text" class="form-control" name="mrn">
+                                                    <input type="text" class="form-control" name="gn">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label >Nationality</label>
-                                                    <input type="text" class="form-control" name="eor">
+                                                    <input type="text" class="form-control" name="nation">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label >Job role</label>
-                                                    <input type="text" class="form-control" name="fport">
+                                                    <input type="text" class="form-control" name="job">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label >Rank or Rating</label>
-                                                    <input type="text" class="form-control" name="eta">
+                                                    <input type="text" class="form-control" name="rank">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
                                                     <label >Visa/Residence Permit Number</label>
-                                                    <input type="number" class="form-control" name="eta">
+                                                    <input type="number" class="form-control" name="number">
                                                 </div>
                                             </div>
                                             <div class="col-sm-2">
                                                 <div class="form-group">
                                                     <label style="color: white;">E</label>
-                                                    <button type="submit" name="upload_cd" class="btn bg-gradient-lightblue form-control"><i class="fas fa-upload"></i>   Upload</button>
+                                                    <button type="submit" name="upload_crew" class="btn bg-gradient-lightblue form-control"><i class="fas fa-upload"></i>   Upload</button>
                                                 </div>
                                             </div>
 
@@ -232,25 +230,26 @@ $notification_id = $_SESSION['n_id'];
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sel_c_decl = "SELECT * from cargo_declarations where notification_idnotification='$notification_id'";
-                                                $run_c_decl = mysqli_query($con, $sel_c_decl);
-                                                while ($row = mysqli_fetch_array($run_c_decl)) {                                             
-                                                    $id = $row['idcargo_declarations'];
-                                                    $lrn = $row['LRN'];
-                                                    $mrn = $row['MRN'];
-                                                    $re_party = $row['reporting_party'];
-                                                    $port = $row['first_port'];
-                                                    $eta = $row['ETA_of_ENS'];
+                                                $sel_crew = "SELECT * from crew_person where notification_idnotification='$notification_id'";
+                                                $run_crew = mysqli_query($con, $sel_crew);
+                                                while ($row = mysqli_fetch_array($run_crew)) {                                             
+                                                    $id = $row['idcrew_person'];
+                                                    $fn = $row['family_name'];
+                                                    $gn = $row['given_name'];
+                                                    $nation = $row['nationality'];
+                                                    $job = $row['job_role'];
+                                                    $rank = $row['rank_or_rating'];
+                                                    $number = $row['vr_permit_number'];
                                                 
                                                 ?>
                                             <tr>
-                                                <td><?php echo "$lrn";?></td>
-                                                <td><?php echo "$mrn";?></td>
-                                                <td><?php echo "$re_party";?></td>
-                                                <td><?php echo "$port";?></td>
-                                                <td><?php echo "$eta";?></td>
-                                                <td><?php echo "$eta";?></td>
-                                                <td><a href="cargo_consign.php?cd_id=<?php echo $id;?>" class="btn btn-dark">Remove</a></td>
+                                                <td><?php echo "$fn";?></td>
+                                                <td><?php echo "$gn";?></td>
+                                                <td><?php echo "$nation";?></td>
+                                                <td><?php echo "$job";?></td>
+                                                <td><?php echo "$rank";?></td>
+                                                <td><?php echo "$number";?></td>
+                                                <td><a href="delete_crew.php?crew_id=<?php echo $id;?>" class="btn btn-dark">Remove</a></td>
                                             </tr>
 
                                         <?php
@@ -259,7 +258,7 @@ $notification_id = $_SESSION['n_id'];
                                             </tbody>
                                             <tfoot>
                                             <tr>
-                                            <th>Family name</th>
+                                                <th>Family name</th>
                                                 <th>Given name</th>
                                                 <th>Nationality</th>
                                                 <th>Job role</th>
@@ -362,39 +361,39 @@ $notification_id = $_SESSION['n_id'];
 
 <?php
 
-// if (isset($_POST['upload_cd'])) {
+if (isset($_POST['upload_crew'])) {
 
-// $notification_id = $_SESSION['n_id'];
+$notification_id = $_SESSION['n_id'];
 
-// $lrn= $_POST['lrn'];
-// $mrn= $_POST['mrn'];
-// $eor= $_POST['eor'];
-// $fport= $_POST['fport'];
-// $eta= $_POST['eta'];
+$fn = $_POST['fn'];
+$gn = $_POST['gn'];
+$nation = $_POST['nation'];
+$job = $_POST['job'];
+$rank = $_POST['rank'];
+$number = $_POST['number'];
 
-// $sql2 = "INSERT INTO cargo_declarations (LRN,MRN,reporting_party,first_port,ETA_of_ENS,notification_idnotification) "
-//         . "values('$lrn','$mrn','$eor','$fport','$eta','$notification_id')";
+$sql2 = "INSERT INTO crew_person (family_name,given_name,nationality,job_role,rank_or_rating,vr_permit_number,notification_idnotification) "
+        . "values('$fn','$gn','$nation','$job','$rank','$number','$notification_id')";
 
-//     if (mysqli_query($con, $sql2)) {
-//         echo "<script>
-//     			swal({
-//                     type: 'success',
-//                     title:'New Cargo Declaration Uploaded',
-//                     showConfirmButton: true,
-//                     confirmButtonText: 'OK'
-//                 })
-//                 .then(willDelete => {
-//   				if (willDelete) {
-//     			window.open('cargo_decl.php','_self')
-//   				}
-// 				});
-//                 </script>";
-//     } else {
+    if (mysqli_query($con, $sql2)) {
+        echo "<script>
+    			swal({
+                    type: 'success',
+                    title:'New Crew Person Uploaded',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+  				if (willDelete) {
+    			window.open('crew.php','_self')
+  				}
+				});
+                </script>";
+    } else {
+        echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+    }
 
-//         echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
-//     }
-
-// }
+}
 
 ?>
 
