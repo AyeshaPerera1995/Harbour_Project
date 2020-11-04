@@ -264,7 +264,7 @@ include_once 'build/PHP/DB.php';
                             <span class="info-box-icon bg-gradient-lime"><i class="fas fa-user-friends"></i></span>
 
                             <div class="info-box-content">
-                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="passengers.php">Passengers</a></span>
+                                <span style="font-size: 25px;" class="info-box-number"><a style="color: black; cursor: pointer;" href="passenger.php">Passengers</a></span>
                             </div>
                         </div>
                     </div>

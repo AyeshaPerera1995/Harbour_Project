@@ -330,7 +330,7 @@ if (isset($_GET['con_id']) && isset($_GET['cd_id']) ){
                                                 <td><?php echo "$imo";?></td>
                                                 <td><?php echo "$g_qty";?></td>
                                                 <td><?php echo "$n_qty";?></td>                                                                                   
-                                                <td><a href="delete_cargo_item.php?cargo_id=<?php echo $cargo_id;?>&con_id=<?php echo $con_id;?>&cd_id=<?php echo $cd_id;?>" class="btn btn-dark btn-sm">Delete</a></td>
+                                                <td><a href="delete_cargo_item.php?cargo_id=<?php echo $cargo_id;?>&con_id=<?php echo $con_id;?>&cd_id=<?php echo $cd_id;?>" class="btn btn-dark btn-sm">Remove</a></td>
                                                 
                                             </tr>
 

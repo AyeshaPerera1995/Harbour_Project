@@ -1,8 +1,15 @@
+<!--<div class="form-group">-->
+<!--    <label class="col-form-label" for="inputWarning"> Input with-->
+<!--        warning  <i class="fas fa-exclamation-circle"></i></label>-->
+<!--    <input type="text" class="form-control is-warning" id="inputWarning" placeholder="Enter ...">-->
+<!--</div>-->
 <!DOCTYPE html>
 <?php
 session_start();
 include_once 'build/PHP/DB.php';
 
+$u_id = $_SESSION['user_id'];
+$notification_id = $_SESSION['n_id'];
 ?>
 <html>
 <head>
@@ -31,8 +38,12 @@ include_once 'build/PHP/DB.php';
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!--alert-->
-    <script src="../sweetalert/sweetalert2.all.min.js"></script>
+    <!-- DataTables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<!--alert-->
+<script src="../sweetalert/sweetalert2.all.min.js"></script>
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -140,7 +151,7 @@ include_once 'build/PHP/DB.php';
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"> <i class="fas fa-dumpster-fire"></i>     DPG</h1>
+                        <h1 class="m-0 text-dark"> <i class="fas fa-users"></i>     Crew</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -155,74 +166,117 @@ include_once 'build/PHP/DB.php';
                     <div class="col-md-12">
                         <!-- general form elements -->
                         <div class="card card-success">
-                            <h5 class="bg-fuchsia" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Dangerous and polluting goods</h5>
-
-                            <form role="form" action="dpg.php" method="post">
+                            <h5 class="bg-gradient-lightblue" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Add new cargo declaration</h5>
                                 <div class="card-body">
+                                    <form role="form" action="cargo_decl.php" method="post">
                                     <div role="form">
                                         <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label >INF ship class</label>
-                                                    <select class="form-control" name="INF">
-                                                        <option value="INF1">INF1</option>
-                                                        <option value="INF2">INF2</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <div class="form-group">
-                                                    <label >DPG list on board</label>
-                                                    <select class="form-control" name="DPG">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <h5 class="bg-fuchsia" style="padding:5px; margin-top: 15px; margin-left:5px; border-radius:5px; font-weight: bold; width: 100%;">Address from which detailed information on the polluting and dangerous cargo may be obtained</h5>
-
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label >Name</label>
-                                                    <input type="text" class="form-control" name="name">
+                                                    <label >Family name</label>
+                                                    <input type="text" class="form-control" name="lrn">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label >Location</label>
-                                                    <input type="text" class="form-control" name="location">
+                                                    <label >Given name</label>
+                                                    <input type="text" class="form-control" name="mrn">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label>Phone</label>
-                                                    <input type="text" class="form-control" name="phone">
+                                                    <label >Nationality</label>
+                                                    <input type="text" class="form-control" name="eor">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label>Email</label>
-                                                    <input type="text" class="form-control" name="email">
+                                                    <label >Job role</label>
+                                                    <input type="text" class="form-control" name="fport">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label >Rank or Rating</label>
+                                                    <input type="text" class="form-control" name="eta">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label >Visa/Residence Permit Number</label>
+                                                    <input type="number" class="form-control" name="eta">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="form-group">
+                                                    <label style="color: white;">E</label>
+                                                    <button type="submit" name="upload_cd" class="btn bg-gradient-lightblue form-control"><i class="fas fa-upload"></i>   Upload</button>
                                                 </div>
                                             </div>
 
                                         </div>
                                     </div>
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <button type="submit" name="dpg_upload" class="btn bg-fuchsia"><i class="fas fa-upload"></i>   Upload</button>
-                                </div>
-                            </form>
+                                    </form>
+                                        <hr><br>
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Family name</th>
+                                                <th>Given name</th>
+                                                <th>Nationality</th>
+                                                <th>Job role</th>
+                                                <th>Rank or Rating</th>
+                                                <th>Visa/Residence Permit Number</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sel_c_decl = "SELECT * from cargo_declarations where notification_idnotification='$notification_id'";
+                                                $run_c_decl = mysqli_query($con, $sel_c_decl);
+                                                while ($row = mysqli_fetch_array($run_c_decl)) {                                             
+                                                    $id = $row['idcargo_declarations'];
+                                                    $lrn = $row['LRN'];
+                                                    $mrn = $row['MRN'];
+                                                    $re_party = $row['reporting_party'];
+                                                    $port = $row['first_port'];
+                                                    $eta = $row['ETA_of_ENS'];
+                                                
+                                                ?>
+                                            <tr>
+                                                <td><?php echo "$lrn";?></td>
+                                                <td><?php echo "$mrn";?></td>
+                                                <td><?php echo "$re_party";?></td>
+                                                <td><?php echo "$port";?></td>
+                                                <td><?php echo "$eta";?></td>
+                                                <td><?php echo "$eta";?></td>
+                                                <td><a href="cargo_consign.php?cd_id=<?php echo $id;?>" class="btn btn-dark">Remove</a></td>
+                                            </tr>
+
+                                        <?php
+                                                }
+                                        ?>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                            <th>Family name</th>
+                                                <th>Given name</th>
+                                                <th>Nationality</th>
+                                                <th>Job role</th>
+                                                <th>Rank or Rating</th>
+                                                <th>Visa/Residence Permit Number</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                </div>  <!-- /.card-body -->
+
                         </div>
                         <!-- /.card -->
+
                     </div>  <!--    col-d-12-->
-
-
-                </div>
-
-
 
             </div><!-- /.container-fluid -->
         </section>
@@ -279,59 +333,73 @@ include_once 'build/PHP/DB.php';
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+<!-- DataTables -->
+<script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script>
+    $(function () {
+        $("#example1").DataTable({
+            "responsive": true,
+            "autoWidth": false,
+        });
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true,
+        });
+    });
+</script>
+
 </body>
 </html>
 
 <?php
 
-if (isset($_POST['dpg_upload'])) {
+// if (isset($_POST['upload_cd'])) {
 
-    $name= $_POST['name'];
-    $location= $_POST['location'];
-    $phone= $_POST['phone'];
-    $email= $_POST['email'];
-    $notification_id = $_SESSION['n_id'];
+// $notification_id = $_SESSION['n_id'];
 
-    if (!empty($_POST['INF'])) {
-        $INF   = $_POST['INF'];
+// $lrn= $_POST['lrn'];
+// $mrn= $_POST['mrn'];
+// $eor= $_POST['eor'];
+// $fport= $_POST['fport'];
+// $eta= $_POST['eta'];
 
-    }
-    if (!empty($_POST['DPG'])) {
-        $DPG = $_POST['DPG'];
+// $sql2 = "INSERT INTO cargo_declarations (LRN,MRN,reporting_party,first_port,ETA_of_ENS,notification_idnotification) "
+//         . "values('$lrn','$mrn','$eor','$fport','$eta','$notification_id')";
 
-    }
+//     if (mysqli_query($con, $sql2)) {
+//         echo "<script>
+//     			swal({
+//                     type: 'success',
+//                     title:'New Cargo Declaration Uploaded',
+//                     showConfirmButton: true,
+//                     confirmButtonText: 'OK'
+//                 })
+//                 .then(willDelete => {
+//   				if (willDelete) {
+//     			window.open('cargo_decl.php','_self')
+//   				}
+// 				});
+//                 </script>";
+//     } else {
 
-    $sql2 = "INSERT INTO dpg_details (INF_ship_class,dpg_list_status,name,location,phone,email,notification_idnotification) "
-        . "values('$INF','$DPG','$name','$location','$phone','$email','$notification_id')";
+//         echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+//     }
 
-    if (mysqli_query($con, $sql2)) {
-        echo "<script>
-    			swal({
-                    type: 'success',
-                    title:'DPG Details Uploaded',
-                    showConfirmButton: true,
-                    confirmButtonText: 'OK'
-                })
-                .then(willDelete => {
-  				if (willDelete) {
-    			window.open('upload_new_noti_details.php','_self')
-  				}
-				});
-                </script>";
-    } else {
-
-        echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
-    }
-
-
-
-
-
-
-}
-
+// }
 
 ?>
+
+
+
 
 
 

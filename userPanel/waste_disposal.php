@@ -1,15 +1,8 @@
-<!--<div class="form-group">-->
-<!--    <label class="col-form-label" for="inputWarning"> Input with-->
-<!--        warning  <i class="fas fa-exclamation-circle"></i></label>-->
-<!--    <input type="text" class="form-control is-warning" id="inputWarning" placeholder="Enter ...">-->
-<!--</div>-->
 <!DOCTYPE html>
 <?php
 session_start();
 include_once 'build/PHP/DB.php';
 
-$u_id = $_SESSION['user_id'];
-$notification_id = $_SESSION['n_id'];
 ?>
 <html>
 <head>
@@ -38,12 +31,8 @@ $notification_id = $_SESSION['n_id'];
     <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- DataTables -->
-    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<!--alert-->
-<script src="../sweetalert/sweetalert2.all.min.js"></script>
-
+    <!--alert-->
+    <script src="../sweetalert/sweetalert2.all.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -151,7 +140,7 @@ $notification_id = $_SESSION['n_id'];
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark"> <i class="fas fa-heartbeat"></i>     Health</h1>
+                        <h1 class="m-0 text-dark"> <i class="fas fa-trash-alt"></i>     Waste / Waste Disposal</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -165,157 +154,111 @@ $notification_id = $_SESSION['n_id'];
                 <div class="row">
                     <div class="col-md-12">
                         <!-- general form elements -->
-                        <div class="card card-success">
-                            <h5 class="bg-gradient-maroon" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Health Info</h5>
+                        <div class="card card-success"><br>
+                            <h5 class="bg-success" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Waste Disposal Information</h5>
+
+                            <form role="form" action="waste.php" method="post">
                                 <div class="card-body">
-                                    <form role="form" action="cargo_decl.php" method="post">
                                     <div role="form">
-                                        <div class="row">
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label >Valid Sanitation Control Exemption</label>
-                                                    <select class="form-control" name="shcong">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label >Issued at</label>
-                                                    <input type="text" class="form-control" name="mrn">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label >Date of issue</label>
-                                                    <input type="date" class="form-control" name="eor">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label >Re-inspection required</label>
-                                                    <select class="form-control" name="shcong">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label >Visited infected area</label>
-                                                    <select class="form-control" name="shcong">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <h5 class="bg-gradient-maroon" style="padding:5px; margin-top: 15px; margin-left:5px; border-radius:5px; font-weight: bold; width: 100%;">Health Questions</h5>
-                                            
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label >Disease on board</label>
-                                                    <select class="form-control" name="shcong">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label >Infection condition on board</label>
-                                                    <select class="form-control" name="shcong">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label >Medical consulted</label>
-                                                    <select class="form-control" name="shcong">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label >Is there a sick animal or pet</label>
-                                                    <select class="form-control" name="shcong">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            
-
-                                        </div>
-
-
                                         <div class="row">
                                         <div class="col-sm-4">
                                                 <div class="form-group">
-                                                    <label >Any person died</label>
-                                                    <select class="form-control" name="shcong">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
+                                                    <label >Waste type</label>
+                                                    <input type="text" class="form-control" name="name">
                                                 </div>
                                             </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >Waste to be delivered</label>
+                                                    <input type="text" class="form-control" name="location">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Maximum dedicated storage capacity</label>
+                                                    <input type="text" class="form-control" name="phone">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Amount of waste retained on board</label>
+                                                    <input type="text" class="form-control" name="email">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Port of delivery of remaining waste</label>
+                                                    <input type="text" class="form-control" name="phone">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label>Estimated amount of waste to be generated</label>
+                                                    <input type="text" class="form-control" name="email">
+                                                </div>
+                                            </div>  
                                             <div class="col-sm-3">
                                                 <div class="form-group">
-                                                    <label >Number of deaths</label>
-                                                    <input type="number" class="form-control" name="mrn">
+                                                <button type="submit" name="wd_upload" class="form-control bg-success"><i class="fas fa-plus"></i>   Upload & Add to table</button>                                          
                                                 </div>
-                                            </div>
-                                          
-                                           </div>   <!-- row end -->
+                                            </div>  
+                                        
+                                        </div>
+                                        <hr>
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Name of article</th>
+                                                <th>Quantity</th>
+                                                <th>Location on board</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sel_ss = "SELECT * from waste_disposal_info where waste_info_idwaste_info=' '";
+                                                $run_ss = mysqli_query($con, $sel_ss);
+                                                while ($row = mysqli_fetch_array($run_ss)) {                                             
+                                                    $id = $row['idships_stores'];
+                                                    $article = $row['name_of_article'];
+                                                    $quantity = $row['quantity'];
+                                                    $l_board = $row['location_on_board'];
+                                                
+                                                ?>
+                                            <tr>
+                                                <td><?php echo "$article";?></td>
+                                                <td><?php echo "$quantity";?></td>
+                                                <td><?php echo "$l_board";?></td>
+                                                <td><a href="#" class="btn btn-dark">Delete</a></td>
+                                            </tr>
 
-                                           <div class="row">
-                                           <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label >Any ill person</label>
-                                                    <select class="form-control" name="shcong">
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <div class="form-group">
-                                                    <label >Number of ill persons</label>
-                                                    <input type="number" class="form-control" name="mrn">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-sm-2">
-                                                <div class="form-group">
-                                                    <label style="color: white;">E</label>
-                                                    <button type="submit" name="upload_h" class="btn bg-gradient-maroon form-control"><i class="fas fa-upload"></i>   Upload</button>
-                                                </div>
-                                            </div>
-                                           </div> <!-- row end -->
-
-                                           
-
-
-
+                                        <?php
+                                                }
+                                        ?>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                            <th>Name of article</th>
+                                                <th>Quantity</th>
+                                                <th>Location on board</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                        
                                     </div>
-                                    </form>
-                                       
-
-                                    </div>
-                                </div>  <!-- /.card-body -->
-                                <div class="card-footer">
-                                    <a href="ill_persons.php" type="button" style="float: right; width: 200px;" name="w_upload" class="btn bg-dark"><i class="fas fa-arrow-right"></i>   Next</a>
                                 </div>
+                                <!-- /.card-body -->
+                                
+                            </form>
                         </div>
                         <!-- /.card -->
-
                     </div>  <!--    col-d-12-->
+
+
+                </div>
+
+
 
             </div><!-- /.container-fluid -->
         </section>
@@ -401,44 +344,54 @@ $notification_id = $_SESSION['n_id'];
 
 <?php
 
-if (isset($_POST['upload_cd'])) {
+// if (isset($_POST['dpg_upload'])) {
 
-$notification_id = $_SESSION['n_id'];
+//     $name= $_POST['name'];
+//     $location= $_POST['location'];
+//     $phone= $_POST['phone'];
+//     $email= $_POST['email'];
+//     $notification_id = $_SESSION['n_id'];
 
-$lrn= $_POST['lrn'];
-$mrn= $_POST['mrn'];
-$eor= $_POST['eor'];
-$fport= $_POST['fport'];
-$eta= $_POST['eta'];
+//     if (!empty($_POST['INF'])) {
+//         $INF   = $_POST['INF'];
 
-$sql2 = "INSERT INTO cargo_declarations (LRN,MRN,reporting_party,first_port,ETA_of_ENS,notification_idnotification) "
-        . "values('$lrn','$mrn','$eor','$fport','$eta','$notification_id')";
+//     }
+//     if (!empty($_POST['DPG'])) {
+//         $DPG = $_POST['DPG'];
 
-    if (mysqli_query($con, $sql2)) {
-        echo "<script>
-    			swal({
-                    type: 'success',
-                    title:'New Cargo Declaration Uploaded',
-                    showConfirmButton: true,
-                    confirmButtonText: 'OK'
-                })
-                .then(willDelete => {
-  				if (willDelete) {
-    			window.open('cargo_decl.php','_self')
-  				}
-				});
-                </script>";
-    } else {
+//     }
 
-        echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
-    }
+//     $sql2 = "INSERT INTO dpg_details (INF_ship_class,dpg_list_status,name,location,phone,email,notification_idnotification) "
+//         . "values('$INF','$DPG','$name','$location','$phone','$email','$notification_id')";
 
-}
+//     if (mysqli_query($con, $sql2)) {
+//         echo "<script>
+//     			swal({
+//                     type: 'success',
+//                     title:'DPG Details Uploaded',
+//                     showConfirmButton: true,
+//                     confirmButtonText: 'OK'
+//                 })
+//                 .then(willDelete => {
+//   				if (willDelete) {
+//     			window.open('upload_new_noti_details.php','_self')
+//   				}
+// 				});
+//                 </script>";
+//     } else {
+
+//         echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+//     }
+
+
+
+
+
+
+// }
+
 
 ?>
-
-
-
 
 
 

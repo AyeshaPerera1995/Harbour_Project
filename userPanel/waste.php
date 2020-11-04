@@ -154,74 +154,42 @@ include_once 'build/PHP/DB.php';
                 <div class="row">
                     <div class="col-md-12">
                         <!-- general form elements -->
-                        <div class="card card-success">
-                            <h5 class="bg-success" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Laste port and date when ship generated waste was delivered</h5>
+                        <div class="card card-success"><br>
+                            <h5 class="bg-success" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Last port and date when ship generated waste was delivered</h5>
 
                             <form role="form" action="waste.php" method="post">
                                 <div class="card-body">
                                     <div role="form">
                                         <div class="row">
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Port</label>
                                                     <input type="text" class="form-control" name="location">
                                                 </div>
                                             </div>
-                                            <div class="col-sm-3">
+                                            <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Date</label>
                                                     <input type="date" class="form-control" name="location">
                                                 </div>
                                             </div>
+                                            <div class="col-sm-2">
+                                            <div class="form-group">
+                                            <label style="color:white;">Date</label>
+                                            <button type="submit" name="dpg_upload" class="form-control bg-success"><i class="fas fa-upload"></i>   Upload</button>
                                             </div>
-                                            <hr>
-                                            <div class="row">
+                                            </div>
+                                           
+                                            </div>
                                             
-                                            <h5 class="bg-success" style="padding:5px; margin-top: 15px; margin-left:5px; border-radius:5px; font-weight: bold; width: 100%;">Waste Disposal Information</h5>
-                                          
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label >Waste type</label>
-                                                    <input type="text" class="form-control" name="name">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label >Waste to be delivered</label>
-                                                    <input type="text" class="form-control" name="location">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Maximum dedicated storage capacity</label>
-                                                    <input type="text" class="form-control" name="phone">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Amount of waste retained on board</label>
-                                                    <input type="text" class="form-control" name="email">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Port of delivery of remaining waste</label>
-                                                    <input type="text" class="form-control" name="phone">
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label>Estimated amount of waste to be generated</label>
-                                                    <input type="text" class="form-control" name="email">
-                                                </div>
-                                            </div>
+                                        
                                         </div>
                                         
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <button type="submit" name="dpg_upload" class="btn bg-success"><i class="fas fa-upload"></i>   Upload</button>
+                                    <a href="waste_disposal.php" type="button" style="float: right; width: 200px;" name="w_upload" class="btn bg-dark"><i class="fas fa-arrow-right"></i>   Next</a>
                                 </div>
                             </form>
                         </div>
@@ -293,51 +261,51 @@ include_once 'build/PHP/DB.php';
 
 <?php
 
-if (isset($_POST['dpg_upload'])) {
+// if (isset($_POST['dpg_upload'])) {
 
-    $name= $_POST['name'];
-    $location= $_POST['location'];
-    $phone= $_POST['phone'];
-    $email= $_POST['email'];
-    $notification_id = $_SESSION['n_id'];
+//     $name= $_POST['name'];
+//     $location= $_POST['location'];
+//     $phone= $_POST['phone'];
+//     $email= $_POST['email'];
+//     $notification_id = $_SESSION['n_id'];
 
-    if (!empty($_POST['INF'])) {
-        $INF   = $_POST['INF'];
+//     if (!empty($_POST['INF'])) {
+//         $INF   = $_POST['INF'];
 
-    }
-    if (!empty($_POST['DPG'])) {
-        $DPG = $_POST['DPG'];
+//     }
+//     if (!empty($_POST['DPG'])) {
+//         $DPG = $_POST['DPG'];
 
-    }
+//     }
 
-    $sql2 = "INSERT INTO dpg_details (INF_ship_class,dpg_list_status,name,location,phone,email,notification_idnotification) "
-        . "values('$INF','$DPG','$name','$location','$phone','$email','$notification_id')";
+//     $sql2 = "INSERT INTO dpg_details (INF_ship_class,dpg_list_status,name,location,phone,email,notification_idnotification) "
+//         . "values('$INF','$DPG','$name','$location','$phone','$email','$notification_id')";
 
-    if (mysqli_query($con, $sql2)) {
-        echo "<script>
-    			swal({
-                    type: 'success',
-                    title:'DPG Details Uploaded',
-                    showConfirmButton: true,
-                    confirmButtonText: 'OK'
-                })
-                .then(willDelete => {
-  				if (willDelete) {
-    			window.open('upload_new_noti_details.php','_self')
-  				}
-				});
-                </script>";
-    } else {
+//     if (mysqli_query($con, $sql2)) {
+//         echo "<script>
+//     			swal({
+//                     type: 'success',
+//                     title:'DPG Details Uploaded',
+//                     showConfirmButton: true,
+//                     confirmButtonText: 'OK'
+//                 })
+//                 .then(willDelete => {
+//   				if (willDelete) {
+//     			window.open('upload_new_noti_details.php','_self')
+//   				}
+// 				});
+//                 </script>";
+//     } else {
 
-        echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
-    }
-
-
+//         echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+//     }
 
 
 
 
-}
+
+
+// }
 
 
 ?>
