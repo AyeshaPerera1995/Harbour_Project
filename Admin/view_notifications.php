@@ -92,7 +92,7 @@ include_once 'build/PHP/DB.php';
                         <a href="to_aprove.php" class="nav-link">
                             <i class="nav-icon fas fa-ship"></i>
                             <p>
-                                To aprove ship list
+                                Pending Ship List
 
                             </p>
                         </a>
@@ -102,7 +102,7 @@ include_once 'build/PHP/DB.php';
                         <a href="aproved.php" class="nav-link">
                             <i class="nav-icon fas fa-life-ring"></i>
                             <p>
-                                aproved ship list
+                                Approved Ship List
 
                             </p>
                         </a>
@@ -139,7 +139,16 @@ include_once 'build/PHP/DB.php';
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">To be Aproved Ship List</h3>
+                    <?php
+                    // search ship name 
+                    $sid = $_SESSION["ship_id"];
+                    $s = "select * from ship where idship='$sid'";
+                    $ss = mysqli_query($con, $s);
+                    $ship_row = mysqli_fetch_assoc($ss);
+                    $ship_name = $ship_row['ship_name'];
+
+                    ?>
+                        <h3 style="font-weight:bold;" class="card-title"><?php echo $ship_name;?> Ship Notifications</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -148,7 +157,7 @@ include_once 'build/PHP/DB.php';
                                 <thead>
                                 <tr>
                                     <th>Notidication ID</th>
-                                    <th>Ship ID</th>
+                                    <th>Ship Name</th>
                                     <th>Received Date</th>
                                     <th>Received Time</th>
                                     <th>Approve Status</th>
@@ -164,17 +173,19 @@ include_once 'build/PHP/DB.php';
                                 while ($row = mysqli_fetch_array($shipp)) {
                                     $nid = $row['idnotification'];
                                     $status = $row['status'];
+                                    $date = $row['received_date'];
+                                    $time = $row['received_time'];
 
                                         echo "<tr>";
                                         echo "<td>" . $nid . "</td>";
-                                        echo "<td>" . $sid . "</td>";
-                                        echo "<td>" . "date" . "</td>";
-                                        echo "<td>" . "time" . "</td>";
+                                        echo "<td>" . $ship_name . "</td>";
+                                        echo "<td>" . $date . "</td>";
+                                        echo "<td>" . $time . "</td>";
                                         if ($status==0){
-                                            echo "<td>Pending</td>";
+                                            echo "<td style='color:red; font-weight:bold;'>Notification Pending</td>";
                                         }
                                         if ($status==1) {
-                                            echo "<td>Approved</td>";
+                                            echo "<td style='color:green; font-weight:bold;'>Notification Approved</td>";
                                         }
                                     echo "<td><button class='btn btn-warning' name='view' value='$nid'>View Details</button></td>";
                                         echo "</tr>";
@@ -279,8 +290,7 @@ include_once 'build/PHP/DB.php';
 <?php
 if (isset($_POST['view'])) {
     $nid = $_POST['view'];
-    $_SESSION["nid"] = $nid;
-    echo "<script>window.open('view_noti_details.php')</script>";
+    echo "<script>window.open('view_noti_details.php?nid=$nid')</script>";
 
 }
 ?>

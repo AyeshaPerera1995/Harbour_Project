@@ -92,7 +92,7 @@ include_once 'PHP/DB.php';
                         <a href="to_aprove.php" class="nav-link">
                             <i class="nav-icon fas fa-ship"></i>
                             <p>
-                                To aprove ship list
+                                Pending Ship List
 
                             </p>
                         </a>
@@ -102,7 +102,7 @@ include_once 'PHP/DB.php';
                         <a href="aproved.php" class="nav-link">
                             <i class="nav-icon fas fa-life-ring"></i>
                             <p>
-                                aproved ship list
+                                Approved Ship List
 
                             </p>
                         </a>
@@ -123,7 +123,7 @@ include_once 'PHP/DB.php';
             <div class="container-fluid">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">To be Aproved Ship List</h3>
+                        <h3 class="card-title">Pending Ship List</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -131,38 +131,41 @@ include_once 'PHP/DB.php';
                             <table id="example1" class="table table-bordered table-striped ">
                                 <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Ship Name</th>
+                                    <th>Ship Owner</th>
+                                    <th>Flag</th>
                                     <th>Call Sign</th>
                                     <th>IMO Number</th>
                                     <th>MMSI Number</th>
+                                    <th>View Details</th>
                                     <th>Active Status</th>
                                     <th>Status</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $ship = "select * from ship";
+                                $ship = "select * from ship where status='1'";
                                 $shipp = mysqli_query($con, $ship);
                                 while ($row = mysqli_fetch_array($shipp)) {
-                                    $id = $row['idship'];
+                                    $shipid = $row['idship'];
                                     $ship_name = $row['ship_name'];
                                     $call_sign = $row['call_sign'];
                                     $IMO_number = $row['IMO_number'];
                                     $MMSI_number = $row['MMSI_number'];
-
                                     $status = $row['status'];
-                                    if ($status == "1") {
+                                   
                                         echo "<tr>";
-                                        echo "<td>" . $id . "</td>";
+                                        echo "<td>" . $shipid . "</td>";
                                         echo "<td>" . $ship_name . "</td>";
                                         echo "<td>" . $call_sign . "</td>";
                                         echo "<td>" . $IMO_number . "</td>";
-                                        echo "<td>" . $MMSI_number . "</td>";
-                                        echo "<td style='color: #003eff'>Pending</td>";
-                                        echo "<td><button class='btn btn-success' name='approve' value='$id'>Approve</button></td>";
+                                        echo "<td>" . $IMO_number . "</td>";
+                                        echo "<td>" . $MMSI_number . "</td>";                                       
+                                        echo "<td><a class='btn btn-warning' href='#view' data-toggle='modal' data-id='<?php echo $shipid;?>'><span>View More</span></a></td>";                                      
+                                        echo "<td style='color: red; font-weight:bold;'>Pending</td>";
+                                        echo "<td><button class='btn btn-success' name='approve' value='$shipid'>Approve</button></td>";
                                         echo "</tr>";
-                                    }
+                                    
                                 }
                                 ?>
 
@@ -265,8 +268,28 @@ include_once 'PHP/DB.php';
         });
     });
 </script>
+
+<!-- ********************************************************************************* -->
+<script>
+    $(document).ready(function(){
+    $('#view').on('show.bs.modal', function (e) {
+        var sid = $(e.relatedTarget).data('id');
+        $.ajax({
+            type : 'post',
+            url : 'view_ship.php', //Here you will fetch records 
+            data :  'sid='+ sid, //Pass $id
+            success : function(data){
+            $('.fetched-data').html(data);//Show fetched data from database
+            }
+        });
+     });
+});
+</script>
+<!-- ******************************************************************************** -->
+
 </body>
 </html>
+
 <?php
 if (isset($_POST['approve'])) {
     $s_id = $_POST['approve'];
@@ -275,40 +298,34 @@ if (isset($_POST['approve'])) {
     echo $sql;
 
     if (mysqli_query($con, $sql)) {
-        header("Location:ship.php");
+       echo "<script>window.location.replace('to_aprove.php','_self')</script>";
     } else {
         echo "Error: " . mysqli_error($con);
     }
 
 }
-if (isset($_POST['active'])) {
-    $a_id = $_POST['active'];
-    echo $a_id;
-    $sql = "UPDATE ship SET status='2' WHERE idship=$a_id";
-    echo $sql;
 
-    if (mysqli_query($con, $sql)) {
-        header("Location: ship.php");
-    } else {
-        echo "Error: " . mysqli_error($con);
-    }
-}
-if (isset($_POST['deactive'])) {
-    $d_id = $_POST['deactive'];
-    echo $d_id;
-    $sql = "UPDATE ship SET status='1' WHERE idship=$d_id";
-    echo $sql;
-
-    if (mysqli_query($con, $sql)) {
-        header("Location: ship.php");
-    } else {
-        echo "Error: " . mysqli_error($con);
-    }
-}
-if (isset($_POST['view'])) {
-    $v_id = $_POST['view'];
-    $_SESSION["ship_id"] = $v_id;
-//    header("Location: ViewDetails.php");
-}
 mysqli_close($con);
-?><?php
+?>
+
+<!-- ********************************** View Ship ************************************** -->
+<div class="modal small fade" id="view" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h3 class="modal-title">More Information</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>                
+            </div>
+            <div class="modal-body">
+                <div class="fetched-data"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="edit_consignment" onclick="" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

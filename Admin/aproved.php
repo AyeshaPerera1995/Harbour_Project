@@ -92,7 +92,7 @@ include_once 'build/PHP/DB.php';
                         <a href="to_aprove.php" class="nav-link">
                             <i class="nav-icon fas fa-ship"></i>
                             <p>
-                                To aprove ship list
+                                Pending Ship List
 
                             </p>
                         </a>
@@ -102,7 +102,7 @@ include_once 'build/PHP/DB.php';
                         <a href="aproved.php" class="nav-link">
                             <i class="nav-icon fas fa-life-ring"></i>
                             <p>
-                                aproved ship list
+                                Approved Ship List
 
                             </p>
                         </a>
@@ -179,7 +179,7 @@ include_once 'build/PHP/DB.php';
                                     echo "<td><h5 style='color: darkgreen'>Approved</h5></td>";
                                     echo "<td><button class='btn btn-danger' name='deactive' value='$id'>Cancel</button></td>";
 //                                        if ($status == "1") {
-//                                            echo "<td><h5 style='color: red'>Deactive</h5></td>";
+                                        //    echo "<td><h5 style='color: red'>Deactive</h5></td>";
 //                                        } elseif ($status == "2") {
 //                                            echo "<td><h5 style='color: darkgreen'>Approved</h5></td>";
 //                                        }
@@ -287,19 +287,6 @@ include_once 'build/PHP/DB.php';
 </body>
 </html>
 <?php
-
-if (isset($_POST['active'])) {
-    $a_id = $_POST['active'];
-    echo $a_id;
-    $sql = "UPDATE ship SET status='2' WHERE idship=$a_id";
-    echo $sql;
-
-    if (mysqli_query($con, $sql)) {
-        echo "<script>window.location.replace('ship.php')</script>";
-    } else {
-        echo "Error: " . mysqli_error($con);
-    }
-}
 if (isset($_POST['deactive'])) {
     $d_id = $_POST['deactive'];
     echo $d_id;

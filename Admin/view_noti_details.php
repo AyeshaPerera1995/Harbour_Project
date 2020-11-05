@@ -3,6 +3,10 @@
 session_start();
 include_once 'build/PHP/DB.php';
 
+if (isset($_GET['nid'])) {
+    $nid = $_GET['nid'];
+    // echo "<script>alert($nid);</script>";
+}
 
 ?>
 <html>
@@ -70,7 +74,6 @@ include_once 'build/PHP/DB.php';
         <div class="sidebar">
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-
                 <div class="info">
                     <a href="#" class="d-block"><?php echo $_SESSION['admin_email'];?></a>
                 </div>
@@ -95,7 +98,7 @@ include_once 'build/PHP/DB.php';
                         <a href="to_aprove.php" class="nav-link">
                             <i class="nav-icon fas fa-ship"></i>
                             <p>
-                                To aprove ship list
+                                Pending Ship List
 
                             </p>
                         </a>
@@ -105,13 +108,11 @@ include_once 'build/PHP/DB.php';
                         <a href="aproved.php" class="nav-link">
                             <i class="nav-icon fas fa-life-ring"></i>
                             <p>
-                                aproved ship list
+                                Approved Ship List
 
                             </p>
                         </a>
                     </li>
-
-
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -256,7 +257,7 @@ include_once 'build/PHP/DB.php';
                 </div>
                     <?php
 
-                    $nid = $_SESSION["nid"];
+                    // $nid = $_SESSION["nid"];
                     $sid = $_SESSION["ship_id"];
                     ?>
 
@@ -430,10 +431,6 @@ include_once 'build/PHP/DB.php';
 
 
                             </div>
-
-
-
-
 
                         </div>
                         <div class="tab-pane" id="port"><hr><br>
@@ -705,7 +702,7 @@ include_once 'build/PHP/DB.php';
                             <h4><b>Ship's Stores Information...</b></h4>
 
                         </div>
-                        <div class="tab-pane" id="waste">
+                        <div class="tab-pane" id="waste"><hr><br>
                             <h4><b>Waste Information...</b></h4>
 
                         </div>
@@ -728,9 +725,19 @@ include_once 'build/PHP/DB.php';
                     </div>
 
                     <br><br>
-                    <form action="view_noti_details.php" method="post">
+                    <?php
+                    $state = "select * from notification where idnotification='$nid'";
+                    $run_state = mysqli_query($con,$state);
+                    $state_row = mysqli_fetch_array($run_state);
+                    $status = $state_row['status'];
+                    if ($status=='0') {
+                    ?>
+                    <form action="view_noti_details.php" method="post">               
                     <button type="submit" name="approve_noti_details" style="padding: 10px; font-size:20px;" class="btn bg-gradient-gray">Approved Notification Details</button>
                     </form>
+                    <?php
+                    }
+                    ?>
                 </center>
             </div><!-- /.container-fluid -->
         </section>
