@@ -334,39 +334,37 @@ $notification_id = $_SESSION['n_id'];
 
 <?php
 
-// if (isset($_POST['upload_cd'])) {
+ if (isset($_POST['upload_ss'])) {
 
-// $notification_id = $_SESSION['n_id'];
+ $notification_id = $_SESSION['n_id'];
 
-// $lrn= $_POST['lrn'];
-// $mrn= $_POST['mrn'];
-// $eor= $_POST['eor'];
-// $fport= $_POST['fport'];
-// $eta= $_POST['eta'];
+ $article= $_POST['article'];
+ $qty= $_POST['qty'];
+ $l_board= $_POST['l_board'];
 
-// $sql2 = "INSERT INTO cargo_declarations (LRN,MRN,reporting_party,first_port,ETA_of_ENS,notification_idnotification) "
-//         . "values('$lrn','$mrn','$eor','$fport','$eta','$notification_id')";
+ $sql2 = "INSERT INTO ships_stores (name_of_article,quantity,location_on_board,notification_idnotification) "
+         . "values('$article','$qty','$l_board','$notification_id')";
 
-//     if (mysqli_query($con, $sql2)) {
-//         echo "<script>
-//     			swal({
-//                     type: 'success',
-//                     title:'New Cargo Declaration Uploaded',
-//                     showConfirmButton: true,
-//                     confirmButtonText: 'OK'
-//                 })
-//                 .then(willDelete => {
-//   				if (willDelete) {
-//     			window.open('cargo_decl.php','_self')
-//   				}
-// 				});
-//                 </script>";
-//     } else {
+     if (mysqli_query($con, $sql2)) {
+         echo "<script>
+     			swal({
+                     type: 'success',
+                     title:'New Ship Store Details Uploded',
+                     showConfirmButton: true,
+                     confirmButtonText: 'OK'
+                 })
+                 .then(willDelete => {
+   				if (willDelete) {
+     			window.open('cargo_decl.php','_self')
+   				}
+ 				});
+                 </script>";
+     } else {
 
-//         echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
-//     }
+         echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+     }
 
-// }
+ }
 
 ?>
 
