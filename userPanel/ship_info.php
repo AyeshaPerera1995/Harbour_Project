@@ -82,40 +82,29 @@ $u_id = $_SESSION['user_id'];
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item ">
+                         <li class="nav-item ">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
-                                Dashbord
+                                Dashboard
 
                             </p>
                         </a>
 
+                    </li>
+                    <li class="nav-item ">
+                        <a href="upload_new_noti_details.php" class="nav-link ">
+                            <i class="nav-icon fas fa-home"></i>
+                            <p>
+                                My Home
+                            </p>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="addship.php" class="nav-link">
                             <i class="nav-icon fas fa-ship"></i>
                             <p>
-                                add Ship
-
-                            </p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="passenger.php" class="nav-link">
-                            <i class="nav-icon fas fa-life-ring"></i>
-                            <p>
-                                add Passenger
-
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="crewperson.php" class="nav-link">
-                            <i class="nav-icon fas fa-person-booth"></i>
-                            <p>
-                                add Crew Person
+                                Register Ship
 
                             </p>
                         </a>

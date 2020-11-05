@@ -88,11 +88,11 @@ $notification_id = $_SESSION['n_id'];
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-item ">
+                         <li class="nav-item ">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
-                                Dashbord
+                                Dashboard
 
                             </p>
                         </a>
@@ -110,26 +110,7 @@ $notification_id = $_SESSION['n_id'];
                         <a href="addship.php" class="nav-link">
                             <i class="nav-icon fas fa-ship"></i>
                             <p>
-                                add Ship
-
-                            </p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="passenger.php" class="nav-link">
-                            <i class="nav-icon fas fa-life-ring"></i>
-                            <p>
-                                add Passenger
-
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="crewperson.php" class="nav-link">
-                            <i class="nav-icon fas fa-person-booth"></i>
-                            <p>
-                                add Crew Person
+                                Register Ship
 
                             </p>
                         </a>
@@ -214,7 +195,7 @@ $notification_id = $_SESSION['n_id'];
 
                                         </div>
                                     </div>
-                                    </form>
+                                   
                                         <hr><br>
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead>
@@ -249,8 +230,8 @@ $notification_id = $_SESSION['n_id'];
                                                 <td><?php echo "$job";?></td>
                                                 <td><?php echo "$rank";?></td>
                                                 <td><?php echo "$number";?></td>
-                                                <td><a href="delete_crew.php?crew_id=<?php echo $id;?>" class="btn btn-dark">Remove</a></td>
-                                            </tr>
+                                                <td><button class='btn btn-dark' name='remove' value='<?php echo $id;?>'>Remove</button></td>
+                                                  </tr>
 
                                         <?php
                                                 }
@@ -270,6 +251,7 @@ $notification_id = $_SESSION['n_id'];
                                         </table>
 
                                     </div>
+                                    </form>
                                 </div>  <!-- /.card-body -->
 
                         </div>
@@ -360,6 +342,31 @@ $notification_id = $_SESSION['n_id'];
 </html>
 
 <?php
+
+if (isset($_POST['remove'])) {
+    $notification_id = $_SESSION['n_id'];
+    $id = $_POST['remove'];
+    $remove_crew = "delete from crew_person where idcrew_person='$id' AND notification_idnotification='$notification_id'";
+    $run_crew = mysqli_query($con, $remove_crew);
+    if ($run_crew){   
+        echo "<script>
+    			swal({
+                    type: 'success',
+                    title:'Removed !',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+  				if (willDelete) {
+    			window.location.replace('crew.php','_self')
+  				}
+				});
+                </script>";
+
+    }else{
+        echo "alert('Error');";
+    }
+}
 
 if (isset($_POST['upload_crew'])) {
 
