@@ -5,7 +5,11 @@
     $sid = $_SESSION['ship_id'];
     $u_id = $_SESSION['user_id'];
 
-    $save_noti = "insert into notification(status,ship_idship,user_iduser) values(0,'$sid','$u_id')";
+    $c_date = date('Y-m-d');
+    date_default_timezone_set("Asia/Colombo");
+    $c_time = date("h:i:s");
+
+    $save_noti = "insert into notification(received_date,received_time,status,ship_idship,user_iduser) values('$c_date','$c_time',0,'$sid','$u_id')";
     $run_noti = mysqli_query($con, $save_noti);
     if ($run_noti){
 
