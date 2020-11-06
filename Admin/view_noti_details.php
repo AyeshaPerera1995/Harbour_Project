@@ -127,7 +127,8 @@ if (isset($_GET['nid'])) {
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0 text-dark">View Ship Notification Details</h1>
+                        <h3 class="m-0 text-dark">View Ship Notification Details</h3><hr>
+                        <h5 style="color:red; font-weight:bold;">Notification ID : <?php echo $nid;?></h5>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
 
@@ -696,30 +697,617 @@ if (isset($_GET['nid'])) {
                         </div>
                         <div class="tab-pane" id="cargo"><hr><br>
                             <h4><b>Cargo Information...</b></h4>
+                            <?php
+                            $c_decl = "select * from cargo_declarations where notification_idnotification='$nid'";
+                            $run_cdecl = mysqli_query($con,$c_decl);
+                            $cd_row = mysqli_fetch_array($run_cdecl);
+                            $decl_id = $cd_row['idcargo_declarations'];
+                            $lrn = $cd_row['LRN'];
+                            $mrn = $cd_row['MRN'];
+                            $re_party = $cd_row['reporting_party'];
+                            $f_port = $cd_row['first_port'];
+                            $eta = $cd_row['ETA_of_ENS'];
+                            ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-success">
+                                    <h5 class="bg-danger" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Cargo Declaration</h5>
+                                    <div class="card-body">
+                                    <form role="form" action="cargo_decl.php" method="post">
+                                    <div role="form">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >LRN</label>
+                                                    <input type="text" class="form-control" disabled value="<?php echo $lrn;?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >MRN</label>
+                                                    <input type="text" class="form-control" disabled value="<?php echo $mrn;?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >Reporting party (EOR)</label>
+                                                    <input type="text" class="form-control" disabled value="<?php echo $re_party;?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >First port of arrival in EU</label>
+                                                    <input type="text" class="form-control" disabled value="<?php echo $f_port;?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >ETA of ENS</label>
+                                                    <input type="datetime-local" class="form-control" disabled value="<?php echo $eta;?>">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+<!-- ********************************************************************************** -->
+                                <hr><br>
+                                <h5 class="bg-danger" style="padding:5px; margin-top: 15px; margin-left:5px; border-radius:5px; font-weight: bold; width: 100%;">Consignments</h5>
+
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Port of loading</th>
+                                        <th>Port of discharge</th>
+                                        <th>Transport document ID</th>
+                                        <th>View More</th>
+                                        <th>Carrier</th>
+                                        <th>Consignor</th>
+                                        <th>Consignee</th>
+                                        <th>Party to be notified</th>
+                                        <th>View/Add Cargo</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                $get_consign = "SELECT * from consignments where cargo_declarations_idcargo_declarations='$decl_id'";
+                                $run_consign = mysqli_query($con, $get_consign);
+                                while ($row = mysqli_fetch_array($run_consign)) { 
+                                    $con_id = $row['idconsignments'];                                            
+                                    $port_load = $row['port_of_loading'];
+                                    $port_dis = $row['port_of_discharge'];
+                                    $doc_id = $row['transport_doc_id'];
+
+                                    $carrier_id = $row['carrier_idcarrier'];
+                                    $consignor_id = $row['consignor_idconsignor'];
+                                    $consignee_id = $row['consignee_idconsignee'];
+                                    $party_id = $row['id_party_notified'];
+                                            
+                                    ?>
+
+                                    <tr>
+                                        <td><?php echo $port_load;?></td>
+                                        <td><?php echo $port_dis;?></td>
+                                        <td><?php echo $doc_id;?></td>
+                                        <td><a href="#myConsignment" class="btn btn-danger btn-sm" data-toggle="modal" data-id="<?php echo $con_id;?>">View More</a></td>
+                                        <td><a href="#myCarrier" data-toggle="modal" data-id="<?php echo $carrier_id;?>"class="btn btn-sm btn-dark">Carrier</a></td>
+                                        <td><a href="#myConsignor" data-toggle="modal" data-id="<?php echo $consignor_id;?>"class="btn btn-sm btn-dark">Consignor</a></td>
+                                        <td><a href="#myConsignee" data-toggle="modal" data-id="<?php echo $consignee_id;?>"class="btn btn-sm btn-dark">Consignee</a></td>
+                                        <td><a href="#myParty" data-toggle="modal" data-id="<?php echo $party_id;?>"class="btn btn-sm btn-dark">Party to be notified</a></td>
+                                        <td><a href="cargo_cargoitems.php?con_id=<?php echo $con_id;?>&cd_id=<?php echo $decl_id;?>" class="btn btn-sm btn-dark">View/Add Cargos</a></td>
+                                    </tr>
+                                    <?php
+                                        }
+                                    ?>
+
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Port of loading</th>
+                                        <th>Port of discharge</th>
+                                        <th>Transport document ID</th>
+                                        <th>View More</th>
+                                        <th>Carrier</th>
+                                        <th>Consignor</th>
+                                        <th>Consignee</th>
+                                        <th>Party to be notified</th>
+                                        <th>View/Add Cargo</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+
+
+
+<!-- ********************************************************************************************** -->
+
+                                    </div>
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         </div>
                         <div class="tab-pane" id="stores"><hr><br>
                             <h4><b>Ship's Stores Information...</b></h4>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-success">
+                                    <h5 class="bg-indigo" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Ship's Stores Information</h5>
+                                    <div class="card-body">
+                                    <hr><br>
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Name of article</th>
+                                                <th>Quantity</th>
+                                                <th>Location on board</th>
+                                               
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sel_ss = "SELECT * from ships_stores where notification_idnotification='$nid'";
+                                                $run_ss = mysqli_query($con, $sel_ss);
+                                                while ($row = mysqli_fetch_array($run_ss)) {                                             
+                                                    $id = $row['idships_stores'];
+                                                    $article = $row['name_of_article'];
+                                                    $quantity = $row['quantity'];
+                                                    $l_board = $row['location_on_board'];
+                                                
+                                                ?>
+                                            <tr>
+                                                <td><?php echo "$article";?></td>
+                                                <td><?php echo "$quantity";?></td>
+                                                <td><?php echo "$l_board";?></td>
+                                                
+                                            </tr>
+
+                                        <?php
+                                                }
+                                        ?>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                            <th>Name of article</th>
+                                                <th>Quantity</th>
+                                                <th>Location on board</th>
+                                               
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
 
                         </div>
                         <div class="tab-pane" id="waste"><hr><br>
                             <h4><b>Waste Information...</b></h4>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-success">
+                                    <h5 class="bg-danger" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Cargo Declaration</h5>
+                                    <div class="card-body">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         </div>
                         <div class="tab-pane" id="security"><hr><br>
                             <h4><b>Security Information...</b></h4>
+                            <?php
+                            $sec = "select * from security_details where notification_idnotification='$nid'";
+                            $run_sec = mysqli_query($con,$sec);
+                            $sec_row = mysqli_fetch_array($run_sec);
+                            $issc_status = $sec_row['valid_ISSC_status'];
+                            $valid_issc = $sec_row['reason_for_no_valid_ISSC'];
+                            $i_type = $sec_row['ISSC_issuer_type'];
+                            $issuer = $sec_row['ISSC_issuer'];
+                            $type = $sec_row['ISSC_type'];
+                            $ex_date = $sec_row['ISSC_expiry_date'];
+                            $ssp = $sec_row['approved_SSP_on_board'];
+                            $sec_level = $sec_row['security_level'];
+                            $sec_mat = $sec_row['security_matters'];
+                            $cso_name = $sec_row['CSO_name'];
+                            $cso_phone = $sec_row['CSO_phone'];
+                            $cso_email = $sec_row['CSO_email'];
+                            ?>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-success">
+                                <h5 class="bg-black" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Security</h5>
+                                  <div class="card-body">
+                                    <div role="form">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label >Does the ship have a valid ISSC?</label>
+                                                            <input type="text" class="form-control" disabled value="<?php echo $issc_status;?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label >Reason for no valid ISSC?</label>
+                                                            <textarea class="form-control" disabled><?php echo $valid_issc;?></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>ISSC issuer type</label>
+                                                            <input type="text" class="form-control" disabled value="<?php echo $i_type;?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label >ISSC issuer</label>
+                                                            <input type="text" class="form-control" disabled value="<?php echo $issuer;?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>ISSC type</label>
+                                                            <input type="text" class="form-control" disabled value="<?php echo $type;?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label >ISSC expiry date</label>
+                                                            <input type="date" class="form-control" disabled value="<?php echo $ex_date;?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label >Does the ship have an approved SSP on board?</label>
+                                                            <input type="text" class="form-control" disabled value="<?php echo $ssp;?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label >Current ship security level</label>
+                                                            <input type="text" class="form-control" disabled value="<?php echo $sec_level;?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Security-level matter</label>
+                                                            <textarea class="form-control" name="Security_level_matter" disabled><?php echo $sec_mat;?></textarea>
+                                                        </div>
+                                                    </div>
+
+                                                    <h5 class="bg-black" style="padding:5px; margin-top: 15px; margin-left:5px; border-radius:5px; font-weight: bold; width: 100%;">Company Security Officer</h5>
+
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label >CSO Name</label>
+                                                            <input type="text" class="form-control" disabled value="<?php echo $cso_name;?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>CSO Phone</label>
+                                                            <input type="number" class="form-control" disabled value="<?php echo $cso_phone;?>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <div class="form-group">
+                                                            <label>CSO Email</label>
+                                                            <input type="email" class="form-control" disabled value="<?php echo $cso_email;?>">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         </div>
                         <div class="tab-pane" id="crew"><hr><br>
                             <h4><b>Crew Information...</b></h4>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-success">
+                                    <h5 class="bg-gradient-lightblue" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Crew Information</h5>
+                                    <div class="card-body">
+                                    <hr>
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Family name</th>
+                                                <th>Given name</th>
+                                                <th>Nationality</th>
+                                                <th>Job role</th>
+                                                <th>Rank or Rating</th>
+                                                <th>Visa/Residence Permit Number</th>
+                                               
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sel_crew = "SELECT * from crew_person where notification_idnotification='$nid'";
+                                                $run_crew = mysqli_query($con, $sel_crew);
+                                                while ($row = mysqli_fetch_array($run_crew)) {                                             
+                                                    $id = $row['idcrew_person'];
+                                                    $fn = $row['family_name'];
+                                                    $gn = $row['given_name'];
+                                                    $nation = $row['nationality'];
+                                                    $job = $row['job_role'];
+                                                    $rank = $row['rank_or_rating'];
+                                                    $number = $row['vr_permit_number'];
+                                                
+                                                ?>
+                                            <tr>
+                                                <td><?php echo "$fn";?></td>
+                                                <td><?php echo "$gn";?></td>
+                                                <td><?php echo "$nation";?></td>
+                                                <td><?php echo "$job";?></td>
+                                                <td><?php echo "$rank";?></td>
+                                                <td><?php echo "$number";?></td>
+                                                </tr>
+
+                                        <?php
+                                                }
+                                        ?>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>Family name</th>
+                                                <th>Given name</th>
+                                                <th>Nationality</th>
+                                                <th>Job role</th>
+                                                <th>Rank or Rating</th>
+                                                <th>Visa/Residence Permit Number</th>
+                                                
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         </div>
                         <div class="tab-pane" id="passengers"><hr><br>
                             <h4><b>Passengers Information...</b></h4>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-success">
+                                    <h5 class="bg-gradient-lime" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Passengers Information</h5>
+                                    <div class="card-body">
+                                    <hr>
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>Family name</th>
+                                                <th>Given name</th>
+                                                <th>Nationality</th>
+                                                <th>Date of birth</th>
+                                                <th>V/R Permit Number</th>
+                                                <th>Embarkation</th>
+                                                <th>Disembarkation</th>
+                                                <th>Transit</th>
+                                               
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sel_pass = "SELECT * from passenger where notification_idnotification='$nid'";
+                                                $run_pass = mysqli_query($con, $sel_pass);
+                                                while ($row = mysqli_fetch_array($run_pass)) {                                             
+                                                    $id = $row['idpassenger'];
+                                                    $fn = $row['family_name'];
+                                                    $gn = $row['given_name'];
+                                                    $nation = $row['nationality'];
+                                                    $number = $row['vr_permit_number'];
+                                                    $embark = $row['embarkation'];
+                                                    $disembark = $row['disembarkation'];
+                                                    $bday = $row['date_of_birth'];
+                                                    $transit = $row['transit'];
+                                                
+                                                ?>
+                                            <tr>
+                                                <td><?php echo "$fn";?></td>
+                                                <td><?php echo "$gn";?></td>
+                                                <td><?php echo "$nation";?></td>
+                                                <td><?php echo "$bday";?></td>
+                                                <td><?php echo "$number";?></td>
+                                                <td><?php echo "$embark";?></td>
+                                                <td><?php echo "$disembark";?></td>
+                                                <td><?php echo "$transit";?></td>
+                                             </tr>
+
+                                        <?php
+                                                }
+                                        ?>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>Family name</th>
+                                                <th>Given name</th>
+                                                <th>Nationality</th>
+                                                <th>Date of birth</th>
+                                                <th>V/R Permit Number</th>
+                                                <th>Embarkation</th>
+                                                <th>Disembarkation</th>
+                                                <th>Transit</th>
+                                            
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         </div>
                         <div class="tab-pane" id="health"><hr><br>
                             <h4><b>Health Information...</b></h4>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <div class="card card-success">
+                                    <h5 class="bg-gradient-maroon" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Health Information</h5>
+                                    <div class="card-body">
+
+                                    <div role="form">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >Valid Sanitation Control Exemption</label>
+                                                    <select class="form-control" name="shcong">
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >Issued at</label>
+                                                    <input type="text" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >Date of issue</label>
+                                                    <input type="date" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >Re-inspection required</label>
+                                                    <input type="date" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >Visited infected area</label>
+                                                    <input type="date" class="form-control" >
+                                                </div>
+                                            </div>
+
+                                            <h5 class="bg-gradient-maroon" style="padding:5px; margin-top: 15px; margin-left:5px; border-radius:5px; font-weight: bold; width: 100%;">Health Questions</h5>
+                                            
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label >Disease on board</label>
+                                                    <input type="date" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label >Infection condition on board</label>
+                                                    <input type="date" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label >Medical consulted</label>
+                                                    <input type="date" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label >Is there a sick animal or pet</label>
+                                                    <input type="date" class="form-control" >
+                                                </div>
+                                            </div>
+
+                                            
+
+                                        </div>
+
+
+                                        <div class="row">
+                                        <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >Any person died</label>
+                                                    <input type="date" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label >Number of deaths</label>
+                                                    <input type="number" class="form-control" name="mrn">
+                                                </div>
+                                            </div>
+                                          
+                                           </div>   <!-- row end -->
+
+                                           <div class="row">
+                                           <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >Any ill person</label>
+                                                    <input type="date" class="form-control" >
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <label >Number of ill persons</label>
+                                                    <input type="number" class="form-control" name="mrn">
+                                                </div>
+                                            </div>
+
+                                           </div> <!-- row end -->
+
+                                    </div>
+                                    <h5 class="bg-gradient-maroon" style="padding:5px; margin-top: 15px; margin-left:5px; border-radius:5px; font-weight: bold; width: 100%;">Ill Persons</h5>
+                                            
+                                    <hr>
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Crew or Passenger</th>
+                                                <th>Family name</th>
+                                                <th>Given name</th>
+                                                <th>Sex</th>
+                                                <th>Nature of illness</th>
+                                                <th>Reported to port medical</th>
+                                                
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $sel_ss = "SELECT * from waste_disposal_info where waste_info_idwaste_info=' '";
+                                                $run_ss = mysqli_query($con, $sel_ss);
+                                                while ($row = mysqli_fetch_array($run_ss)) {                                             
+                                                    $id = $row['idships_stores'];
+                                                    $article = $row['name_of_article'];
+                                                    $quantity = $row['quantity'];
+                                                    $l_board = $row['location_on_board'];
+                                                
+                                                ?>
+                                            <tr>
+                                                <td><?php echo "$article";?></td>
+                                                <td><?php echo "$quantity";?></td>
+                                                <td><?php echo "$l_board";?></td>
+                                                <td><a href="#" class="btn btn-dark">Delete</a></td>
+                                            </tr>
+
+                                        <?php
+                                                }
+                                        ?>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Crew or Passenger</th>
+                                                <th>Family name</th>
+                                                <th>Given name</th>
+                                                <th>Sex</th>
+                                                <th>Nature of illness</th>
+                                                <th>Reported to port medical</th>
+                                               
+                                            </tr>
+                                            </tfoot>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         </div>
                     </div>
