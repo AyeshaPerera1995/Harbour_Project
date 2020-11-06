@@ -155,46 +155,71 @@ include_once 'build/PHP/DB.php';
                     <div class="col-md-12">
                         <!-- general form elements -->
                         <div class="card card-success"><br>
-                            <h5 class="bg-success" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Waste Disposal Information</h5>
+                            <h5 class="bg-success" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Last port and date when ship generated waste was delivered</h5>
 
-                            <form role="form" action="waste.php" method="post">
+                            <form role="form" action="waste_disposal.php" method="post">
                                 <div class="card-body">
                                     <div role="form">
                                         <div class="row">
+<?php
+
+            $get_waste = "select * from waste_info order by idwaste_info DESC LIMIT 1";
+            $r_waste = mysqli_query($con, $get_waste);
+            $row_waste = mysqli_fetch_assoc($r_waste);
+            $waste_id = $row_waste['idwaste_info'];
+            $port = $row_waste['last_waste_port'];
+            $date = $row_waste['last_waste_date'];
+
+?>
+                                        <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >Port</label>
+                                                    <input type="text" required class="form-control" disabled value="<?php echo $port;?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label >Date</label>
+                                                    <input type="date" required class="form-control" disabled value="<?php echo $date;?>">
+                                                </div>
+                                            </div>
+
+                                        <h5 class="bg-success" style="padding:5px; margin-top: 15px; margin-left:5px; border-radius:5px; font-weight: bold; width: 100%;">Waste Disposal Information</h5>
+
                                         <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Waste type</label>
-                                                    <input type="text" class="form-control" name="name">
+                                                    <input type="text" class="form-control" name="type">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Waste to be delivered</label>
-                                                    <input type="text" class="form-control" name="location">
+                                                    <input type="text" class="form-control" name="delivered">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label>Maximum dedicated storage capacity</label>
-                                                    <input type="text" class="form-control" name="phone">
+                                                    <input type="text" class="form-control" name="capacity">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label>Amount of waste retained on board</label>
-                                                    <input type="text" class="form-control" name="email">
+                                                    <input type="text" class="form-control" name="amount">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label>Port of delivery of remaining waste</label>
-                                                    <input type="text" class="form-control" name="phone">
+                                                    <input type="text" class="form-control" name="remaining_waste">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label>Estimated amount of waste to be generated</label>
-                                                    <input type="text" class="form-control" name="email">
+                                                    <input type="text" class="form-control" name="estimated_amount">
                                                 </div>
                                             </div>  
                                             <div class="col-sm-3">
@@ -208,42 +233,42 @@ include_once 'build/PHP/DB.php';
                                         <table id="example1" class="table table-bordered table-striped">
                                             <thead>
                                             <tr>
-                                                <th>Name of article</th>
-                                                <th>Quantity</th>
-                                                <th>Location on board</th>
-                                                <th>Action</th>
+                                                <th>Waste Type</th>
+                                                <th>Waste to be Delivered</th>
+                                                <th>Maximum_Dedicated_Storage_Capacity</th>
+                                                <th>Amount of waste Retained Onboard</th>
+                                                <th>Port of Delivery of Remaining Waste</th>
+                                                <th>Estimate Waste to be Generate</th>
                                             </tr>
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                $sel_ss = "SELECT * from waste_disposal_info where waste_info_idwaste_info=' '";
+                                                $sel_ss = "SELECT * from waste_disposal_info where waste_info_idwaste_info='$waste_id'";
                                                 $run_ss = mysqli_query($con, $sel_ss);
                                                 while ($row = mysqli_fetch_array($run_ss)) {                                             
-                                                    $id = $row['idships_stores'];
-                                                    $article = $row['name_of_article'];
-                                                    $quantity = $row['quantity'];
-                                                    $l_board = $row['location_on_board'];
+                                                    $id = $row['idwaste_disposal_info'];
+                                                    $type = $row['waste_type'];
+                                                    $deliverd = $row['waste_tobe_delivered'];
+                                                    $capacity = $row['maximum_dedicated_storage_capacity'];
+                                                    $onboard = $row['amount_of_waste_retained_onboard'];
+                                                    $remaining_waste = $row['port_of_delivery_of_remaining_waste'];
+                                                    $tobe_generate = $row['estimate_waste_tobe_generate'];
+                                                    $idwaste_info = $row['waste_info_idwaste_info'];
                                                 
                                                 ?>
                                             <tr>
-                                                <td><?php echo "$article";?></td>
-                                                <td><?php echo "$quantity";?></td>
-                                                <td><?php echo "$l_board";?></td>
-                                                <td><a href="#" class="btn btn-dark">Delete</a></td>
+                                                <td><?php echo "$type";?></td>
+                                                <td><?php echo "$deliverd";?></td>
+                                                <td><?php echo "$capacity";?></td>
+                                                <td><?php echo "$onboard";?></td>
+                                                <td><?php echo "$remaining_waste";?></td>
+                                                <td><?php echo "$tobe_generate";?></td>
                                             </tr>
 
                                         <?php
                                                 }
                                         ?>
                                             </tbody>
-                                            <tfoot>
-                                            <tr>
-                                            <th>Name of article</th>
-                                                <th>Quantity</th>
-                                                <th>Location on board</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            </tfoot>
                                         </table>
                                         
                                     </div>
@@ -343,54 +368,41 @@ include_once 'build/PHP/DB.php';
 </html>
 
 <?php
+if (isset($_POST['wd_upload'])) {
+    $type = $_POST['type'];
+    $delivered = $_POST['delivered'];
+    $capacity = $_POST['capacity'];
+    $amount = $_POST['amount'];
+    $remaining_waste = $_POST['remaining_waste'];
+    $estimated_amount = $_POST['estimated_amount'];
 
-// if (isset($_POST['dpg_upload'])) {
+    $get_waste = "select idwaste_info from waste_info order by idwaste_info DESC LIMIT 1";
+    $r_waste = mysqli_query($con, $get_waste);
+    $row_waste = mysqli_fetch_assoc($r_waste);
+    $waste_id = $row_waste['idwaste_info'];
+    
+    $sql2 = "INSERT INTO waste_disposal_info (waste_type,waste_tobe_delivered,maximum_dedicated_storage_capacity,amount_of_waste_retained_onboard,port_of_delivery_of_remaining_waste,estimate_waste_tobe_generate,waste_info_idwaste_info) "
+            . "values('$type','$delivered','$capacity','$amount','$remaining_waste','$estimated_amount','$waste_id')";
+    
+    if (mysqli_query($con, $sql2)) {
+        echo "<script>
+    			swal({
+                    type: 'success',
+                    title:'Waste disposal items added!',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+                    if (willDelete) {
+                  window.open('waste_disposal.php','_self')
+                    }
+                  });
+                </script>";
+    } else {
 
-//     $name= $_POST['name'];
-//     $location= $_POST['location'];
-//     $phone= $_POST['phone'];
-//     $email= $_POST['email'];
-//     $notification_id = $_SESSION['n_id'];
-
-//     if (!empty($_POST['INF'])) {
-//         $INF   = $_POST['INF'];
-
-//     }
-//     if (!empty($_POST['DPG'])) {
-//         $DPG = $_POST['DPG'];
-
-//     }
-
-//     $sql2 = "INSERT INTO dpg_details (INF_ship_class,dpg_list_status,name,location,phone,email,notification_idnotification) "
-//         . "values('$INF','$DPG','$name','$location','$phone','$email','$notification_id')";
-
-//     if (mysqli_query($con, $sql2)) {
-//         echo "<script>
-//     			swal({
-//                     type: 'success',
-//                     title:'DPG Details Uploaded',
-//                     showConfirmButton: true,
-//                     confirmButtonText: 'OK'
-//                 })
-//                 .then(willDelete => {
-//   				if (willDelete) {
-//     			window.open('upload_new_noti_details.php','_self')
-//   				}
-// 				});
-//                 </script>";
-//     } else {
-
-//         echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
-//     }
-
-
-
-
-
-
-// }
-
-
+        echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+    }
+}
 ?>
 
 

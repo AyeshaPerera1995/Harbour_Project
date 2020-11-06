@@ -79,11 +79,11 @@ include_once 'build/PHP/DB.php';
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                         <li class="nav-item ">
+                    <li class="nav-item ">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
-                                Dashboard
+                                Dashbord
 
                             </p>
                         </a>
@@ -101,7 +101,26 @@ include_once 'build/PHP/DB.php';
                         <a href="addship.php" class="nav-link">
                             <i class="nav-icon fas fa-ship"></i>
                             <p>
-                                Register Ship
+                                add Ship
+
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="passenger.php" class="nav-link">
+                            <i class="nav-icon fas fa-life-ring"></i>
+                            <p>
+                                add Passenger
+
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="crewperson.php" class="nav-link">
+                            <i class="nav-icon fas fa-person-booth"></i>
+                            <p>
+                                add Crew Person
 
                             </p>
                         </a>
@@ -145,19 +164,19 @@ include_once 'build/PHP/DB.php';
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Port</label>
-                                                    <input type="text" class="form-control" name="location">
+                                                    <input type="text" required class="form-control" name="port">
                                                 </div>
                                             </div>
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label >Date</label>
-                                                    <input type="date" class="form-control" name="location">
+                                                    <input type="date" required class="form-control" name="date">
                                                 </div>
                                             </div>
                                             <div class="col-sm-2">
                                             <div class="form-group">
                                             <label style="color:white;">Date</label>
-                                            <button type="submit" name="dpg_upload" class="form-control bg-success"><i class="fas fa-upload"></i>   Upload</button>
+                                            <button type="submit" name="waste" class="form-control bg-success"><i class="fas fa-upload"></i>   Upload</button>
                                             </div>
                                             </div>
                                            
@@ -170,7 +189,7 @@ include_once 'build/PHP/DB.php';
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    <a href="waste_disposal.php" type="button" style="float: right; width: 200px;" name="w_upload" class="btn bg-dark"><i class="fas fa-arrow-right"></i>   Next</a>
+                                    <!-- <a href="waste_disposal.php" type="button" style="float: right; width: 200px;" name="w_upload" class="btn bg-dark"><i class="fas fa-arrow-right"></i>   Next</a> -->
                                 </div>
                             </form>
                         </div>
@@ -241,54 +260,34 @@ include_once 'build/PHP/DB.php';
 </html>
 
 <?php
+if (isset($_POST['waste'])) {
 
-// if (isset($_POST['dpg_upload'])) {
+    $port = $_POST['port'];
+    $date = $_POST['date'];
+    $notification_id = $_SESSION['n_id'];
 
-//     $name= $_POST['name'];
-//     $location= $_POST['location'];
-//     $phone= $_POST['phone'];
-//     $email= $_POST['email'];
-//     $notification_id = $_SESSION['n_id'];
+    $sql2 = "INSERT INTO waste_info (last_waste_port,last_waste_date,notification_idnotification) "
+            . "values('$port','$date','$notification_id')";
+    
+    if (mysqli_query($con, $sql2)) {
+        echo "<script>
+    			swal({
+                    type: 'success',
+                    title:'Waste Informaton Added',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+                    if (willDelete) {
+                  window.open('waste_disposal.php','_self')
+                    }
+                  });
+                </script>";
+    } else {
 
-//     if (!empty($_POST['INF'])) {
-//         $INF   = $_POST['INF'];
-
-//     }
-//     if (!empty($_POST['DPG'])) {
-//         $DPG = $_POST['DPG'];
-
-//     }
-
-//     $sql2 = "INSERT INTO dpg_details (INF_ship_class,dpg_list_status,name,location,phone,email,notification_idnotification) "
-//         . "values('$INF','$DPG','$name','$location','$phone','$email','$notification_id')";
-
-//     if (mysqli_query($con, $sql2)) {
-//         echo "<script>
-//     			swal({
-//                     type: 'success',
-//                     title:'DPG Details Uploaded',
-//                     showConfirmButton: true,
-//                     confirmButtonText: 'OK'
-//                 })
-//                 .then(willDelete => {
-//   				if (willDelete) {
-//     			window.open('upload_new_noti_details.php','_self')
-//   				}
-// 				});
-//                 </script>";
-//     } else {
-
-//         echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
-//     }
-
-
-
-
-
-
-// }
-
-
+        echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+    }
+}
 ?>
 
 
