@@ -136,8 +136,10 @@ include_once 'PHP/DB.php';
                                     <th>Flag</th>
                                     <th>Call Sign</th>
                                     <th>IMO Number</th>
-                                    <th>MMSI Number</th>
-                                    <th>View Details</th>
+                                    <th>MMSI Number</th>  
+                                    <th>Ship Type</th>
+                                    <th>Company</th>
+                                    <th>Certify Port and Date</th>                               
                                     <th>Active Status</th>
                                     <th>Status</th>
                                 </tr>
@@ -151,18 +153,33 @@ include_once 'PHP/DB.php';
                                     $ship_name = $row['ship_name'];
                                     $call_sign = $row['call_sign'];
                                     $IMO_number = $row['IMO_number'];
+                                    $flag = $row['flag'];
                                     $MMSI_number = $row['MMSI_number'];
+                                    $u_id = $row['user_iduser'];
+
+                                    $s_type = $row['ship_type'];
+                                    $c_port = $row['certify_port'];
+                                    $c_date = $row['certify_date'];
+                                    $company = $row['company'];
                                     $status = $row['status'];
+
+                                $get_user = "select * from user where iduser='$u_id'";  
+                                $run_user =  mysqli_query($con, $get_user);
+                                $u_row = mysqli_fetch_array($run_user);
+                                $f_name = $u_row['family_name'];
+                                $g_name = $u_row['given_name'];
                                    
                                         echo "<tr>";
-                                        echo "<td>" . $shipid . "</td>";
                                         echo "<td>" . $ship_name . "</td>";
+                                        echo "<td>" . $g_name ." ".$f_name. "</td>";
+                                        echo "<td>" . $flag . "</td>";
                                         echo "<td>" . $call_sign . "</td>";
                                         echo "<td>" . $IMO_number . "</td>";
-                                        echo "<td>" . $IMO_number . "</td>";
-                                        echo "<td>" . $MMSI_number . "</td>";                                       
-                                        echo "<td><a class='btn btn-warning' href='#view' data-toggle='modal' data-id='<?php echo $shipid;?>'><span>View More</span></a></td>";                                      
-                                        echo "<td style='color: red; font-weight:bold;'>Pending</td>";
+                                        echo "<td>" . $MMSI_number . "</td>";  
+                                        echo "<td>" . $s_type . "</td>";
+                                        echo "<td>" . $company . "</td>";
+                                        echo "<td>" . $c_port ." / ".$c_date."</td>";                                       
+                                       echo "<td style='color: red; font-weight:bold;'>Pending</td>";
                                         echo "<td><button class='btn btn-success' name='approve' value='$shipid'>Approve</button></td>";
                                         echo "</tr>";
                                     
@@ -269,24 +286,6 @@ include_once 'PHP/DB.php';
     });
 </script>
 
-<!-- ********************************************************************************* -->
-<script>
-    $(document).ready(function(){
-    $('#view').on('show.bs.modal', function (e) {
-        var sid = $(e.relatedTarget).data('id');
-        $.ajax({
-            type : 'post',
-            url : 'view_ship.php', //Here you will fetch records 
-            data :  'sid='+ sid, //Pass $id
-            success : function(data){
-            $('.fetched-data').html(data);//Show fetched data from database
-            }
-        });
-     });
-});
-</script>
-<!-- ******************************************************************************** -->
-
 </body>
 </html>
 
@@ -307,25 +306,6 @@ if (isset($_POST['approve'])) {
 
 mysqli_close($con);
 ?>
-
-<!-- ********************************** View Ship ************************************** -->
-<div class="modal small fade" id="view" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h3 class="modal-title">More Information</h3>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>                
-            </div>
-            <div class="modal-body">
-                <div class="fetched-data"></div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" name="edit_consignment" onclick="" class="btn btn-danger" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 
 
