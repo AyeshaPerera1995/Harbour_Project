@@ -181,7 +181,7 @@ include_once 'build/PHP/DB.php';
                       <span class="info-box-icon bg-success"><i class="far fa-life-ring"></i></span>
 
                       <div class="info-box-content">
-                          <span class="info-box-text">my profile</span>
+                          <span class="info-box-text">My Profile</span>
                           <span class="info-box-number"></span>
                       </div>
                       <!-- /.info-box-content -->
@@ -194,7 +194,7 @@ include_once 'build/PHP/DB.php';
                       <span class="info-box-icon bg-warning"><i class="far fa-lightbulb"></i></span>
 
                       <div class="info-box-content">
-                          <span class="info-box-text">Sipe Details</span>
+                          <span class="info-box-text">Ship Details</span>
                           <span class="info-box-number"></span>
                       </div>
                       <!-- /.info-box-content -->

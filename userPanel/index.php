@@ -84,7 +84,7 @@ $u_id = $_SESSION['user_id'];
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
                     <li class="nav-item ">
-                        <a href="#" class="nav-link ">
+                        <a href="index.php" class="nav-link ">
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
                                 Dashbord
@@ -98,6 +98,15 @@ $u_id = $_SESSION['user_id'];
                             <i class="nav-icon fas fa-ship"></i>
                             <p>
                                 Register Ship
+
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../index.php" class="nav-link">
+                            <i class="nav-icon fas fa-hand-point-left"></i>
+                            <p>
+                                Back to Site
 
                             </p>
                         </a>
