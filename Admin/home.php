@@ -2,6 +2,7 @@
 <?php
 session_start();
 include_once 'build/PHP/DB.php';
+include_once 'shipcount.php';
 
 
 ?>
@@ -142,7 +143,7 @@ include_once 'build/PHP/DB.php';
                       <span class="info-box-icon bg-info"><i class="far fa-user"></i></span>
 
                       <?php
-                      $style ;
+
                       $uid= $_SESSION['admin_id'];
 
                       $s_user = "select * from login where user_iduser='$uid'  ";
@@ -181,8 +182,10 @@ include_once 'build/PHP/DB.php';
                       <span class="info-box-icon bg-success"><i class="far fa-life-ring"></i></span>
 
                       <div class="info-box-content">
+                          <a href="userupdate.php">
                           <span class="info-box-text">My Profile</span>
                           <span class="info-box-number"></span>
+                          </a>
                       </div>
                       <!-- /.info-box-content -->
                   </div>
@@ -194,8 +197,11 @@ include_once 'build/PHP/DB.php';
                       <span class="info-box-icon bg-warning"><i class="far fa-lightbulb"></i></span>
 
                       <div class="info-box-content">
+                          <a href="shipdetails.php">
                           <span class="info-box-text">Ship Details</span>
-                          <span class="info-box-number"></span>
+                          <span class="info-box-number">pennding ships </span>
+                              <span class="badge badge-info right"><?php echo $row2; ?></span>
+                          </a>
                       </div>
                       <!-- /.info-box-content -->
                   </div>
@@ -204,12 +210,15 @@ include_once 'build/PHP/DB.php';
               <!-- /.col -->
               <div class="col-md-3 col-sm-6 col-12">
                   <div class="info-box">
-                      <span class="info-box-icon bg-danger"><i class="far fa-envelope"></i></span>
+
+                      <span class="info-box-icon bg-danger"><i class="far fa-user"></i></span>
 
                       <div class="info-box-content">
-                          <span class="info-box-text">Send A Maasege</span>
-                          <span class="info-box-number">0</span>
+                          <a href="logout.php">
+                          <span class="info-box-text">Log out</span>
+                          </a>
                       </div>
+
                       <!-- /.info-box-content -->
                   </div>
                   <!-- /.info-box -->
