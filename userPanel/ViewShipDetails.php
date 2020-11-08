@@ -3,12 +3,16 @@
 session_start();
 include_once 'build/PHP/DB.php';
 $u_id = $_SESSION['user_id'];
+
+if (isset($_GET['ship'])) {
+    $shipid = $_GET['ship'];
+}
 ?>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>User | Dashboard</title>
+        <title>AdminLTE 3 | Dashboard</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Font Awesome -->
@@ -32,7 +36,8 @@ $u_id = $_SESSION['user_id'];
         <!-- Google Font: Source Sans Pro -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
         <!--alert-->
-        <script src="../sweetalert/sweetalert2.all.min.js"></script>
+        <script src="../sweetalert/sweetalert2.all.min.js"> alert();</script>
+
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
         <div class="wrapper">
@@ -138,55 +143,76 @@ $u_id = $_SESSION['user_id'];
                                 <div class="card card-success"><br>
                                     <h5 class="bg-danger" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Notification Details</h5>
 
-                                    <div class="card-body">
-                                        <hr>
-                                        <table id="example1" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Notification ID</th>
-                                                    <th>Received Date</th>
-                                                    <th>Received Time</th>
-                                                    <th>Ship Name</th>
-                                                    <th>View Ship Details</th>
-                                                    <th>View Health Details</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $get_noti = "select * from notification where user_iduser='$u_id'";
-                                                $r_noti = mysqli_query($con, $get_noti);
-                                                while ($row_noti = mysqli_fetch_array($r_noti)) {
-                                                    $noti_id = $row_noti['idnotification'];
-                                                    $r_date = $row_noti['received_date'];
-                                                    $r_time = $row_noti['received_time'];
-                                                    $ship_id = $row_noti['ship_idship'];
-
-                                                    $get_health = "select * from health where notification_idnotification='$noti_id'";
-                                                    $r_health = mysqli_query($con, $get_health);
-                                                    $row_health = mysqli_fetch_array($r_health);
-                                                    $health_id = $row_health['idhealth'];
-
-                                                    $ship_ss = "SELECT * from ship where idship='$ship_id'";
-                                                    $shipp_ss = mysqli_query($con, $ship_ss);
-                                                    while ($row = mysqli_fetch_array($shipp_ss)) {
-                                                        $ship_name = $row['ship_name'];                                
-                                                        ?>
+                                    <form role="form" action="ill_persons.php" method="post">
+                                        <div class="card-body">
+                                            <div role="form">
+                                                <hr>
+                                                <table id="example1" class="table table-bordered table-striped">
+                                                    <thead>
                                                         <tr>
-                                                            <td><?php echo "$noti_id"; ?></td>
-                                                            <td><?php echo "$r_date"; ?></td>
-                                                            <td><?php echo "$r_time"; ?></td>
-                                                            <td><?php echo "$ship_name"; ?></td>
-                                                            <td><?php echo "<a href='ViewShipDetails.php?ship=$ship_id'><button class='btn btn-sm bg-gradient-maroon'>View Ship Details</button></a>"; ?></td>
-                                                            <td><?php echo "<a href='ViewHealthDetails.php?health=$health_id'><button class='btn btn-sm btn-success'>View Health Details</button></a>"; ?></td>
+                                                            <th>Ship Name</th>
+                                                            <th>Call Sign</th>
+                                                            <th>IMO Number</th>
+                                                            <th>MMSI Number</th>
+                                                            <th>Flag</th>
+                                                            <th>Gros Tonnage</th>
+                                                            <th>Net Tonnage</th>
+                                                            <th>Ship Type</th>
+                                                            <th>Certify Port</th>
+                                                            <th>Certify Date</th>
+                                                            <th>Certify Number</th>
                                                         </tr>
+                                                    </thead>
+                                                    <tbody>
                                                         <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.card-body -->
+                                                        $ship_ss = "SELECT * from ship where idship='$shipid'";
+                                                        $shipp_ss = mysqli_query($con, $ship_ss);
+                                                        while ($row = mysqli_fetch_array($shipp_ss)) {
+                                                            $ship_name = $row['ship_name'];
+                                                            $call_sign = $row['call_sign'];
+                                                            $IMO_number = $row['IMO_number'];
+                                                            $MMSI_number = $row['MMSI_number'];
+                                                            $flag = $row['flag'];
+                                                            $gross_tonnage = $row['gross_tonnage'];
+                                                            $net_tonnage = $row['net_tonnage'];
+                                                            $ship_type = $row['ship_type'];
+                                                            $certify_port = $row['certify_port'];
+                                                            $certify_date = $row['certify_date'];
+                                                            $certify_number = $row['certify_number'];
+                                                            $company = $row['company'];
+                                                            $c_email = $row['c_email'];
+                                                            $c_phone = $row['c_phone'];
+                                                            $year_of_built = $row['year_of_built'];
+                                                            $length_overall = $row['length_overall'];
+                                                            $dead_weight = $row['dead_weight'];
+                                                            $beam = $row['beam'];
+                                                            ?>
+                                                            <tr>
+                                                                <td><?php echo "$ship_name"; ?></td>
+                                                                <td><?php echo "$call_sign"; ?></td>
+                                                                <td><?php echo "$IMO_number"; ?></td>
+                                                                <td><?php echo "$MMSI_number"; ?></td>
+                                                                <td><?php echo "$flag"; ?></td>
+                                                                <td><?php echo "$gross_tonnage"; ?></td>
+                                                                <td><?php echo "$net_tonnage"; ?></td>
+                                                                <td><?php echo "$ship_type"; ?></td>
+                                                                <td><?php echo "$certify_port"; ?></td>
+                                                                <td><?php echo "$certify_date"; ?></td>
+                                                                <td><?php echo "$certify_number"; ?></td>
+                                                            </tr>
+
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+                                                
+
+                                            </div>
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </form>
                                 </div>
                                 <!-- /.card -->
                             </div>  <!--    col-d-12-->
@@ -277,3 +303,47 @@ $u_id = $_SESSION['user_id'];
 
     </body>
 </html>
+
+<?php
+if (isset($_POST['ill_upload'])) {
+
+    $id = $_POST['id'];
+    $c_p = $_POST['c_p'];
+    $familyname = $_POST['familyname'];
+    $givenname = $_POST['givenname'];
+    $sex = $_POST['sex'];
+    $nature = $_POST['nature'];
+    $portmedical = $_POST['portmedical'];
+
+    $get_health = "select idhealth from health order by idhealth DESC LIMIT 1";
+    $r_health = mysqli_query($con, $get_health);
+    $row_health = mysqli_fetch_assoc($r_health);
+    $health_id = $row_health['idhealth'];
+
+    $sql2 = "INSERT INTO ill_person (crew_or_passenger,id,family_name,given_name,sex,nature_of_illness,isreported_to_port_medical,current_statusl,health_idhealth) "
+            . "values('$c_p','$id','$familyname','$givenname','$sex','$nature','$portmedical','1','$health_id')";
+
+    if (mysqli_query($con, $sql2)) {
+        echo "<script>
+    			swal({
+                    type: 'success',
+                    title:'New Cargo Declaration Uploaded',
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK'
+                })
+                .then(willDelete => {
+  				if (willDelete) {
+    			window.open('ill_persons.php','_self')
+  				}
+				});
+                </script>";
+    } else {
+
+        echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+    }
+}
+?>
+
+
+
+
