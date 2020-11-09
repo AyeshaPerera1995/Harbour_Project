@@ -9,7 +9,7 @@ include_once 'assets/PHP/DB.php';
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Harbour Project </title>
+        <title>Vessel Port System</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
@@ -69,7 +69,7 @@ include_once 'assets/PHP/DB.php';
                                             <ul id=\"navigation\">
                                                 <li><a href=\"index.php\">Home</a></li>
                                                 <li><a href=\"about.php\">About</a></li>
-                                                <li><a href=\"contact.php.php\">Contact</a></li>
+                                                <li><a href=\"contact.php\">Contact</a></li>
 
                                             </ul>
                                         </nav>
@@ -161,14 +161,7 @@ include_once 'assets/PHP/DB.php';
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-8">
                                 <div class="hero__caption">
-                                    <span data-animation="fadeInUp" data-delay=".4s">Get Every Single Solutions.</span>
-                                    <h1 data-animation="fadeInUp" data-delay=".6s">I’m Designer Haris F. Watson</h1>
-                                    <P data-animation="fadeInUp" data-delay=".8s" >jhorem rfpsum golor sidt amet, consectetur adipiscing elit, eiusmod tempor incididunt utcjhg labore bet dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</P>
-                                    <!-- Hero-btn -->
-                                    <div class="hero__btn">
-                                        <a href="industries.html" class="btn hero-btn"  data-animation="fadeInLeft" data-delay=".8s">Learn More</a>
-                                        <a href="industries.html" class="btn border-btn ml-15" data-animation="fadeInRight" data-delay="1.0s">Hire Me</a>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -183,17 +176,16 @@ include_once 'assets/PHP/DB.php';
                 <div class="row ">
                     <div class="col-lg-5">
                         <div class="about-caption mb-50">
-                            <h3>Designing With Passion While Exploring The World.</h3>
-                            <p class="pera1">Consectetur adipiscing elit, sed do eiusmod tempor ididunt ut labore et dolore magna aliqua. Quis ipsum suspendisces gravida. Risus commodo viverra sebfd dho eiusmod tempor maecenas accumsan lacus.</p>
-                            <p>Consectetur adipiscing elit, sed do eiusmod tempor ididunt ut labore et dolore magna aliqua. </p>
+                            <h3>WHO WE ARE</h3>
+                            <p class="pera1">Since 1918, the Port of Colombo had been administered by the Colombo Port Commission, a Government Department which was made responsible for the supply and maintenance of cargo-handling equipment and other infrastructure, pilotage services, docking and slipping. The government had funded all its activities. Stevedoring and shore handling activities were in the hands of several private Wharfage Companies. In 1958, the Port Cargo Corporation was set up to take over these activities performed by a multiplicity of operators. The Port Tally and Protective Services Corporation was formed in 1967 in order to perform on-board tallying and watchmen services on behalf of Agents.</p>
                         </div>
                     </div>
                     <div class="col-lg-5 offset-lg-1">
                         <div class="about-caption2">
-                            <h3>Any Type Of Query<br> & Discussion.</h3>
-                            <p>Late talk with me</p>
+                            <h3>Any Type Of Query?</h3>
+                            <p>Connact our Admin</p>
                            <div class="send-cv">
-                                <a href="#">hire@colorlib.com</a>
+                                <a href="#">adim@vessleport.com</a>
                                 <i class="ti-arrow-right"></i>
                            </div>
                         </div>
@@ -214,39 +206,29 @@ include_once 'assets/PHP/DB.php';
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="single-cat text-center mb-50">
                             <div class="cat-icon">
                                 <span class="flaticon-pen"></span>
                             </div>
                             <div class="cat-cap">
-                                <h5><a href="services.php">UI/UX Design</a></h5>
-                                <p>Free resource that will help nderstand thecv designc process and improve theroi  nderstand the design process andisei impro are of vquality.</p>
+                                <h5><a href="login.php">user managment</a></h5>
+                                <p>you can manage your user details</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
                         <div class="single-cat text-center mb-50">
                             <div class="cat-icon">
                                 <span class="flaticon-speaker"></span>
                             </div>
                             <div class="cat-cap">
-                                <h5><a href="services.php">Digital Marketing</a></h5>
-                                <p>Free resource that will help nderstand thecv designc process and improve theroi  nderstand the design process andisei impro are of vquality.</p>
+                                <h5><a href="login.php">ship mangment</a></h5>
+                                <p>you can manage your all shop details</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="single-cat text-center mb-50">
-                            <div class="cat-icon">
-                                <span class="flaticon-portfolio"></span>
-                            </div>
-                            <div class="cat-cap">
-                                <h5><a href="services.php">Website Design</a></h5>
-                                <p>Free resource that will help nderstand thecv designc process and improve theroi  nderstand the design process andisei impro are of vquality.</p>
-                            </div>
-                        </div>
-                    </div>
+
                  </div>
             </div>
         </section>
@@ -259,154 +241,16 @@ include_once 'assets/PHP/DB.php';
         </section>
         <!-- Services Area End -->
         <!-- Want To Work Start -->
-        <section class="wantToWork-area w-padding2">
-            <div class="container">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-xl-6 col-lg-8 col-md-8">
-                        <div class="wantToWork-caption wantToWork-caption2">
-                            <h2>Dont worry for contact i`m available</h2>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-md-3">
-                        <a href="#" class="btn btn-black f-right">Contact Me Now</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <!-- Want To Work End -->
 
         <!-- client-comments -->
-        <section class="client-comments section-paddingt30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-8 col-md-10">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle mb-70">
-                            <h2>Some Possitive Feedback  That Encourage Us</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- latest-blog-area start -->
-            <div class="latest-blog-area">
-                <div class="container">
-                    <div class="custom-row">
-                        <div class="blog-active">
-                            <!-- single-items -->
-                            <div class="col-xl-4">
-                                <div class="blog-wrapper">
-                                    <div class="blog-inner">
-                                    <div class="blog-top">
-                                            <div class="person-img">
-                                                <img src="assets/img/gallery/blog1.png" alt="">
-                                            </div>
-                                            <div class="comment-person">
-                                                <h2>Bradley Erickson</h2>
-                                                <span>UI/UX Designer</span>
-                                            </div>
-                                    </div>
-                                        <p>Consectetur adipisicing elit, seddosdoe eiusmod tempor incididunt utore etstes dolore magna aliqua. Ut imminim restai veniam, quis nostrud.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single-items -->
-                            <div class="col-xl-4">
-                                <div class="blog-wrapper">
-                                    <div class="blog-inner">
-                                    <div class="blog-top">
-                                            <div class="person-img">
-                                                <img src="assets/img/gallery/blog2.png" alt="">
-                                            </div>
-                                            <div class="comment-person">
-                                                <h2>Bradley Erickson</h2>
-                                                <span>UI/UX Designer</span>
-                                            </div>
-                                    </div>
-                                        <p>Consectetur adipisicing elit, seddosdoe eiusmod tempor incididunt utore etstes dolore magna aliqua. Ut imminim restai veniam, quis nostrud.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single-items -->
-                            <div class="col-xl-4">
-                                <div class="blog-wrapper">
-                                    <div class="blog-inner">
-                                    <div class="blog-top">
-                                            <div class="person-img">
-                                                <img src="assets/img/gallery/blog3.png" alt="">
-                                            </div>
-                                            <div class="comment-person">
-                                                <h2>Bradley Erickson</h2>
-                                                <span>UI/UX Designer</span>
-                                            </div>
-                                    </div>
-                                        <p>Consectetur adipisicing elit, seddosdoe eiusmod tempor incididunt utore etstes dolore magna aliqua. Ut imminim restai veniam, quis nostrud.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single-items -->
-                            <div class="col-xl-4">
-                                <div class="blog-wrapper">
-                                    <div class="blog-inner">
-                                    <div class="blog-top">
-                                            <div class="person-img">
-                                                <img src="assets/img/gallery/blog2.png" alt="">
-                                            </div>
-                                            <div class="comment-person">
-                                                <h2>Bradley Erickson</h2>
-                                                <span>UI/UX Designer</span>
-                                            </div>
-                                    </div>
-                                        <p>Consectetur adipisicing elit, seddosdoe eiusmod tempor incididunt utore etstes dolore magna aliqua. Ut imminim restai veniam, quis nostrud.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End latest-blog-area -->
-        </section>
+
         <!-- Brand Area Start -->
-        <div class="brand-area pb-bottom">
-            <div class="container">
-                <div class="brand-active brand-border pt-50 pb-40">
-                    <div class="single-brand">
-                        <img src="assets/img/gallery/brand1.png" alt="">
-                    </div>
-                    <div class="single-brand">
-                        <img src="assets/img/gallery/brand2.png" alt="">
-                    </div>
-                    <div class="single-brand">
-                        <img src="assets/img/gallery/brand3.png" alt="">
-                    </div>
-                    <div class="single-brand">
-                        <img src="assets/img/gallery/brand4.png" alt="">
-                    </div>
-                    <div class="single-brand">
-                        <img src="assets/img/gallery/brand2.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- Brand Area End -->
         <!-- Contact Info Start -->
-        <section class="contact-info-area w-padding2" data-background="assets/img/gallery/section_bg04.jpg">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <div class="col-xl-5 col-lg-7">
 
-                    </div>
-                    <div class="col-xl-5 col-lg-5">
-                        <form action="#" class="contact-wrapper">
-                            <input type="text" name="name" placeholder="Full Name">
-                            <input type="email" name="email" placeholder="Email Address">
-                            <textarea name="message" id="message" placeholder="Your Message"></textarea>
-                            <button class="submit-btn2" type="submit">Send Message</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- Contact Info End -->
 
     </main>
