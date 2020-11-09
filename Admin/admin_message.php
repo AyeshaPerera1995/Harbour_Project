@@ -137,84 +137,37 @@ include_once 'build/PHP/DB.php';
     <section class="content">
       <div class="container-fluid">
           <div class="row">
-              <div class="col-md-3 col-sm-6 col-12">
-                  <div class="info-box"  >
-                      <span class="info-box-icon bg-info"><i class="far fa-user"></i></span>
+          <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Reply to Users...</h3><br><br>
+                                    
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body" id="result">
+                                <div class="row">
+                                    <div class="col-sm-12">
 
-                      <?php
-                      $style ;
-                      $uid= $_SESSION['admin_id'];
+                                        <div class="form-group" style="line-height:15px; margin-left:50px;">
+                                        <label style="color:green;">User :</label><br>
+                                        <label style="color:gray; font-size:18px;">I want to active my account</label><br>
+                                        <label>05 Nov 2020 | at : 9.00 am</label>
+                                        </div><hr>
 
-                      $s_user = "select * from login where user_iduser='$uid'  ";
-                      $run_user = mysqli_query($con, $s_user);
-                      $check_user = mysqli_num_rows($run_user);
-                      while($row = mysqli_fetch_assoc($run_user)) {
-                          $uy = $row['iduser_type'];
+                                        <div class="form-group" style="line-height:15px; margin-left:50px;">
+                                        <label style="color:red;">Me (Admin) :</label><br>
+                                        <label style="color:gray; font-size:18px;">I want to active my account</label><br>
+                                        <label>at : 3.00 pm</label>
+                                        </div><hr>
 
-
-                      }
-                      if ( $uy==1  ) {
-
-                          $style = "  ";
-                          $msgadmin = "Add new User here";
-                      } else {
-                          $style = "style=\"pointer-events: none;\" ";
-                          $msgadmin = "Only Admin Can Add user";
-                      }
-
-                      ?>
-
-
-                      <div  class="info-box-content" >
-                          <a href="register.php"  <?php echo $style;?> >
-                          <span class="info-box-text">Register</span>
-                          <span class="info-box-number"> <?php echo $msgadmin;?> </span>
-                          </a>
-                      </div>
-                      <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-              </div>
-              <!-- /.col -->
-              <div class="col-md-3 col-sm-6 col-12">
-                  <div class="info-box">
-                      <span class="info-box-icon bg-success"><i class="far fa-life-ring"></i></span>
-
-                      <div class="info-box-content">
-                          <span class="info-box-text">My Profile</span>
-                          <span class="info-box-number"></span>
-                      </div>
-                      <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-              </div>
-              <!-- /.col -->
-              <div class="col-md-3 col-sm-6 col-12">
-                  <div class="info-box">
-                      <span class="info-box-icon bg-warning"><i class="far fa-lightbulb"></i></span>
-
-                      <div class="info-box-content">
-                          <span class="info-box-text">Ship Details</span>
-                          <span class="info-box-number"></span>
-                      </div>
-                      <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-              </div>
-              <!-- /.col -->
-              <div class="col-md-3 col-sm-6 col-12">
-                  <div class="info-box">
-                      <span class="info-box-icon bg-danger"><i class="far fa-envelope"></i></span>
-
-                      <div class="info-box-content">
-                          <a style="color:black;" href ="admin_message.php"><span class="info-box-text">Reply to Messages</span></a>
-                         
-                      </div>
-                      <!-- /.info-box-content -->
-                  </div>
-                  <!-- /.info-box -->
-              </div>
-              <!-- /.col -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
           </div>
       </div><!-- /.container-fluid -->
     </section>
