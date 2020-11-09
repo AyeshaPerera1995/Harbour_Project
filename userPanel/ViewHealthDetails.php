@@ -2,13 +2,16 @@
 <?php
 session_start();
 include_once 'build/PHP/DB.php';
-$u_id = $_SESSION['user_id'];
+$u_id = 4;
+if (isset($_GET['health'])) {
+    $healthid = $_GET['health'];
+}
 ?>
 <html>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>User | Dashboard</title>
+        <title>AdminLTE 3 | Dashboard</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Font Awesome -->
@@ -138,55 +141,74 @@ $u_id = $_SESSION['user_id'];
                                 <div class="card card-success"><br>
                                     <h5 class="bg-danger" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Notification Details</h5>
 
-                                    <div class="card-body">
-                                        <hr>
-                                        <table id="example1" class="table table-bordered table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Notification ID</th>
-                                                    <th>Received Date</th>
-                                                    <th>Received Time</th>
-                                                    <th>Ship Name</th>
-                                                    <th>View Ship Details</th>
-                                                    <th>View Health Details</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $get_noti = "select * from notification where user_iduser='$u_id'";
-                                                $r_noti = mysqli_query($con, $get_noti);
-                                                while ($row_noti = mysqli_fetch_array($r_noti)) {
-                                                    $noti_id = $row_noti['idnotification'];
-                                                    $r_date = $row_noti['received_date'];
-                                                    $r_time = $row_noti['received_time'];
-                                                    $ship_id = $row_noti['ship_idship'];
-
-                                                    $get_health = "select * from health where notification_idnotification='$noti_id'";
-                                                    $r_health = mysqli_query($con, $get_health);
-                                                    $row_health = mysqli_fetch_array($r_health);
-                                                    $health_id = $row_health['idhealth'];
-
-                                                    $ship_ss = "SELECT * from ship where idship='$ship_id'";
-                                                    $shipp_ss = mysqli_query($con, $ship_ss);
-                                                    while ($row = mysqli_fetch_array($shipp_ss)) {
-                                                        $ship_name = $row['ship_name'];                                
-                                                        ?>
+                                    <form role="form" action="ill_persons.php" method="post">
+                                        <div class="card-body">
+                                            <div role="form">
+                                                <hr>
+                                                <table id="example1" class="table table-bordered table-striped">
+                                                    <thead>
                                                         <tr>
-                                                            <td><?php echo "$noti_id"; ?></td>
-                                                            <td><?php echo "$r_date"; ?></td>
-                                                            <td><?php echo "$r_time"; ?></td>
-                                                            <td><?php echo "$ship_name"; ?></td>
-                                                            <td><?php echo "<a href='ViewShipDetails.php?ship=$ship_id'><button class='btn btn-sm bg-gradient-maroon'>View Ship Details</button></a>"; ?></td>
-                                                            <td><?php echo "<a href='ViewHealthDetails.php?health=$health_id'><button class='btn btn-sm btn-success'>View Health Details</button></a>"; ?></td>
+                                                            <th>Valid Sanitation Control Exemption</th>
+                                                            <th>Certificate Issued at</th>
+                                                            <th>Date of Issue</th>
+                                                            <th>Reinspection Required</th>
+                                                            <th>Visited Infected Area</th>
+                                                            <th>Disease Onboard</th>
+                                                            <th>Infection Condition Onboard</th>
+                                                            <th>Medical Consulted</th>
+                                                            <th>Sick Animal Onboard</th>
+                                                            <th>Any Person Died</th>
+                                                            <th>Number of Deaths</th>
+                                                            <th>Any Ill Person</th>
+                                                            <th>Number of Ill Persons</th>
                                                         </tr>
+                                                    </thead>
+                                                    <tbody>
                                                         <?php
-                                                    }
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.card-body -->
+                                                        $health_ss = "SELECT * from health where idhealth='$healthid'";
+                                                        $healthh_ss = mysqli_query($con, $health_ss);
+                                                        while ($row = mysqli_fetch_array($healthh_ss)) {
+                                                            $valid_sanitation_control_exemption = $row['valid_sanitation_control_exemption'];
+                                                            $certificate_issued_at = $row['certificate_issued_at'];
+                                                            $date_of_issue = $row['date_of_issue'];
+                                                            $reinspection_required = $row['reinspection_required'];
+                                                            $visited_infected_area = $row['visited_infected_area'];
+                                                            $disease_onboard = $row['disease_onboard'];
+                                                            $infection_condition_onboard = $row['infection_condition_onboard'];
+                                                            $medical_consulted = $row['medical_consulted'];
+                                                            $sick_animal_onboard = $row['sick_animal_onboard'];
+                                                            $any_person_died = $row['any_person_died'];
+                                                            $number_of_deaths = $row['number_of_deaths'];
+                                                            $any_ill_person = $row['any_ill_person'];
+                                                            $number_of_ill_persons = $row['number_of_ill_persons'];
+                                                            ?>
+                                                            <tr>
+                                                                <td><?php echo "$valid_sanitation_control_exemption"; ?></td>
+                                                                <td><?php echo "$certificate_issued_at"; ?></td>
+                                                                <td><?php echo "$date_of_issue"; ?></td>
+                                                                <td><?php echo "$reinspection_required"; ?></td>
+                                                                <td><?php echo "$visited_infected_area"; ?></td>
+                                                                <td><?php echo "$disease_onboard"; ?></td>
+                                                                <td><?php echo "$infection_condition_onboard"; ?></td>
+                                                                <td><?php echo "$medical_consulted"; ?></td>
+                                                                <td><?php echo "$sick_animal_onboard"; ?></td>
+                                                                <td><?php echo "$any_person_died"; ?></td>
+                                                                <td><?php echo "$number_of_deaths"; ?></td>
+                                                                <td><?php echo "$any_ill_person"; ?></td>
+                                                                <td><?php echo "$number_of_ill_persons"; ?></td>
+                                                            </tr>
+
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </form>
                                 </div>
                                 <!-- /.card -->
                             </div>  <!--    col-d-12-->
