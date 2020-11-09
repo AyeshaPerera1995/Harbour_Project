@@ -107,6 +107,14 @@ $u_id = $_SESSION['user_id'];
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="user_message.php" class="nav-link">
+                            <i class="nav-icon fas fa-envelope"></i>
+                            <p>
+                                Send Messages
+                            </p>
+                        </a>
+                    </li>
 
                 </ul>
             </nav>

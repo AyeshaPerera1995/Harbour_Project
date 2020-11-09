@@ -41,8 +41,8 @@ $notification_id = $_SESSION['n_id'];
     <!-- DataTables -->
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<!--alert-->
-<script src="../sweetalert/sweetalert2.all.min.js"></script>
+    <!--alert-->
+    <script src="../sweetalert/sweetalert2.all.min.js"></script>
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -90,7 +90,7 @@ $notification_id = $_SESSION['n_id'];
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                         <li class="nav-item ">
+                    <li class="nav-item ">
                         <a href="#" class="nav-link ">
                             <i class="nav-icon fas fa-cog"></i>
                             <p>
@@ -148,8 +148,8 @@ $notification_id = $_SESSION['n_id'];
                         <!-- general form elements -->
                         <div class="card card-success">
                             <h5 class="bg-indigo" style="padding:5px; margin-top: 15px; margin-left:20px; border-radius:5px; font-weight: bold; width: 97%;">Ship's Stores Information</h5>
-                                <div class="card-body">
-                                    <form role="form" action="ship_stores.php" method="post">
+                            <div class="card-body">
+                                <form role="form" action="ship_stores.php" method="post">
                                     <div role="form">
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -170,7 +170,7 @@ $notification_id = $_SESSION['n_id'];
                                                     <input type="text" class="form-control" name="l_board">
                                                 </div>
                                             </div>
-                                        
+
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label style="color: white;">E</label><br>
@@ -180,56 +180,56 @@ $notification_id = $_SESSION['n_id'];
 
                                         </div>
                                     </div>
-                                    </form>
-                                        <hr><br>
-                                        <table id="example1" class="table table-bordered table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th>Name of article</th>
-                                                <th>Quantity</th>
-                                                <th>Location on board</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                $sel_ss = "SELECT * from ships_stores where notification_idnotification='$notification_id'";
-                                                $run_ss = mysqli_query($con, $sel_ss);
-                                                while ($row = mysqli_fetch_array($run_ss)) {                                             
-                                                    $id = $row['idships_stores'];
-                                                    $article = $row['name_of_article'];
-                                                    $quantity = $row['quantity'];
-                                                    $l_board = $row['location_on_board'];
-                                                
-                                                ?>
-                                            <tr>
-                                                <td><?php echo "$article";?></td>
-                                                <td><?php echo "$quantity";?></td>
-                                                <td><?php echo "$l_board";?></td>
-                                                <td><a href="#" class="btn btn-dark">Delete</a></td>
-                                            </tr>
+                                </form>
+                                <hr><br>
+                                <table id="example1" class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Name of article</th>
+                                        <th>Quantity</th>
+                                        <th>Location on board</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $sel_ss = "SELECT * from ships_stores where notification_idnotification='$notification_id'";
+                                    $run_ss = mysqli_query($con, $sel_ss);
+                                    while ($row = mysqli_fetch_array($run_ss)) {
+                                        $id = $row['idships_stores'];
+                                        $article = $row['name_of_article'];
+                                        $quantity = $row['quantity'];
+                                        $l_board = $row['location_on_board'];
+
+                                        ?>
+                                        <tr>
+                                            <td><?php echo "$article";?></td>
+                                            <td><?php echo "$quantity";?></td>
+                                            <td><?php echo "$l_board";?></td>
+                                            <td><a href="#" class="btn btn-dark">Delete</a></td>
+                                        </tr>
 
                                         <?php
-                                                }
-                                        ?>
-                                            </tbody>
-                                            <tfoot>
-                                            <tr>
-                                            <th>Name of article</th>
-                                                <th>Quantity</th>
-                                                <th>Location on board</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            </tfoot>
-                                        </table>
+                                    }
+                                    ?>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>Name of article</th>
+                                        <th>Quantity</th>
+                                        <th>Location on board</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </tfoot>
+                                </table>
 
-                                    </div>
-                                </div>  <!-- /.card-body -->
+                            </div>
+                        </div>  <!-- /.card-body -->
 
-                        </div>
-                        <!-- /.card -->
+                    </div>
+                    <!-- /.card -->
 
-                    </div>  <!--    col-d-12-->
+                </div>  <!--    col-d-12-->
 
             </div><!-- /.container-fluid -->
         </section>
@@ -315,19 +315,19 @@ $notification_id = $_SESSION['n_id'];
 
 <?php
 
- if (isset($_POST['upload_ss'])) {
+if (isset($_POST['upload_ss'])) {
 
- $notification_id = $_SESSION['n_id'];
+    $notification_id = $_SESSION['n_id'];
 
- $article= $_POST['article'];
- $qty= $_POST['qty'];
- $l_board= $_POST['l_board'];
+    $article= $_POST['article'];
+    $qty= $_POST['qty'];
+    $l_board= $_POST['l_board'];
 
- $sql2 = "INSERT INTO ships_stores (name_of_article,quantity,location_on_board,notification_idnotification) "
-         . "values('$article','$qty','$l_board','$notification_id')";
+    $sql2 = "INSERT INTO ships_stores (name_of_article,quantity,location_on_board,notification_idnotification) "
+        . "values('$article','$qty','$l_board','$notification_id')";
 
-     if (mysqli_query($con, $sql2)) {
-         echo "<script>
+    if (mysqli_query($con, $sql2)) {
+        echo "<script>
      			swal({
                      type: 'success',
                      title:'New Ship Store Details Uploded',
@@ -336,16 +336,16 @@ $notification_id = $_SESSION['n_id'];
                  })
                  .then(willDelete => {
    				if (willDelete) {
-     			window.open('ship_stores.php','_self')
+     			window.open('cargo_decl.php','_self')
    				}
  				});
                  </script>";
-     } else {
+    } else {
 
-         echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
-     }
+        echo "Error: " . $sql2 . "<br>" . mysqli_error($con);
+    }
 
- }
+}
 
 ?>
 

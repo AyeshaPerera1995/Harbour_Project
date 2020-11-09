@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Personal HTML-5 Template </title>
+        <title>Vessel Port System</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
@@ -45,34 +45,25 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
-                                    <a href="index.php"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    <a href="index.php"><p style="font-family:Connection;font-size: 20px;">Vessel Port System</p></a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10 col-md-10">
                                 <div class="menu-main d-flex align-items-center justify-content-end">
                                     <!-- Main-menu -->
                                     <div class="main-menu f-right d-none d-lg-block">
-                                        <nav> 
+                                        <nav>
                                             <ul id="navigation">
                                                 <li><a href="index.php">Home</a></li>
                                                 <li><a href="about.php">About</a></li>
-                                                <li><a href="services.php">Services</a></li>
-                                                <li><a href="portfolio.php">Portfolio</a></li>
-                                                <li><a href="#">Page</a>
-                                                    <ul class="submenu">
-                                                        <li><a href="blog.php">Blog</a></li>
-                                                        <li><a href="blog_details.php">Blog Details</a></li>
-                                                        <li><a href="elements.php">Element</a></li>
-                                                        <li><a href="portfolio_details.php">Portfolio Details</a></li>
-                                                    </ul>
-                                                </li>
                                                 <li><a href="contact.php">Contact</a></li>
+
                                             </ul>
                                         </nav>
                                     </div>
-                                    <div class="header-right-btn f-right d-none d-xl-block ml-20">
-                                        <a href="#" class="btn header-btn">Get Free Consultent</a>
-                                    </div>
+                                    <div class=\"header-right-btn f-right d-none d-xl-block ml-20\">
+                                    <a href=\"login.php\" class=\"btn header-btn\">Login or Sign in</a>
+                                </div>
                                 </div>
                             </div>   
                             <!-- Mobile Menu -->
@@ -94,13 +85,8 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap">
-                                <h2>About me</h2>
-                                <nav aria-label="breadcrumb ">
-                                    <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">About me</a></li> 
-                                    </ol>
-                                </nav>
+                                <h2>About us</h2>
+
                             </div>
                         </div>
                     </div>
@@ -114,15 +100,18 @@
                 <div class="row justify-content-between align-items-center">
                     <div class="col-lg-6 col-md-6">
                         <div class="about-me-img mb-30">
-                            <img src="assets/img/gallery/aboutme.png" alt="">
+                            <img src="assets/img/ships/log10.jpg" alt="">
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-6">
                         <div class="about-me-caption">
-                            <h2>I Create Products Not Just Art.</h2> 
-                            <p class="pb-30">Unlimited rewards. enjoy attractive discounts flexible Payme options global usage. Unlimited rewards. enjoy attracti exible ayment options global usage.</p>
-                            <h5>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</h5>
-                            <p>Unlimited rewards. enjoy attractive discounts flexible Payme options global usage. Unlimited rewards. enjoy attracti exible ayment options global usage.</p>
+                            <h2>VISION & MISSION</h2>
+                            <h5>Vision</h5>
+                            <p class="pb-30">
+                                Envisioning the future of Sri Lankan ports, the Sri Lanka Port Authority is transforming its original thinking from a container hub to a global logistics hub, expecting international trade to flourish that opens up a range of opportunities. and challenges.</p>
+                            <h5>Mission</h5>
+                            <p>
+                                Insisting on the idea of ​​creating a port of global logistics hub in Sri Lanka, the port authority should build a multidimensional logistics system to integrate logistics functions while opening a deep water port with excellent maritime access that allows to receive large vessels and operate them in modern specialized terminals.</p>
                         </div>
                     </div>
                 </div>
@@ -135,19 +124,24 @@
                 <div class="row ">
                     <div class="col-lg-5">
                         <div class="about-caption mb-50">
-                            <h3>Designing With Passion While Exploring The World.</h3>
-                            <p class="pera1">Consectetur adipiscing elit, sed do eiusmod tempor ididunt ut labore et dolore magna aliqua. Quis ipsum suspendisces gravida. Risus commodo viverra sebfd dho eiusmod tempor maecenas accumsan lacus.</p>
-                            <p>Consectetur adipiscing elit, sed do eiusmod tempor ididunt ut labore et dolore magna aliqua. </p>
+                            <h3>Goals</h3>
+                            <ol>
+                                <li>1. Maintain efficient and efficient port services.</li>
+                                <li>2. To maintain high levels of Productivity in order to ensure speedy turnaround of vessels</li>
+                                <li>3. ensure safety and security of the Port users and Port infrastructure.</li>
+                                <li>4. develop and maintain state-of-the-art facilities in the Commercial Ports of Sri Lanka.</li>
+
+                            </ol>
                         </div>
                     </div>
                     <div class="col-lg-5 offset-lg-1">
                         <div class="about-caption2">
-                            <h3>Any Type Of Query<br> & Discussion.</h3>
-                            <p>Late talk with me</p>
-                           <div class="send-cv">
-                                <a href="#">hire@colorlib.com</a>
+                            <h3>Any Type Of Query?</h3>
+                            <p>Connact our Admin</p>
+                            <div class="send-cv">
+                                <a href="#">adim@vessleport.com</a>
                                 <i class="ti-arrow-right"></i>
-                           </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -155,157 +149,15 @@
         </section>
         <!-- About Area End -->
         <!-- Want To Work Start -->
-        <section class="wantToWork-area w-padding2">
-            <div class="container">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-xl-6 col-lg-8 col-md-8">
-                        <div class="wantToWork-caption wantToWork-caption2">
-                            <h2>Dont worry for contact i`m available</h2>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-lg-2 col-md-3">
-                        <a href="#" class="btn btn-black f-right">Contact Me Now</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <!-- Want To Work End -->
         <!-- client-comments -->
-        <div class="client-comments section-paddingt30">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-6 col-lg-8 col-md-10">
-                        <!-- Section Tittle -->
-                        <div class="section-tittle mb-70">
-                            <h2>Some Possitive Feedback  That Encourage Us</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- latest-blog-area start -->
-            <div class="latest-blog-area">
-                <div class="container">
-                    <div class="custom-row">
-                        <div class="blog-active">
-                            <!-- single-items -->
-                            <div class="col-xl-4">
-                                <div class="blog-wrapper">
-                                    <div class="blog-inner">
-                                    <div class="blog-top">
-                                        <div class="person-img">
-                                            <img src="assets/img/gallery/blog1.png" alt="">
-                                        </div>
-                                        <div class="comment-person">
-                                            <h2>Bradley Erickson</h2>   
-                                            <span>UI/UX Designer</span>
-                                        </div>
-                                    </div>
-                                        <p>Consectetur adipisicing elit, seddosdoe eiusmod tempor incididunt utore etstes dolore magna aliqua. Ut imminim restai veniam, quis nostrud.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single-items -->
-                            <div class="col-xl-4">
-                                <div class="blog-wrapper">
-                                    <div class="blog-inner">
-                                    <div class="blog-top">
-                                            <div class="person-img">
-                                                <img src="assets/img/gallery/blog2.png" alt="">
-                                            </div>
-                                            <div class="comment-person">
-                                                <h2>Bradley Erickson</h2>   
-                                                <span>UI/UX Designer</span>
-                                            </div>
-                                    </div>
-                                        <p>Consectetur adipisicing elit, seddosdoe eiusmod tempor incididunt utore etstes dolore magna aliqua. Ut imminim restai veniam, quis nostrud.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single-items -->
-                            <div class="col-xl-4">
-                                <div class="blog-wrapper">
-                                    <div class="blog-inner">
-                                    <div class="blog-top">
-                                            <div class="person-img">
-                                                <img src="assets/img/gallery/blog3.png" alt="">
-                                            </div>
-                                            <div class="comment-person">
-                                                <h2>Bradley Erickson</h2>   
-                                                <span>UI/UX Designer</span>
-                                            </div>
-                                    </div>
-                                        <p>Consectetur adipisicing elit, seddosdoe eiusmod tempor incididunt utore etstes dolore magna aliqua. Ut imminim restai veniam, quis nostrud.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- single-items -->
-                            <div class="col-xl-4">
-                                <div class="blog-wrapper">
-                                    <div class="blog-inner">
-                                    <div class="blog-top">
-                                            <div class="person-img">
-                                                <img src="assets/img/gallery/blog2.png" alt="">
-                                            </div>
-                                            <div class="comment-person">
-                                                <h2>Bradley Erickson</h2>   
-                                                <span>UI/UX Designer</span>
-                                            </div>
-                                    </div>
-                                        <p>Consectetur adipisicing elit, seddosdoe eiusmod tempor incididunt utore etstes dolore magna aliqua. Ut imminim restai veniam, quis nostrud.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>           
-            <!-- End latest-blog-area -->
-        </div>
+
         <!-- Brand Area Start -->
-        <div class="brand-area pb-bottom">
-            <div class="container">
-                <div class="brand-active brand-border pt-50 pb-40">
-                    <div class="single-brand">
-                        <img src="assets/img/gallery/brand1.png" alt="">
-                    </div>
-                    <div class="single-brand">
-                        <img src="assets/img/gallery/brand2.png" alt="">
-                    </div>
-                    <div class="single-brand">
-                        <img src="assets/img/gallery/brand3.png" alt="">
-                    </div>
-                    <div class="single-brand">
-                        <img src="assets/img/gallery/brand4.png" alt="">
-                    </div>
-                    <div class="single-brand">
-                        <img src="assets/img/gallery/brand2.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- Brand Area End -->
         <!-- Contact Info Start -->
-        <div class="contact-info-area w-padding2" data-background="assets/img/gallery/section_bg04.jpg">
-            <div class="container">
-                <div class="row justify-content-between">
-                    <div class="col-xl-5 col-lg-7">
-                      <div class="contact-caption mb-50">
-                            <h3>If Not Now, When? Let’s Work Together!</h3>
-                            <p>Consectetur adipiscing elit, sed do eiusmod tempor ididunt ut labore et dolore magna aliqua. Quis ipsum suspendisces gravida. Risus commodo viverra.</p>
-                            <img src="assets/img/gallery/sin.png" alt="">
-                      </div>
-                    </div>
-                    <div class="col-xl-5 col-lg-5">
-                        <form action="#" class="contact-wrapper">
-                            <input type="text" name="name" placeholder="Full Name">
-                            <input type="email" name="email" placeholder="Email Address">
-                            <textarea name="message" id="message" placeholder="Your Message"></textarea>
-                            <button class="submit-btn2" type="submit">Send Message</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- Contact Info End -->
 
     </main>
@@ -317,10 +169,9 @@
                    <div class="row justify-content-center">
                        <div class="col-lg-6">
                             <div class="footer-top-cap text-center">
-                                <img src="assets/img/logo/logo2_footer.png" alt="">
-                               <span><a href="#">hireme@portfolio.com</a></span>
-                                <p>221B Baker Street, Post office Box 353 </p>
-                                <p>Park Road, USA - 215431</p>
+                                <a href="index.php"><p style="font-family:Connection;font-size: 50px;">Vessel Port System</p></a>
+                               <span><a href="#">adim@vessleport.com</a></span>
+                                <p>Sri Lanka</p>
                             </div>
                        </div>
                    </div>
@@ -328,11 +179,7 @@
                 <div class="footer-bottom">
                     <div class="row d-flex justify-content-between align-items-center">
                         <div class="col-xl-9 col-lg-8">
-                            <div class="footer-copy-right">
-                               <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                            </div>
+
                         </div>
                         <div class="col-xl-3 col-lg-4">
                             <!-- Footer Social -->

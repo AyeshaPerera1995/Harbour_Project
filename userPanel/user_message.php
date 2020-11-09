@@ -36,9 +36,39 @@ $u_id = $_SESSION['user_id'];
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
+    <script>
+     var xhtp;
+            function createXMLHTTp() {
+                xhtp = new XMLHttpRequest();
+            }
+
+            function searchChat() {
+                // alert('Done');
+                var uid = document.getElementById("uid").value;
+                    
+                createXMLHTTp();
+                xhtp.onreadystatechange = function () {
+                    if (xhtp.readyState == 4 && xhtp.status == 200) {
+                        var text = xhtp.responseText;
+                        document.getElementById("result").innerHTML = text;
+                    }
+                }
+                xhtp.open("GET", "SearchChatData.php?uid=" + uid, true);
+                xhtp.send();
+
+            }
+    
+    </script>
+
 
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" onload="searchChat()">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -134,12 +164,12 @@ $u_id = $_SESSION['user_id'];
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>View Ships</h1>
+                        <h1>Send Messages</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">View Ships</li>
+                            <li class="breadcrumb-item active">Send Messages</li>
                         </ol>
                     </div>
                 </div>
@@ -154,101 +184,36 @@ $u_id = $_SESSION['user_id'];
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">View All Your Registered Ships...</h3>
+                                <h3 class="card-title">Chat with Admin...</h3><br><br>
+                                    <div role="form">
+                                    
+                                        <form action="user_message.php" method="post">
+                                            <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <input type="hidden" id="uid" name="id" value="<?php echo $u_id;?>">
+                                                    <input type="text" class="form-control" required placeholder="Type your message here....." name="message"/>                                                   
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                            <input type="submit" class="btn btn-success" value="Send" class="form-control" name="send"/>
+                                            </div>
+
+                                            
+
+                                            </div>  <!-- end row  -->
+                                        </form>
+                                        
+                                    </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Ship Name</th>
-                                        <th>Call Sign</th>
-                                        <th>IMO Number</th>
-                                        <th>MMSI Number</th>
-                                        <th>Flag</th>
-                                        <th>Gross Tonnage</th>
-                                        <th>Net Tonnage</th>
-                                        <th>Ship Type</th>
-                                        <th>Port</th>
-                                        <th>Date</th>
-                                        <th>Approve Status</th>
-                                        <th>View More</th>
-                                    </tr>
-                                    </thead>
+                                <div class="row">
+                                    <div class="col-sm-12" id="result">
+                                        <!-- View Ajax data  -->
 
-                                    <tbody>
-                                    <?php
-                                    $ship = "select * from ship where user_iduser='$u_id'";
-                                    $shipp = mysqli_query($con, $ship);
-                                    while ($row = mysqli_fetch_array($shipp)) {
-                                        $id = $row['idship'];
-                                        $ship_name = $row['ship_name'];
-                                        $call_sign = $row['call_sign'];
-                                        $IMO_number = $row['IMO_number'];
-                                        $MMSI_number = $row['MMSI_number'];
-                                        $flag = $row['flag'];
-                                        $gross_tonnage = $row['gross_tonnage'];
-                                        $net_tonnage = $row['net_tonnage'];
-                                        $ship_type = $row['ship_type'];
-                                        $port = $row['certify_port'];
-                                        $date = $row['certify_date'];
-                                        $company = $row['company'];
-                                        $c_email = $row['c_email'];
-                                        $c_phone = $row['c_phone'];
-                                        $year_of_built = $row['year_of_built'];
-                                        $length_overall = $row['length_overall'];
-                                        $dead_weight = $row['dead_weight'];
-                                        $status = $row['status'];
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $id;?></td>
-                                            <td><?php echo $ship_name;?></td>
-                                            <td><?php echo $call_sign;?></td>
-                                            <td><?php echo $IMO_number;?></td>
-                                            <td><?php echo $MMSI_number;?></td>
-                                            <td><?php echo $flag;?></td>
-                                            <td><?php echo $gross_tonnage;?></td>
-                                            <td><?php echo $net_tonnage;?></td>
-                                            <td><?php echo $ship_type;?></td>
-                                            <td><?php echo $port;?></td>
-                                            <td><?php echo $date;?></td>
-                                            <?php
-                                            if ($status==1){
-                                                ?>
-                                                <td><h6 style='font-weight:bold;text-align:center;color: red';>Pending</h6></td>
-                                                <?php
-                                            }else if ($status==2){
-                                                ?>
-                                                <td><h6 style='font-weight:bold;text-align:center;color: darkgreen'>Approved</h6></td>
-                                                <td><a type="button" class="btn btn-primary btn-sm" href="home.php?ship_id=<?php echo $id;?>">View More</a></td>
-                                                <?php
-                                            }
-                                            ?>
-                                        </tr>
-                                        <?php
-                                    }
-                                    ?>
-
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Ship Name</th>
-                                        <th>Call Sign</th>
-                                        <th>IMO Number</th>
-                                        <th>MMSI Number</th>
-                                        <th>Flag</th>
-                                        <th>Gross Tonnage</th>
-                                        <th>Net Tonnage</th>
-                                        <th>Ship Type</th>
-                                        <th>Port</th>
-                                        <th>Date</th>
-                                        <th>Approve Status</th>
-                                        <th>View More</th>
-                                    </tr>
-                                    </tfoot>
-                                </table>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -279,11 +244,7 @@ $u_id = $_SESSION['user_id'];
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>
@@ -340,5 +301,25 @@ $u_id = $_SESSION['user_id'];
 </script>
 </body>
 </html>
+
+<?php
+if (isset($_POST['send'])){
+
+    $msg = $_POST['message'];
+    $user_id = $_POST['id'];
+
+    $c_date = date('Y-m-d');
+    date_default_timezone_set("Asia/Colombo");
+    $c_time = date("h:i:s a");
+    
+    $insert_chat = "INSERT INTO chat (message,date,time,parent_chat_id,status) VALUES ('$msg','$c_date','$c_time','$user_id',0)";
+    if (mysqli_query($con, $insert_chat)) {
+        echo "<script>window.location.replace('user_message.php','_self')</script>";
+    }else{
+        echo "Error !";
+    }
+}
+
+?>
 
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Personal HTML-5 Template </title>
+    <title>Vessel Port System</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
@@ -45,34 +45,25 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2 col-md-1">
                                 <div class="logo">
-                                    <a href="index.php"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    <a href="index.php"><p style="font-family:Connection;font-size: 20px;">Vessel Port System</p></a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10 col-md-10">
                                 <div class="menu-main d-flex align-items-center justify-content-end">
                                     <!-- Main-menu -->
                                     <div class="main-menu f-right d-none d-lg-block">
-                                        <nav> 
+                                        <nav>
                                             <ul id="navigation">
                                                 <li><a href="index.php">Home</a></li>
                                                 <li><a href="about.php">About</a></li>
-                                                <li><a href="services.php">Services</a></li>
-                                                <li><a href="portfolio.php">Portfolio</a></li>
-                                                <li><a href="#">Page</a>
-                                                    <ul class="submenu">
-                                                        <li><a href="blog.php">Blog</a></li>
-                                                        <li><a href="blog_details.php">Blog Details</a></li>
-                                                        <li><a href="elements.php">Element</a></li>
-                                                        <li><a href="portfolio_details.php">Portfolio Details</a></li>
-                                                    </ul>
-                                                </li>
                                                 <li><a href="contact.php">Contact</a></li>
+
                                             </ul>
                                         </nav>
                                     </div>
-                                    <div class="header-right-btn f-right d-none d-xl-block ml-20">
-                                        <a href="#" class="btn header-btn">Get Free Consultent</a>
-                                    </div>
+                                    <div class=\"header-right-btn f-right d-none d-xl-block ml-20\">
+                                    <a href=\"login.php\" class=\"btn header-btn\">Login or Sign in</a>
+                                </div>
                                 </div>
                             </div>   
                             <!-- Mobile Menu -->
@@ -95,12 +86,7 @@
                         <div class="col-xl-12">
                             <div class="hero-cap">
                                 <h2>Contact Us</h2>
-                                <nav aria-label="breadcrumb ">
-                                    <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="#">Contact</a></li> 
-                                    </ol>
-                                </nav>
+
                             </div>
                         </div>
                     </div>
@@ -151,62 +137,16 @@
                     </script>
     
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <h2 class="contact-title">Get in Touch</h2>
-                    </div>
-                    <div class="col-lg-8">
-                        <form class="form-contact contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'" placeholder=" Enter Message"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Enter your name">
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group">
-                                        <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <input class="form-control" name="subject" id="subject" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Subject">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group mt-3">
-                                <button type="submit" class="button button-contactForm boxed-btn">Send</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-3 offset-lg-1">
-                        <div class="media contact-info">
-                            <span class="contact-info__icon"><i class="ti-home"></i></span>
-                            <div class="media-body">
-                                <h3>Buttonwood, California.</h3>
-                                <p>Rosemead, CA 91770</p>
-                            </div>
-                        </div>
-                        <div class="media contact-info">
-                            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
-                            <div class="media-body">
-                                <h3>+1 253 565 2365</h3>
-                                <p>Mon to Fri 9am to 6pm</p>
-                            </div>
-                        </div>
-                        <div class="media contact-info">
-                            <span class="contact-info__icon"><i class="ti-email"></i></span>
-                            <div class="media-body">
-                                <h3>support@colorlib.com</h3>
-                                <p>Send us your query anytime!</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row" style="margin-bottom: 50px;margin-left: 30px;">
+
+                    <div class="col-md-3" > <img class="cicle" style="padding: 5%" src="assets/img/address.png" /></div>
+                    <div class="col-md-3"> <img class="cicle" style="padding: 10%" src="assets/img/phone.png" /></div>
+                    <div class="col-md-3"><img class="cicle" style="padding: 10%" src="assets/img/email.png" /></div>
+                    <div class="col-md-3"><img class="cicle" style="padding: 5%" src="assets/img/facebook.png" /></div>
+
+
+
+
                 </div>
             </div>
         </section>
@@ -217,26 +157,21 @@
         <!-- Footer Start-->
         <div class="footer-area">
             <div class="container">
-               <div class="footer-top footer-padding">
-                   <div class="row justify-content-center">
-                       <div class="col-lg-6">
+                <div class="footer-top footer-padding">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
                             <div class="footer-top-cap text-center">
-                                <img src="assets/img/logo/logo2_footer.png" alt="">
-                               <span><a href="#">hireme@portfolio.com</a></span>
-                                <p>221B Baker Street, Post office Box 353 </p>
-                                <p>Park Road, USA - 215431</p>
+                                <a href="index.php"><p style="font-family:Connection;font-size: 50px;">Vessel Port System</p></a>
+                                <span><a href="#">adim@vessleport.com</a></span>
+                                <p>Sri Lanka</p>
                             </div>
-                       </div>
-                   </div>
-               </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="footer-bottom">
                     <div class="row d-flex justify-content-between align-items-center">
                         <div class="col-xl-9 col-lg-8">
-                            <div class="footer-copy-right">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                            </div>
+
                         </div>
                         <div class="col-xl-3 col-lg-4">
                             <!-- Footer Social -->
@@ -249,7 +184,7 @@
                             </div>
                         </div>
                     </div>
-               </div>
+                </div>
             </div>
         </div>
         <!-- Footer End-->
