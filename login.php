@@ -55,6 +55,17 @@ session_start();
     <!--alert-->
     <script src="sweetalert/sweetalert2.all.min.js"></script>
 
+    <script>
+    function myFunction() {
+  var x = document.getElementById("myInput");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+    </script>
+
 </head>
 <body style="background-color: rgba(173,173,173,0.3)">
 
@@ -76,9 +87,10 @@ session_start();
             </div>
             <div class="input-group-icon mt-10">
                 <div class="icon"><i class="fa fa-lock" aria-hidden="true"></i></div>
-                <input type="password" name="password" placeholder="Password"
+                <input type="password" name="password" id="myInput" placeholder="Password"
                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required
                        class="single-input" >
+                       &nbsp;&nbsp;<input type="checkbox" onclick="myFunction()">  Show Password
             </div>
 
             <div class="input-group-icon mt-10">
