@@ -185,8 +185,7 @@ $u_id = $_SESSION['user_id'];
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Chat with Admin...</h3><br><br>
-                                    <div role="form">
-                                    
+                                    <div role="form">                                    
                                         <form action="user_message.php" method="post">
                                             <div class="row">
                                             <div class="col-sm-8">
