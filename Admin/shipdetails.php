@@ -151,7 +151,7 @@ include_once 'build/PHP/DB.php';
                           <th>Gross tonnage</th>
                           <th>Net tonnage</th>
                           <th>Ship type</th>
-                          <th>Certify port</th>
+                          <!-- <th>Certify port</th>
                           <th>Certify date</th>
                           <th>Certify number</th>
                           <th>Company</th>
@@ -161,7 +161,7 @@ include_once 'build/PHP/DB.php';
                           <th>Length overal </th>
                           <th>Dead weight</th>
                           <th>Beam</th>
-                          <th>Ship desc</th>
+                          <th>Ship desc</th> -->
                       </tr>
                       </thead>
                       <tbody>
@@ -203,7 +203,7 @@ include_once 'build/PHP/DB.php';
                           <td><?php echo  $gross_tonnage; ?> </td>
                           <td><?php echo  $net_tonnage; ?> </td>
                           <td><?php echo  $ship_type; ?> </td>
-                          <td><?php echo  $port; ?> </td>
+                          <!-- <td><?php echo  $port; ?> </td>
                           <td><?php echo  $date; ?> </td>
                           <td><?php echo  $number; ?> </td>
                           <td><?php echo  $company; ?> </td>
@@ -213,7 +213,7 @@ include_once 'build/PHP/DB.php';
                           <td><?php echo  $length_overall; ?> </td>
                           <td><?php echo  $dead_weight; ?> </td>
                           <td><?php echo  $baneam; ?> </td>
-                          <td><?php echo  $ship_desc; ?> </td>
+                          <td><?php echo  $ship_desc; ?> </td> -->
 
 
                       </tr>
@@ -232,7 +232,7 @@ include_once 'build/PHP/DB.php';
                           <th>Gross tonnage</th>
                           <th>Net tonnage</th>
                           <th>Ship type</th>
-                          <th>Certify port</th>
+                          <!-- <th>Certify port</th>
                           <th>Certify date</th>
                           <th>Certify number</th>
                           <th>Company</th>
@@ -242,7 +242,7 @@ include_once 'build/PHP/DB.php';
                           <th>Length overal </th>
                           <th>Dead weight</th>
                           <th>Beam</th>
-                          <th>Ship desc</th>
+                          <th>Ship desc</th> -->
                       </tr>
                       </tfoot>
                   </table>
@@ -267,7 +267,7 @@ include_once 'build/PHP/DB.php';
                           <th>Gross tonnage</th>
                           <th>Net tonnage</th>
                           <th>Ship type</th>
-                          <th>Certify port</th>
+                          <!-- <th>Certify port</th>
                           <th>Certify date</th>
                           <th>Certify number</th>
                           <th>Company</th>
@@ -277,7 +277,7 @@ include_once 'build/PHP/DB.php';
                           <th>Length overal </th>
                           <th>Dead weight</th>
                           <th>Beam</th>
-                          <th>Ship desc</th>
+                          <th>Ship desc</th> -->
                       </tr>
                       </thead>
                       <tbody>
@@ -319,7 +319,7 @@ include_once 'build/PHP/DB.php';
                               <td><?php echo  $gross_tonnage; ?> </td>
                               <td><?php echo  $net_tonnage; ?> </td>
                               <td><?php echo  $ship_type; ?> </td>
-                              <td><?php echo  $port; ?> </td>
+                              <!-- <td><?php echo  $port; ?> </td>
                               <td><?php echo  $date; ?> </td>
                               <td><?php echo  $number; ?> </td>
                               <td><?php echo  $company; ?> </td>
@@ -329,7 +329,7 @@ include_once 'build/PHP/DB.php';
                               <td><?php echo  $length_overall; ?> </td>
                               <td><?php echo  $dead_weight; ?> </td>
                               <td><?php echo  $baneam; ?> </td>
-                              <td><?php echo  $ship_desc; ?> </td>
+                              <td><?php echo  $ship_desc; ?> </td> -->
 
 
                           </tr>
@@ -348,7 +348,7 @@ include_once 'build/PHP/DB.php';
                           <th>Gross tonnage</th>
                           <th>Net tonnage</th>
                           <th>Ship type</th>
-                          <th>Certify port</th>
+                          <!-- <th>Certify port</th>
                           <th>Certify date</th>
                           <th>Certify number</th>
                           <th>Company</th>
@@ -358,7 +358,7 @@ include_once 'build/PHP/DB.php';
                           <th>Length overal </th>
                           <th>Dead weight</th>
                           <th>Beam</th>
-                          <th>Ship desc</th>
+                          <th>Ship desc</th> -->
                       </tr>
                       </tfoot>
                   </table>

@@ -21,7 +21,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a ><b>Rejistaion</a>
+        <a ><b>Registration</a>
     </div>
 
     <div class="card">
