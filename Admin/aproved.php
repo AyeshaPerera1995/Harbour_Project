@@ -107,7 +107,15 @@ include_once 'build/PHP/DB.php';
                             </p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                <a href="admin_message.php" class="nav-link">
+                    <i class="nav-icon fas fa-envelope"></i>
+                    <p>
+                       Reply to Users
 
+                    </p>
+                </a>
+            </li>
 
                 </ul>
             </nav>

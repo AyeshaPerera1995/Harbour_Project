@@ -79,36 +79,44 @@ include_once 'shipcount.php';
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item ">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>
-                Dashbord
+               <li class="nav-item ">
+                        <a href="home.php" class="nav-link ">
+                            <i class="nav-icon fas fa-cog"></i>
+                            <p>
+                                Dashbord
 
-              </p>
-            </a>
+                            </p>
+                        </a>
 
-          </li>
-          <li class="nav-item">
-            <a href="to_aprove.php" class="nav-link">
-              <i class="nav-icon fas fa-ship"></i>
-              <p>
-                  To aprove ship list
+                    </li>
+                    <li class="nav-item">
+                        <a href="to_aprove.php" class="nav-link">
+                            <i class="nav-icon fas fa-ship"></i>
+                            <p>
+                                Pending Ship List
 
-              </p>
-            </a>
-          </li>
+                            </p>
+                        </a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a href="aproved.php" class="nav-link">
+                            <i class="nav-icon fas fa-life-ring"></i>
+                            <p>
+                                Approved Ship List
+
+                            </p>
+                        </a>
+                    </li>
             <li class="nav-item">
-                <a href="aproved.php" class="nav-link">
-                    <i class="nav-icon fas fa-life-ring"></i>
+                <a href="admin_message.php" class="nav-link">
+                    <i class="nav-icon fas fa-envelope"></i>
                     <p>
-                       aproved ship list
+                       Reply to Users
 
                     </p>
                 </a>
             </li>
-
 
         </ul>
       </nav>
@@ -214,14 +222,9 @@ include_once 'shipcount.php';
                       <span class="info-box-icon bg-danger"><i class="far fa-user"></i></span>
 
                       <div class="info-box-content">
-<<<<<<< HEAD
-                          <a style="color:black;" href ="admin_message.php"><span class="info-box-text">Reply to Messages</span></a>
-                         
-=======
                           <a href="logout.php">
                           <span class="info-box-text">Log out</span>
                           </a>
->>>>>>> 489e55d04d6fad3902ea82e25b5a2505ed89d1a0
                       </div>
 
                       <!-- /.info-box-content -->

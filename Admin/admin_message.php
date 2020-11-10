@@ -32,8 +32,40 @@ include_once 'build/PHP/DB.php';
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip --> 
+
+<script>
+     var xhtp;
+            function createXMLHTTp() {
+                xhtp = new XMLHttpRequest();
+            }
+
+            function searchUsersAllChats() {
+                // alert('Done');
+                 
+                createXMLHTTp();
+                xhtp.onreadystatechange = function () {
+                    if (xhtp.readyState == 4 && xhtp.status == 200) {
+                        var text = xhtp.responseText;
+                        document.getElementById("result").innerHTML = text;
+                    }
+                }
+                xhtp.open("GET", "SearchUserAllChats.php", true);
+                xhtp.send();
+
+            }
+
+</script>
+
+
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" onload="searchUsersAllChats()">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -47,9 +79,6 @@ include_once 'build/PHP/DB.php';
             <a href="../index.php" class="nav-link">Home</a>
         </li>
     </ul>
-
-
-
 
   </nav>
   <!-- /.navbar -->
@@ -78,31 +107,40 @@ include_once 'build/PHP/DB.php';
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item ">
-            <a href="#" class="nav-link ">
-              <i class="nav-icon fas fa-cog"></i>
-              <p>
-                Dashbord
+               <li class="nav-item ">
+                        <a href="home.php" class="nav-link ">
+                            <i class="nav-icon fas fa-cog"></i>
+                            <p>
+                                Dashbord
 
-              </p>
-            </a>
+                            </p>
+                        </a>
 
-          </li>
-          <li class="nav-item">
-            <a href="to_aprove.php" class="nav-link">
-              <i class="nav-icon fas fa-ship"></i>
-              <p>
-                  To aprove ship list
+                    </li>
+                    <li class="nav-item">
+                        <a href="to_aprove.php" class="nav-link">
+                            <i class="nav-icon fas fa-ship"></i>
+                            <p>
+                                Pending Ship List
 
-              </p>
-            </a>
-          </li>
+                            </p>
+                        </a>
+                    </li>
 
+                    <li class="nav-item">
+                        <a href="aproved.php" class="nav-link">
+                            <i class="nav-icon fas fa-life-ring"></i>
+                            <p>
+                                Approved Ship List
+
+                            </p>
+                        </a>
+                    </li>
             <li class="nav-item">
-                <a href="aproved.php" class="nav-link">
-                    <i class="nav-icon fas fa-life-ring"></i>
+                <a href="admin_message.php" class="nav-link">
+                    <i class="nav-icon fas fa-envelope"></i>
                     <p>
-                       aproved ship list
+                       Reply to Users
 
                     </p>
                 </a>
@@ -146,9 +184,9 @@ include_once 'build/PHP/DB.php';
                             <!-- /.card-header -->
                             <div class="card-body" id="result">
                                 <div class="row">
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12" id="result">
 
-                                        <div class="form-group" style="line-height:15px; margin-left:50px;">
+                                        <!-- <div class="form-group" style="line-height:15px; margin-left:50px;">
                                         <label style="color:green;">User :</label><br>
                                         <label style="color:gray; font-size:18px;">I want to active my account</label><br>
                                         <label>05 Nov 2020 | at : 9.00 am</label>
@@ -158,7 +196,7 @@ include_once 'build/PHP/DB.php';
                                         <label style="color:red;">Me (Admin) :</label><br>
                                         <label style="color:gray; font-size:18px;">I want to active my account</label><br>
                                         <label>at : 3.00 pm</label>
-                                        </div><hr>
+                                        </div><hr> -->
 
                                     </div>
                                 </div>
@@ -190,10 +228,6 @@ include_once 'build/PHP/DB.php';
 </div>
 <!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button)
@@ -226,3 +260,25 @@ include_once 'build/PHP/DB.php';
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
+
+
+<?php
+if (isset($_POST['reply'])){
+
+$uid = $_POST['id'];
+$rmsg = $_POST['rmsg'];
+
+$c_date = date('Y-m-d');
+date_default_timezone_set("Asia/Colombo");
+$c_time = date("h:i:s a");
+
+$insert_chat = "INSERT INTO chat (message,date,time,parent_chat_id,status) VALUES ('$rmsg','$c_date','$c_time','$uid',1)";
+if (mysqli_query($con, $insert_chat)) {
+    echo "<script>window.location.replace('admin_message.php','_self')</script>";
+}else{
+    echo "Error !";
+}
+
+}
+
+?>
